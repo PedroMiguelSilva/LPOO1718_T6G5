@@ -43,22 +43,29 @@ public class Task1
 			}
 			
 			if (validMove(matrix, xHnew, yHnew) ) {
-				matrix[xHold][yHold] = ' ';
-				matrix[xHnew][yHnew] = 'h';
-				xHold = xHnew;
-				yHold = yHnew;
-				
-				printMatrix(matrix);
+				move(matrix,xHold, yHold, xHnew,yHnew);
 			}
 			else {
 				xHnew = xHold;
 				yHnew = yHold;
 			}
 			
-
 		}while(current != quit);
 	}
 
+	public static char move(char matrix[][], int xHold, int yHold, int xHnew, int yHnew)
+	{
+		//regular movement
+		char nextChar = matrix[xHnew][yHnew];
+		matrix[xHold][yHold] = ' ';
+		matrix[xHnew][yHnew] = 'h';
+		xHold = xHnew;
+		yHold = yHnew;
+		printMatrix(matrix);
+		
+		return nextChar;
+	}
+	
 	public static void printMatrix(char matrix[][] ) {
 		for(int i=0; i<10;i++) 
 			for(int j=0; j<10;j++) {
