@@ -23,33 +23,48 @@ public class Task1
 		int yHold = 1;
 		int xHnew = 1;
 		int yHnew = 1;
-		
-		
+
+
 		do {
 			current = validChar();
-			
+
 			switch(current) {
 			case 'w' : xHnew = xHold - 1;
-				break;
-				
+			break;
+
 			case 'a' : yHnew = yHold - 1;
-				break;
-				
+			break;
+
 			case 's' : xHnew = xHold + 1;
 			break;
-			
+
 			case 'd' : yHnew = yHold + 1;
 			break;
 			}
-			
+
+			//verificar se o passo é valido. Se for move. Depois de mover verifica se 
+			//é um k, um S ou se o Guarda esta perto e trata de cada uma das situaçoes
+			//Se nao for nenhuma destas mantem-se
 			if (validMove(matrix, xHnew, yHnew) ) {
 				move(matrix,xHold, yHold, xHnew,yHnew);
+				if(matrix[xHnew][yHnew] == 'k') 
+				{
+					matrix[5][0]= 'S';
+					matrix[6][0]= 'S';	
+				}
+				else if(matrix[xHnew][yHnew] == 'S')
+					System.out.println("Success! You Escaped");
+				
+				else if() 
 			}
 			else {
 				xHnew = xHold;
 				yHnew = yHold;
 			}
-			
+
+
+
+
 		}while(current != quit);
 	}
 
@@ -62,10 +77,10 @@ public class Task1
 		xHold = xHnew;
 		yHold = yHnew;
 		printMatrix(matrix);
-		
+
 		return nextChar;
 	}
-	
+
 	public static void printMatrix(char matrix[][] ) {
 		for(int i=0; i<10;i++) 
 			for(int j=0; j<10;j++) {
@@ -86,12 +101,21 @@ public class Task1
 
 		return N;
 	}
-	
+
 	public static boolean validMove(char matrix [][], int x, int y) {
 		if( matrix[x][y] == 'x' || matrix [x][y] == 'i')
 			return false;
 		return true;
-		
+
 	}
 
+	public static char findGuard(char matrix[][]) {
+		for (int i=0; i<10 ; i++) {
+			for (int j=0; j<10; j++) {
+				if(matrix[i][j] == 'g') 
+					return matrix[i][j];
+			}
+		}
+	return 0;
+	}
 }
