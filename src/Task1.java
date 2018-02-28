@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Task1
 {
-	public static void main(String args[]) {
+	public static void main2(String args[]) {
 		char map1 [][] = {
 				{'x','x','x','x','x','x','x','x','x','x'},
 				{'x','h',' ',' ','i',' ','x',' ','g','x'},

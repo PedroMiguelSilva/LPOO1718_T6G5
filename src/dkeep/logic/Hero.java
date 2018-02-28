@@ -1,0 +1,116 @@
+package dkeep.logic;
+
+public class Hero extends Entity
+{
+	//Attributes
+	private boolean isAlive;
+	private boolean hasKey;
+	private boolean wonLevel;
+
+	//Constructor
+	public Hero(int startX, int startY, char startSymb)
+	{
+		super(startX,startY,startSymb);
+		isAlive = true;
+		hasKey = false;
+		wonLevel = false;
+	}
+
+	//Methods
+	public void move(Map map, char direction, int level)
+	{
+		int xEnd = this.getX();
+		int yEnd = this.getY();
+
+		if(map.canMove(direction, this))
+		{
+			switch(direction)
+			{
+			case 'a':
+			{
+				yEnd -= 1;
+				break;
+			}
+			case 'w':
+			{
+				xEnd -=  1;
+				break;
+			}
+			case 's':
+			{
+				xEnd +=  1;
+				break;
+			}
+			case 'd':
+			{
+				yEnd += 1;
+				break;
+			}
+			}
+
+			
+			if(map.getChar(xEnd, yEnd) == 'k' && level == 2)						//if moving into key
+			{
+				this.hasKey = true;
+				this.setSymb('K');
+				//delete previous location
+				map.setChar(this.getX(), this.getY(), ' ');
+				//add him in current location
+				map.setChar(xEnd, yEnd, this.getSymb());
+				//update coordinates
+				this.setX(xEnd);
+				this.setY(yEnd);
+			}
+			else if(map.getChar(xEnd, yEnd) == 'k' && level == 1)					//if moving into lever
+			{
+				map.setChar(5, 0, 'S');
+				map.setChar(6, 0, 'S');
+			}
+			else if(map.getChar(xEnd, yEnd) == 'S' && level == 1)
+			{
+				//won the game pretty much
+				this.wonLevel = true;
+				
+			}
+			else if(map.getChar(xEnd, yEnd) == 'i' && this.hasKey&& level == 2)		//if moving into door
+			{
+				map.setChar(xEnd, yEnd, 'S');
+			}
+			else if(map.getChar(xEnd, yEnd) == 'i' && level == 1)
+			{
+				//dont do anything
+			}
+			else
+			{
+				//delete previous location
+				map.setChar(this.getX(), this.getY(), ' ');
+				//add him in current location
+				map.setChar(xEnd, yEnd, this.getSymb());
+				//update coordinates
+				this.setX(xEnd);
+				this.setY(yEnd);
+			}
+		}
+	}
+
+	public boolean hasWon()
+	{
+		return wonLevel;
+	}
+	
+	public boolean isDead(Map map)
+	{
+		int x = this.getX();
+		int y = this.getY();
+
+		if(map.isDangerous(x,y,'g') || map.isDangerous(x, y, 'o') || map.isDangerous(x, y, '*'))
+		{
+			this.isAlive = false;
+			return true;
+		}
+		else
+		{
+			return false;
+		}		
+	}
+}
