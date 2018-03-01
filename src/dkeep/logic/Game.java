@@ -1,19 +1,24 @@
 package dkeep.logic;
 
+import java.util.Vector;
+
 public class Game
 {
 	//Attributes
-	private int level;
-	private Hero hero;
-	private Guard guard;
-	private Ogre ogre;
-	private Map map;
+	Vector<Level> levels;
+	int level;
 	
 	
 	//Constructor
-	public Game(int startLevel)
+	public Game()
 	{
-		level = startLevel;
+		super();
+		level =1;
+	//iniciar niveis
+		
+	}
+	public Level getLevel() {
+		return levels.get(level);
 	}
 	
 	//returns if the game has ended

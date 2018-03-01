@@ -27,8 +27,8 @@ public class Start
 
 	public static void main(String[] args)
 	{
-		Game game = new Game(1);
-		game.loadLevel();
+		Game game = new Game();
+		game.getLevel().update();
 
 		boolean end = false;
 		char current;

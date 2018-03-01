@@ -7,5 +7,7 @@ abstract public class Level
 
 	//Constructor
 
+	
 	//Methods
+	abstract 
 }
