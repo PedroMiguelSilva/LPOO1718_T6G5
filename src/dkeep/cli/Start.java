@@ -7,7 +7,7 @@ public class Start
 {
 	/*
 	 * Returns one of the chars that are used for movement (WASD)
-	 * 
+	 *
 	 * @return either W, A, S or D
 	 */
 	public static char validChar()
@@ -19,28 +19,28 @@ public class Start
 		{
 			N = scan.next().charAt(0);
 		} while(N != 'a' && N != 'w'&& N != 's'&& N != 'd'&& N!= 'q');
-		
+
 		return N;
 	}
-	
-	
-	
+
+
+
 	public static void main(String[] args)
 	{
 		Game game = new Game(1);
 		game.loadLevel();
-		
+
 		boolean end = false;
 		char current;
-				
+
 		game.getMap().printMap();
-		
+
 		//enter game cycle
 		while(!end)
 		{
 			//read user input
 			current = validChar();
-			
+
 			if(current == 'q')
 			{
 				System.out.println("Quitting");
@@ -49,10 +49,11 @@ public class Start
 			//update the game
 			end = game.update(current);
 			
+
 			//print the current state of the game to console
 			game.getMap().printMap();
 		}
-		
+
 		//game ended, do whatever necessary
 	}
 }
