@@ -32,8 +32,6 @@ abstract public class Level
 	 */
 	abstract public int update(char heroMovement);
 	
-
-	
 	
 	
 	

@@ -11,4 +11,8 @@ public class Ogre extends Enemy
 	}
 	
 	//Methods
+	 public void move(Map map)
+	 {
+		 
+	 }
 }

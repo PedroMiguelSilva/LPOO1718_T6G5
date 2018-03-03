@@ -13,4 +13,5 @@ abstract public class Enemy extends Entity
 	
 	
 	//Methods
+	abstract public void move(Map map);
 }
