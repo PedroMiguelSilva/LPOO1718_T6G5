@@ -6,14 +6,13 @@ import java.util.Scanner;
 public class Start
 {
 	/*
-	 * Returns one of the chars that are used for movement (WASD)
+	 * @brief Returns one of the chars that are used for movement (WASD)
 	 *
 	 * @return either W, A, S or D
 	 */
-	public static char validChar()
+	public static char validChar(Scanner scan)
 	{
 		System.out.println("Use W,A,S,D to move! \n");
-		Scanner scan = new Scanner(System.in);
 		char N;
 		do
 		{
@@ -23,37 +22,40 @@ public class Start
 		return N;
 	}
 
-
-
 	public static void main(String[] args)
 	{
+		//initiate level with level = 1
 		Game game = new Game();
-		game.getLevel().update();
 
-		boolean end = false;
-		char current;
+		/*
+		 * STATUS
+		 * 0 - continue playing
+		 * 1 - hero died
+		 * 2 - hero won level
+		 */
+		int status = 0;							//state of the game
+		char cmd;								//command given by user
+		Scanner scan = new Scanner(System.in);	//initiate scanner
 
-		game.getMap().printMap();
+		game.getLevel().getMap().printMap();
 
-		//enter game cycle
-		while(!end)
+		//GAME CYCLE
+		while(status != 1)
 		{
 			//read user input
-			current = validChar();
+			cmd = validChar(scan);
 
-			if(current == 'q')
-			{
-				System.out.println("Quitting");
-				break;
-			}
 			//update the game
-			end = game.update(current);
+			status = game.getLevel().update(cmd);
 			
-
 			//print the current state of the game to console
-			game.getMap().printMap();
+			game.getLevel().getMap().printMap();
 		}
 
-		//game ended, do whatever necessary
+		//send end-game message to user
+		game.sendFinalMessage();
+		
+		//close scanner
+		scan.close();
 	}
 }

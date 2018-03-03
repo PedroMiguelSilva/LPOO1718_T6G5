@@ -4,20 +4,31 @@ import java.util.Vector;
 
 public class Game
 {
-	//Attributes
-	Vector<Level> levels;
-	int level;
+	//ATRIBUTES
+	private Vector<Level> levels;
+	private int currentLevel;
+	private int MAX_LEVEL;
+	private boolean gameOver;
 	
 	
-	//Constructor
+	
+	//CONSTRUCTOR
 	public Game()
 	{
 		super();
-		level =1;
-	//iniciar niveis
-		
+		currentLevel = 1;
+		gameOver = false;
+		MAX_LEVEL = 2;
+		//iniciar niveis
 	}
-	public Level getLevel() {
+	
+	//METHODS
+	
+	/*
+	 * @return the current level
+	 */
+	public Level getLevel()
+	{
 		return levels.get(level);
 	}
 	
@@ -65,9 +76,9 @@ public class Game
 		return false;
 	}
 	
-	public Map getMap()
+	public void sendFinalMessage()
 	{
-		return this.map;
+		//according to variables of the game, send message
 	}
 	
 	public void loadLevel()
