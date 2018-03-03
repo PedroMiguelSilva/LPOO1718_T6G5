@@ -34,43 +34,12 @@ public class Map
 	 * @param ent		- entity which movement is being tested
 	 * @return false if walking into wall, true otherwise
 	 */
-	public boolean canMove(char direction, Entity ent)
+	public boolean canMove(int x, int y)
 	{
-		int x = ent.getX();
-		int y = ent.getY();
-		
-		switch(direction)
-		{
-		case 'a':
-		{
-			y -= 1;
-			break;
-		}
-		case 'w':
-		{
-			x -=  1;
-			break;
-		}
-		case 's':
-		{
-			x +=  1;
-			break;
-		}
-		case 'd':
-		{
-			y += 1;
-			break;
- 		}
-		}
-		
-		if(this.getChar(x, y) == 'x')
-		{
+		if(map[x][y] == 'x')
 			return false;
-		}
 		else
-		{
 			return true;
-		}
 	}
 
 	public void setChar(int x, int y, char newChar)

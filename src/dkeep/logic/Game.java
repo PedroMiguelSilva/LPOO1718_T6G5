@@ -17,19 +17,16 @@ public class Game
 	public Game()
 	{
 		super();
-		currentLevel = 1;
+		currentLevel = 0;
 		gameOver = false;
-		MAX_LEVEL = 2;
+		MAX_LEVEL = 1;
 		wonGame = false;
 		
+		ArrayList<Level> temp = new ArrayList<Level>();
 		Level lvl1 = new Level1();
-		lvl1.loadLevel();
 		
-		Level lvl2 = new Level2();
-		lvl2.loadLevel();
-		
-		levels.add(lvl1);
-		levels.add(lvl2);
+		temp.add(lvl1);
+		this.setLevels(temp);
 	}
 	
 	//METHODS
@@ -42,6 +39,7 @@ public class Game
 		return levels.get(currentLevel);
 	}
 	
+	/*
 	//returns if the game has ended
 	public boolean update(char heroMovement)
 	{
@@ -86,50 +84,25 @@ public class Game
 		return false;
 	}
 	
-	public void sendFinalMessage()
+	*/
+	
+	public void setLevels(ArrayList<Level> lvl)
 	{
-		//according to variables of the game, send message
+		this.levels = lvl;
 	}
 	
-	public void loadLevel()
+	public void sendFinalMessage()
 	{
-		switch(level)
+		if(gameOver)
 		{
-		case 1:
-		{
-			//initiate map
-			char map1 [][] = {
-					{'x','x','x','x','x','x','x','x','x','x'},
-					{'x','h',' ',' ','i',' ','x',' ','g','x'},
-					{'x','x','x',' ','x','x','x',' ',' ','x'},
-					{'x',' ','i',' ','i',' ','x',' ',' ','x'},
-					{'x','x','x',' ','x','x','x',' ',' ','x'},
-					{'i',' ',' ',' ',' ',' ',' ',' ',' ','x'},
-					{'i',' ',' ',' ',' ',' ',' ',' ',' ','x'},
-					{'x','x','x',' ','x','x','x','x',' ','x'},
-					{'x',' ','i',' ','i',' ','x','k',' ','x'},
-					{'x','x','x','x','x','x','x','x','x','x'}
-			};	
-			this.map = new Map(10,10,map1);
-			
-			//initiate hero
-			this.hero = new Hero(1,1,'h');
-			
-			//initiate guard
-			char xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
-			char yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
-			this.guard = new Guard(1,8,'g',xPos,yPos);
-			
-			//dont initiate ogre
-			this.ogre = null;
+			System.out.println("Game Over");
 		}
-		case 2:
+		else if(wonGame)
 		{
-			//attributes for level 2
-		}
+			System.out.println("Congratz, you won game");
 		}
 	}
-
+	
 	public boolean getGameOver()
 	{
 		return this.gameOver;
@@ -137,7 +110,7 @@ public class Game
 	
 	public boolean getWonGame()
 	{
-		return this.getWonGame();
+		return this.wonGame;
 	}
 	
 	public void setGameOVer()

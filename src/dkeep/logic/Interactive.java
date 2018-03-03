@@ -1,5 +1,7 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+
 abstract public class Interactive extends Entity
 {
 	//Attributes
@@ -11,5 +13,6 @@ abstract public class Interactive extends Entity
 	}
 	
 	//Methods
+	abstract public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map);
 
 }

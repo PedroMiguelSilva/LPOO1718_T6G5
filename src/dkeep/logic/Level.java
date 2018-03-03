@@ -32,10 +32,7 @@ abstract public class Level
 	 */
 	abstract public int update(char heroMovement);
 	
-	/*
-	 * @brief updates the values of Level with values of current level
-	 */
-	abstract public void loadLevel();
+
 	
 	
 	

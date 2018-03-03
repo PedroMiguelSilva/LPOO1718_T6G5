@@ -23,12 +23,18 @@ public class Level1 extends Level
 	 */
 	public int update(char heroMovement)
 	{
-		//TODO
-		return 0;
+		//local variables
+		int status = 0;
+		
+		//Moving hero
+		this.getHero().move(getMap(), heroMovement,this.getInteractives());
+		
+		
+		return status;
 	}
 	
 	
-	public void loadLevel()
+	public Level1()
 	{
 		//SET MAP
 		char map1 [][] = {
@@ -61,8 +67,8 @@ public class Level1 extends Level
 		//SET INTERACTIVES
 		Door door1 = new Door(5,0,'i','i','S');
 		Door door2 = new Door(6,0,'i','i','S');
-		char lever1TrigX[] = {5,6};									//coordinates of objects triggered by lever
-		char lever1TrigY[] = {0,0};									//coordinates of objects triggered by lever
+		int lever1TrigX[] = {5,6};									//coordinates of objects triggered by lever
+		int lever1TrigY[] = {0,0};									//coordinates of objects triggered by lever
 		Lever lever1 = new Lever(8,7,'k',lever1TrigX,lever1TrigY);
 		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
 		interactives.add(door1);

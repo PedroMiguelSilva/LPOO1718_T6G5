@@ -24,9 +24,5 @@ public class Level2 extends Level
 		return 0;
 	}
 	
-	public void loadLevel()
-	{
-		//TODO
-		return;
-	}
+
 }
