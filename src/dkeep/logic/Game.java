@@ -10,6 +10,7 @@ public class Game
 	private int MAX_LEVEL;
 	private boolean gameOver;
 	private boolean wonGame;
+	private boolean quit;
 	
 	
 	
@@ -21,6 +22,7 @@ public class Game
 		gameOver = false;
 		MAX_LEVEL = 2;
 		wonGame = false;
+		quit = false;
 		
 		ArrayList<Level> temp = new ArrayList<Level>();
 		Level lvl1 = new Level1();
@@ -56,6 +58,10 @@ public class Game
 		{
 			System.out.println("Congratz, you won game");
 		}
+		else if(quit)
+		{
+			System.out.println("Quit Game");
+		}
 	}
 	
 	public boolean getGameOver()
@@ -78,8 +84,23 @@ public class Game
 		this.wonGame = true;
 	}
 
-	public void updateGameVariables(int status)
+	public void setQuit()
 	{
+		this.quit = true;
+	}
+	
+	public boolean getQuit()
+	{
+		return quit;
+	}
+	
+	public void updateGameVariables(int status, char quit)
+	{
+		if(quit == 'q')
+		{
+			this.setQuit();
+		}
+		
 		switch(status)
 		{
 		case 1:		//lost game

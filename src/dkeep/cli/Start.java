@@ -34,13 +34,14 @@ public class Start
 		 * 2 - level up
 		 */
 		int status = 0;							//state of the game
-		char cmd;								//command given by user
+		char cmd = '0';								//command given by user
+		char quit = 'q';						//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
 
 		game.getLevel().getMap().printMap();
 
 		//GAME CYCLE
-		while(!(game.getGameOver() || game.getWonGame()))
+		while(!(game.getGameOver() || game.getWonGame()) && cmd != quit)
 		{
 			//read user input
 			cmd = validChar(scan);
@@ -49,11 +50,10 @@ public class Start
 			status = game.getLevel().update(cmd);
 			
 			//update the game
-			game.updateGameVariables(status);
+			game.updateGameVariables(status,cmd);
 			
 			//print the current state of the game to console
 			game.getLevel().getMap().printMap();
-
 		}
 
 		//send end-game message to user
