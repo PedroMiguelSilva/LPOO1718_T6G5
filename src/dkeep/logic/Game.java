@@ -17,15 +17,17 @@ public class Game
 	public Game()
 	{
 		super();
-		currentLevel = 0;
+		currentLevel = 1;
 		gameOver = false;
-		MAX_LEVEL = 1;
+		MAX_LEVEL = 2;
 		wonGame = false;
 		
 		ArrayList<Level> temp = new ArrayList<Level>();
 		Level lvl1 = new Level1();
+		Level lvl2 = new Level2();
 		
 		temp.add(lvl1);
+		temp.add(lvl2);
 		this.setLevels(temp);
 	}
 	
@@ -36,55 +38,8 @@ public class Game
 	 */
 	public Level getLevel()
 	{
-		return levels.get(currentLevel);
+		return levels.get(currentLevel-1);
 	}
-	
-	/*
-	//returns if the game has ended
-	public boolean update(char heroMovement)
-	{
-		boolean end = false;
-		
-		//moving hero
-		hero.move(map,heroMovement,level);
-
-		//checking if hero died
-		if(hero.isDead(map))
-		{
-			System.out.println("Hero Died");
-			return true;
-		}
-		
-		//moving other creatures
-		if(level == 1)
-		{
-			 guard.move(map);
-		}
-		else if(level == 2)
-		{
-			//not yet on lvl 2
-		}
-
-		//checking if hero died
-		if(hero.isDead(map))
-		{
-			System.out.println("Hero Died");
-			return true;
-		}
-		
-		//checks if hero won level
-		if(hero.hasWon())
-		{
-			level++;
-			this.loadLevel();
-			System.out.println("Acabas te o primeiro nivel, parabens");
-		}
-		
-		//if it reaches here then the game has not ended and the player is free to proceed
-		return false;
-	}
-	
-	*/
 	
 	public void setLevels(ArrayList<Level> lvl)
 	{
@@ -123,7 +78,7 @@ public class Game
 		this.wonGame = true;
 	}
 
-	public void updateVariables(int status)
+	public void updateGameVariables(int status)
 	{
 		switch(status)
 		{
@@ -135,11 +90,10 @@ public class Game
 		case 2:		//leveled up
 		{
 			this.currentLevel += 1;
-			break;
-		}
-		case 3:		//won game
-		{
-			this.setWonGame();
+			
+			if(currentLevel > MAX_LEVEL)
+				this.setWonGame();
+			
 			break;
 		}
 		default:

@@ -19,10 +19,13 @@ public class Hero extends Entity
 	}
 
 	//Methods
-	public void move(Map map, char direction, ArrayList<Interactive> interactives)
+	public char move(Map map, char direction, ArrayList<Interactive> interactives)
 	{
 		int xFinal = this.getX();
 		int yFinal = this.getY();
+		
+		char symbWalkedInto;
+		
 		
 		switch(direction)
 		{
@@ -48,6 +51,8 @@ public class Hero extends Entity
 		}
 		}
 
+		symbWalkedInto = map.getChar(xFinal, yFinal);
+		
 		if(map.canMove(xFinal, yFinal))
 		{
 			char symb = map.getChar(xFinal, yFinal);
@@ -73,8 +78,9 @@ public class Hero extends Entity
 		else
 		{
 			//walking into a door
-			
 		}
+		
+		return symbWalkedInto;
 	}
 
 	public boolean hasWon()

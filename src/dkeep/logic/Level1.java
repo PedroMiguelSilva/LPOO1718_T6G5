@@ -60,16 +60,19 @@ public class Level1 extends Level
 	 * 				hero died
 	 * 			2	
 	 * 				level up
-	 * 			3
-	 * 				won game
 	 */
 	public int update(char heroMovement)
 	{
 		//local variables
 		int status = 0;
+		char symbHeroIsOn;
 
 		//Moving hero
-		this.getHero().move(getMap(), heroMovement,this.getInteractives());
+		symbHeroIsOn = this.getHero().move(getMap(), heroMovement,this.getInteractives());
+		if(symbHeroIsOn == 'S')
+		{
+			return 2;
+		}
 
 		//Checking if hero died from moving
 		if(this.getHero().isDead(this.getMap(),this.getEnemies()))

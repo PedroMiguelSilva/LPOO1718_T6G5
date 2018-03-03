@@ -32,7 +32,6 @@ public class Start
 		 * 0 - continue playing
 		 * 1 - hero died
 		 * 2 - level up
-		 * 3 - won game
 		 */
 		int status = 0;							//state of the game
 		char cmd;								//command given by user
@@ -50,10 +49,11 @@ public class Start
 			status = game.getLevel().update(cmd);
 			
 			//update the game
-			game.updateVariables(status);
+			game.updateGameVariables(status);
 			
 			//print the current state of the game to console
 			game.getLevel().getMap().printMap();
+
 		}
 
 		//send end-game message to user

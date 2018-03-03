@@ -22,7 +22,11 @@ public class Door extends Interactive
 	//Methods
 	public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map)
 	{
-		//different from "opening" trigger is when you walk into it
+		if(open)
+		{
+			map.setChar(this.getX(), this.getY(), hero.getSymb());
+			map.setChar(hero.getX(), hero.getY(), ' ');
+		}
 	}
 	
 	public void toggleDoor(Map map)
