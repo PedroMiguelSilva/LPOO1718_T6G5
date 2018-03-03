@@ -6,7 +6,7 @@ public class Hero extends Entity
 {
 	//Attributes
 	private boolean isAlive;
-	private boolean hasKey;
+	private Key key;
 	private boolean wonLevel;
 
 	//Constructor
@@ -14,8 +14,9 @@ public class Hero extends Entity
 	{
 		super(startX,startY,startSymb);
 		isAlive = true;
-		hasKey = false;
 		wonLevel = false;
+		Key key1 = new Key(0,0,'k',0,0);
+		this.key = key1;
 	}
 
 	//Methods
@@ -105,4 +106,20 @@ public class Hero extends Entity
 		//no enemy was next to the hero
 		return false;
 	}
+
+	public void setDead()
+	{
+		isAlive = false;
+	}
+
+	public void setKey(Key newKey)
+	{
+		this.key = newKey;
+	}
+
+	public Key getKey()
+	{
+		return this.key;
+	}
+
 }

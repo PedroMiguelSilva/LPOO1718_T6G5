@@ -77,6 +77,7 @@ public class Level1 extends Level
 		//Checking if hero died from moving
 		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
 		{
+			this.getHero().setDead();
 			return 1;
 		}
 
@@ -92,6 +93,7 @@ public class Level1 extends Level
 		//Checking if hero died from enemy movement
 		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
 		{
+			this.getHero().setDead();
 			return 1;
 		}
 

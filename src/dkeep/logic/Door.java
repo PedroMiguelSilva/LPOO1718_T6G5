@@ -27,6 +27,14 @@ public class Door extends Interactive
 			map.setChar(this.getX(), this.getY(), hero.getSymb());
 			map.setChar(hero.getX(), hero.getY(), ' ');
 		}
+		else
+		{
+			if(hero.getKey().getDoorX() == this.getX()	&& hero.getKey().getDoorY() == this.getY())
+			{
+				open = true;
+				map.setChar(this.getX(),this.getY(), 'S');
+			}
+		}
 	}
 	
 	public void toggleDoor(Map map)

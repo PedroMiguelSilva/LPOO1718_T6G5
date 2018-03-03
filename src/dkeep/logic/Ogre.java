@@ -51,7 +51,7 @@ public class Ogre extends Enemy
 				break;
 			}
 			}
-		}while(!map.canMove(xPos, yPos));
+		}while(map.getChar(xPos, yPos) == 'x' || map.getChar(xPos, yPos) == 'i');
 
 		char symb = map.getChar(xPos, yPos);
 		char prevSymb;
@@ -62,9 +62,11 @@ public class Ogre extends Enemy
 			onTopOfKey = true;			
 			prevSymb = ' ';
 			postSymb = '$';
+			this.setSymb('$');
 		}
 		else
 		{
+			this.setSymb('o');
 			if(onTopOfKey)
 			{
 				prevSymb = 'k';

@@ -53,7 +53,8 @@ public class Start
 			game.updateGameVariables(status,cmd);
 			
 			//print the current state of the game to console
-			game.getLevel().getMap().printMap();
+			if(!game.getWonGame())
+				game.getLevel().getMap().printMap();
 		}
 
 		//send end-game message to user

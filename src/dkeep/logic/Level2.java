@@ -34,8 +34,10 @@ public class Level2 extends Level
 		this.setEnemies(enemiesLevel2);
 		
 		//SET INTERACTIVES
-		Key key1 = new Key(1,7,'k');
+		Door door1 = new Door(1,0,'i','i','S');
+		Key key1 = new Key(1,7,'k',1,0);
 		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
+		interactives.add(door1);
 		interactives.add(key1);
 		this.setInteractives(interactives);
 	}
