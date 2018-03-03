@@ -9,6 +9,7 @@ public class Game
 	private int currentLevel;
 	private int MAX_LEVEL;
 	private boolean gameOver;
+	private boolean wonGame;
 	
 	
 	
@@ -19,7 +20,16 @@ public class Game
 		currentLevel = 1;
 		gameOver = false;
 		MAX_LEVEL = 2;
-		//iniciar niveis
+		wonGame = false;
+		
+		Level lvl1 = new Level1();
+		lvl1.loadLevel();
+		
+		Level lvl2 = new Level2();
+		lvl2.loadLevel();
+		
+		levels.add(lvl1);
+		levels.add(lvl2);
 	}
 	
 	//METHODS
@@ -117,6 +127,53 @@ public class Game
 		{
 			//attributes for level 2
 		}
+		}
+	}
+
+	public boolean getGameOver()
+	{
+		return this.gameOver;
+	}
+	
+	public boolean getWonGame()
+	{
+		return this.getWonGame();
+	}
+	
+	public void setGameOVer()
+	{
+		this.gameOver = true;
+	}
+	
+	public void setWonGame()
+	{
+		this.wonGame = true;
+	}
+
+	public void updateVariables(int status)
+	{
+		switch(status)
+		{
+		case 1:		//lost game
+		{
+			this.setGameOVer();
+			break;
+		}
+		case 2:		//leveled up
+		{
+			this.currentLevel += 1;
+			break;
+		}
+		case 3:		//won game
+		{
+			this.setWonGame();
+			break;
+		}
+		default:
+		{
+			//do nothing
+		}
+		
 		}
 	}
 }

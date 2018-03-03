@@ -31,7 +31,8 @@ public class Start
 		 * STATUS
 		 * 0 - continue playing
 		 * 1 - hero died
-		 * 2 - hero won level
+		 * 2 - level up
+		 * 3 - won game
 		 */
 		int status = 0;							//state of the game
 		char cmd;								//command given by user
@@ -40,13 +41,16 @@ public class Start
 		game.getLevel().getMap().printMap();
 
 		//GAME CYCLE
-		while(status != 1)
+		while(!(game.getGameOver() || game.getWonGame()))
 		{
 			//read user input
 			cmd = validChar(scan);
 
-			//update the game
+			//update the level
 			status = game.getLevel().update(cmd);
+			
+			//update the game
+			game.updateVariables(status);
 			
 			//print the current state of the game to console
 			game.getLevel().getMap().printMap();

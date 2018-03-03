@@ -8,9 +8,11 @@ public class Door extends Interactive
 	
 	
 	//Constructor
-	public Door(int startX, int startY, char startSymb)
+	public Door(int startX, int startY, char startSymb, char closed, char open)
 	{
 		super(startX,startY,startSymb);
+		this.closeDoorSymb = closed;
+		this.openDoorSymb = open;
 	}
 	
 	//Methods

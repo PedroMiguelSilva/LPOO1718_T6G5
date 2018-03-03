@@ -17,13 +17,16 @@ public class Level1 extends Level
 	 * 			1
 	 * 				hero died
 	 * 			2	
-	 * 				hero won level
+	 * 				level up
+	 * 			3
+	 * 				won game
 	 */
 	public int update(char heroMovement)
 	{
 		//TODO
 		return 0;
 	}
+	
 	
 	public void loadLevel()
 	{
@@ -56,7 +59,16 @@ public class Level1 extends Level
 		this.setEnemies(enemiesLevel1);
 		
 		//SET INTERACTIVES
-		
+		Door door1 = new Door(5,0,'i','i','S');
+		Door door2 = new Door(6,0,'i','i','S');
+		char lever1TrigX[] = {5,6};									//coordinates of objects triggered by lever
+		char lever1TrigY[] = {0,0};									//coordinates of objects triggered by lever
+		Lever lever1 = new Lever(8,7,'k',lever1TrigX,lever1TrigY);
+		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
+		interactives.add(door1);
+		interactives.add(door2);
+		interactives.add(lever1);
+		this.setInteractives(interactives);
 	}
 	
 }

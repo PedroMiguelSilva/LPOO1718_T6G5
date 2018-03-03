@@ -14,7 +14,9 @@ public class Level2 extends Level
 	 * 			1
 	 * 				hero died
 	 * 			2	
-	 * 				hero won level
+	 * 				level up
+	 * 			3
+	 * 				won game
 	 */
 	public int update(char heroMovement)
 	{
