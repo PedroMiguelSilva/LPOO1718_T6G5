@@ -11,4 +11,5 @@ abstract public class Interactive extends Entity
 	}
 	
 	//Methods
+
 }

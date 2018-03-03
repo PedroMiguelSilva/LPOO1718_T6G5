@@ -1,13 +1,13 @@
 package dkeep.logic;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 abstract public class Level
 {
 	//Attributes
 	private Hero hero;
-	private Vector<Enemy> enemies;
-	private Vector<Interactive> interactives;
+	private ArrayList<Enemy> enemies;
+	private ArrayList<Interactive> interactives;
 	private Map map;
 	
 
@@ -56,13 +56,36 @@ abstract public class Level
 		return this.hero;
 	}
 
-	public Vector<Enemy> getEnemies()
+	public ArrayList<Enemy> getEnemies()
 	{
 		return this.enemies;
 	}
 
-	public Vector<Interactive> getInteractives()
+	public ArrayList<Interactive> getInteractives()
 	{
 		return this.interactives;
+	}
+
+	
+	
+	//SET METHODS
+	public void setMap(Map newMap)
+	{
+		this.map = newMap;
+	}
+	
+	public void setEnemies(ArrayList<Enemy> newEnemies)
+	{
+		this.enemies = newEnemies;
+	}
+
+	public void setInteractives(ArrayList<Interactive> newInteractives)
+	{
+		this.interactives = newInteractives;
+	}
+
+	public void setHero(Hero newHero)
+	{
+		this.hero = newHero;
 	}
 }

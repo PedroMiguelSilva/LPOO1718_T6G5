@@ -1,4 +1,7 @@
 package dkeep.logic;
+
+import java.util.ArrayList;
+
 public class Level1 extends Level
 {
 	//Attributes
@@ -24,8 +27,36 @@ public class Level1 extends Level
 	
 	public void loadLevel()
 	{
-		//TODO
-		return;
+		//SET MAP
+		char map1 [][] = {
+				{'x','x','x','x','x','x','x','x','x','x'},
+				{'x','h',' ',' ','i',' ','x',' ','g','x'},
+				{'x','x','x',' ','x','x','x',' ',' ','x'},
+				{'x',' ','i',' ','i',' ','x',' ',' ','x'},
+				{'x','x','x',' ','x','x','x',' ',' ','x'},
+				{'i',' ',' ',' ',' ',' ',' ',' ',' ','x'},
+				{'i',' ',' ',' ',' ',' ',' ',' ',' ','x'},
+				{'x','x','x',' ','x','x','x','x',' ','x'},
+				{'x',' ','i',' ','i',' ','x','k',' ','x'},
+				{'x','x','x','x','x','x','x','x','x','x'}
+		};	
+		Map mapLevel1 = new Map(10,10,map1);
+		this.setMap(mapLevel1);
+		
+		//SET HERO
+		Hero heroLevel1 = new Hero(1,1,'h');
+		this.setHero(heroLevel1);
+		
+		//SET ENEMIES
+		char xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
+		char yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
+		Guard guard = new Guard(1,8,'g',xPos,yPos);
+		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
+		enemiesLevel1.add(guard);
+		this.setEnemies(enemiesLevel1);
+		
+		//SET INTERACTIVES
+		
 	}
 	
 }

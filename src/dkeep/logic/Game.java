@@ -1,11 +1,11 @@
 package dkeep.logic;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public class Game
 {
 	//ATRIBUTES
-	private Vector<Level> levels;
+	private ArrayList<Level> levels;
 	private int currentLevel;
 	private int MAX_LEVEL;
 	private boolean gameOver;
@@ -29,7 +29,7 @@ public class Game
 	 */
 	public Level getLevel()
 	{
-		return levels.get(level);
+		return levels.get(currentLevel);
 	}
 	
 	//returns if the game has ended
