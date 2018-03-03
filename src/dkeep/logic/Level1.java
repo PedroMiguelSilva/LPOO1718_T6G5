@@ -29,6 +29,11 @@ public class Level1 extends Level
 		//Moving hero
 		this.getHero().move(getMap(), heroMovement,this.getInteractives());
 		
+		//Checking if hero died from moving
+		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
+		{
+			return 1;
+		}
 		
 		return status;
 	}

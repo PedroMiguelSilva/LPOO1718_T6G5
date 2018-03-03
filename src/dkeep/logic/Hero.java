@@ -75,54 +75,6 @@ public class Hero extends Entity
 			//walking into a door
 			
 		}
-		
-		
-		// ===================
-		
-		/*
-		if(map.getChar(xEnd, yEnd) == 'k' && level == 2)						//if moving into key
-		{
-			this.hasKey = true;
-			this.setSymb('K');
-			//delete previous location
-			map.setChar(this.getX(), this.getY(), ' ');
-			//add him in current location
-			map.setChar(xEnd, yEnd, this.getSymb());
-			//update coordinates
-			this.setX(xEnd);
-			this.setY(yEnd);
-		}
-		else if(map.getChar(xEnd, yEnd) == 'k' && level == 1)					//if moving into lever
-		{
-			map.setChar(5, 0, 'S');
-			map.setChar(6, 0, 'S');
-		}
-		else if(map.getChar(xEnd, yEnd) == 'S' && level == 1)
-		{
-			//won the game pretty much
-			this.wonLevel = true;
-
-		}
-		else if(map.getChar(xEnd, yEnd) == 'i' && this.hasKey&& level == 2)		//if moving into door
-		{
-			map.setChar(xEnd, yEnd, 'S');
-		}
-		else if(map.getChar(xEnd, yEnd) == 'i' && level == 1)
-		{
-			//dont do anything
-		}
-		else
-		{
-			//delete previous location
-			map.setChar(this.getX(), this.getY(), ' ');
-			//add him in current location
-			map.setChar(xEnd, yEnd, this.getSymb());
-			//update coordinates
-			this.setX(xEnd);
-			this.setY(yEnd);
-		}
-		*/
-
 	}
 
 	public boolean hasWon()
@@ -130,19 +82,21 @@ public class Hero extends Entity
 		return wonLevel;
 	}
 
-	public boolean isDead(Map map)
+	public boolean isDead(Map map,ArrayList<Enemy> enemies)
 	{
 		int x = this.getX();
 		int y = this.getY();
 
-		if(map.isDangerous(x,y,'g') || map.isDangerous(x, y, 'o') || map.isDangerous(x, y, '*'))
+		//loop through all the enemies, for each one compare their symbols
+		for(Enemy e : enemies)
 		{
-			this.isAlive = false;
-			return true;
+			if(map.isDangerous(x, y, e.getSymb()))
+			{
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}		
+		
+		//no enemy was next to the hero
+		return false;
 	}
 }
