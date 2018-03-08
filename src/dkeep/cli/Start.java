@@ -34,8 +34,8 @@ public class Start
 		 * 2 - level up
 		 */
 		int status = 0;							//state of the game
-		char cmd = '0';								//command given by user
-		char quit = 'q';						//command quit
+		char cmd = '0';							//command given by user
+		char quit = 'q';							//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
 
 		game.getLevel().getMap().printMap();
