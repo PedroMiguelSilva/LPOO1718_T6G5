@@ -62,7 +62,7 @@ public class GUI {
 		
 		JLabel lblNewLabenterNumber = new JLabel("Number of Ogres");
 		GridBagConstraints gbc_lblNewLabenterNumber = new GridBagConstraints();
-		gbc_lblNewLabenterNumber.gridwidth = 4;
+		gbc_lblNewLabenterNumber.gridwidth = 3;
 		gbc_lblNewLabenterNumber.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabenterNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabenterNumber.gridx = 0;
@@ -74,28 +74,19 @@ public class GUI {
 		gbc_textField.gridwidth = 2;
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 4;
+		gbc_textField.gridx = 3;
 		gbc_textField.gridy = 2;
 		frame.getContentPane().add(textField, gbc_textField);
 		textField.setColumns(10);
 		
 		JLabel lblGuard = new JLabel("Guard personality");
 		GridBagConstraints gbc_lblGuard = new GridBagConstraints();
-		gbc_lblGuard.gridwidth = 4;
+		gbc_lblGuard.gridwidth = 3;
 		gbc_lblGuard.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGuard.anchor = GridBagConstraints.EAST;
 		gbc_lblGuard.gridx = 0;
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
-		
-		JComboBox comboBox = new JComboBox();
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.gridwidth = 2;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 4;
-		gbc_comboBox.gridy = 3;
-		frame.getContentPane().add(comboBox, gbc_comboBox);
 		
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -103,6 +94,15 @@ public class GUI {
 				//newGame();
 			}
 		});
+		
+		JComboBox comboBox = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.gridwidth = 2;
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridy = 3;
+		frame.getContentPane().add(comboBox, gbc_comboBox);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 14;
@@ -111,9 +111,9 @@ public class GUI {
 		
 		JTextArea textArea = new JTextArea();
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.gridheight = 11;
+		gbc_textArea.gridheight = 9;
 		gbc_textArea.gridwidth = 12;
-		gbc_textArea.insets = new Insets(0, 0, 0, 5);
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
 		gbc_textArea.fill = GridBagConstraints.BOTH;
 		gbc_textArea.gridx = 1;
 		gbc_textArea.gridy = 5;
@@ -147,11 +147,19 @@ public class GUI {
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
 		
+		JLabel lblYouCanStart = new JLabel("You can start a new game");
+		GridBagConstraints gbc_lblYouCanStart = new GridBagConstraints();
+		gbc_lblYouCanStart.gridwidth = 4;
+		gbc_lblYouCanStart.insets = new Insets(0, 0, 5, 5);
+		gbc_lblYouCanStart.gridx = 1;
+		gbc_lblYouCanStart.gridy = 14;
+		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
+		
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
-		gbc_btnExit.insets = new Insets(0, 0, 0, 5);
+		gbc_btnExit.insets = new Insets(0, 0, 5, 5);
 		gbc_btnExit.gridx = 14;
-		gbc_btnExit.gridy = 15;
+		gbc_btnExit.gridy = 14;
 		frame.getContentPane().add(btnExit, gbc_btnExit);
 	}
 
