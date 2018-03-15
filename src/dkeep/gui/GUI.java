@@ -16,11 +16,13 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import dkeep.logic.Game;
 
-public class GUI {
+public class GUI implements ActionListener {
 
 	private JFrame frame;
 	private JTextField textField;
+	protected Game game;
 
 	/**
 	 * Launch the application.
@@ -89,11 +91,7 @@ public class GUI {
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
 		
 		JButton btnNewButton = new JButton("New game");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//newGame();
-			}
-		});
+		btnNewButton.addActionListener(this);
 		
 		JComboBox comboBox = new JComboBox();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -120,13 +118,21 @@ public class GUI {
 		frame.getContentPane().add(textArea, gbc_textArea);
 		
 		JButton btnUp = new JButton("Up");
+		btnUp.setName("up");
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
 		gbc_btnUp.insets = new Insets(0, 0, 5, 5);
 		gbc_btnUp.gridx = 14;
 		gbc_btnUp.gridy = 8;
 		frame.getContentPane().add(btnUp, gbc_btnUp);
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		
 		JButton btnLeft = new JButton("Left");
+		btnUp.setName("left");
 		GridBagConstraints gbc_btnLeft = new GridBagConstraints();
 		gbc_btnLeft.insets = new Insets(0, 0, 5, 5);
 		gbc_btnLeft.gridx = 13;
@@ -134,6 +140,7 @@ public class GUI {
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
 		
 		JButton btnRight = new JButton("Right");
+		btnUp.setName("right");
 		GridBagConstraints gbc_btnRight = new GridBagConstraints();
 		gbc_btnRight.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRight.gridx = 15;
@@ -141,6 +148,7 @@ public class GUI {
 		frame.getContentPane().add(btnRight, gbc_btnRight);
 		
 		JButton btnDown = new JButton("Down");
+		btnUp.setName("down");
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
 		gbc_btnDown.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDown.gridx = 14;
@@ -161,6 +169,34 @@ public class GUI {
 		gbc_btnExit.gridx = 14;
 		gbc_btnExit.gridy = 14;
 		frame.getContentPane().add(btnExit, gbc_btnExit);
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent ae) {
+		JButton action = (JButton) ae.getSource();
+		int status;
+		switch(action.getName()) {
+		case "up":
+			status = game.getLevel().update('w');
+			break;
+		case "down":
+			status = game.getLevel().update('s');
+			break;
+		case "right":
+			status = game.getLevel().update('d');
+			break;
+		case "left":
+			status = game.getLevel().update('a');
+			break;
+		}
+		game.updateGameVariables(status,'p');
+		
+		}
 	}
 
 }
