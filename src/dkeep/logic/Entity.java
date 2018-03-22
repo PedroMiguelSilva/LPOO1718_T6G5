@@ -5,6 +5,7 @@ abstract public class Entity
 	//Attributes
 	private Coord coord;
 	private char symb;
+	private Symbol symb2;
 		
 	
 	//Constructor

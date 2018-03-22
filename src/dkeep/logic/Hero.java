@@ -17,6 +17,7 @@ public class Hero extends Entity
 		wonLevel = false;
 		Key key1 = new Key(0,0,'k',0,0);
 		this.key = key1;
+		
 	}
 
 	//Methods
