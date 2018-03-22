@@ -24,15 +24,15 @@ public class Door extends Interactive
 	{
 		if(open)
 		{
-			map.setChar(this.getX(), this.getY(), hero.getSymb());
-			map.setChar(hero.getX(), hero.getY(), ' ');
+			map.setChar(getCoord(), hero.getSymb());
+			map.setChar(getCoord(), ' ');
 		}
 		else
 		{
-			if(hero.getKey().getDoorX() == this.getX()	&& hero.getKey().getDoorY() == this.getY())
+			if(hero.getKey().getDoorCoord().equals(this.getCoord()))
 			{
 				open = true;
-				map.setChar(this.getX(),this.getY(), 'S');
+				map.setChar(getCoord(), 'S');
 			}
 		}
 	}
@@ -50,7 +50,7 @@ public class Door extends Interactive
 			finalSymb = this.openDoorSymb;
 		}
 		
-		map.setChar(this.getX(), this.getY(), finalSymb);
+		map.setChar(getCoord(), finalSymb);
 		this.open = !this.open;
 	}
 }

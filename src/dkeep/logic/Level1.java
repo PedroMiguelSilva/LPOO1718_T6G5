@@ -30,8 +30,8 @@ public class Level1 extends Level
 		this.setHero(heroLevel1);
 
 		//SET ENEMIES
-		char xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
-		char yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
+		int xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
+		int yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
 		Guard guard = new Guard(1,8,'g',xPos,yPos);
 		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
 		enemiesLevel1.add(guard);

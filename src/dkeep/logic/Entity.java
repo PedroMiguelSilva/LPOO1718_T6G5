@@ -3,16 +3,14 @@ package dkeep.logic;
 abstract public class Entity
 {
 	//Attributes
-	private int x;
-	private int y;
+	private Coord coord;
 	private char symb;
 		
 	
 	//Constructor
 	public Entity(int startX, int startY, char startSymb)
 	{
-		x = startX;
-		y = startY;
+		this.coord = new Coord(startX,startY);
 		symb = startSymb;
 	}
 	
@@ -20,12 +18,12 @@ abstract public class Entity
 	//Methods
 	public int getX()
 	{
-		return this.x;
+		return coord.getX();
 	}
 	
 	public int getY()
 	{
-		return this.y;
+		return coord.getY();
 	}
 	
 	public char getSymb()
@@ -35,16 +33,24 @@ abstract public class Entity
 	
 	public void setX(int x)
 	{
-		this.x = x;
+		this.coord.setX(x);
 	}
 	
 	public void setY(int y)
 	{
-		this.y = y;
+		this.coord.setY(y);
 	}
 	
 	public void setSymb(char symb)
 	{
 		this.symb = symb;
+	}
+	
+	public Coord getCoord() {
+		return coord;
+	}
+	
+	public void setCoord(Coord newCoord) {
+		this.coord = newCoord;
 	}
 }

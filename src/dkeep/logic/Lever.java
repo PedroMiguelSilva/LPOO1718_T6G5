@@ -6,27 +6,31 @@ public class Lever extends Interactive
 {
 	//Attributes
 	private boolean isActive;
-	private int xPos[];
-	private int yPos[];
+	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	
 	//Constructor
 	public Lever(int startX, int startY, char startSymb,int newXPos[],int newYPos[])
 	{
 		super(startX,startY,startSymb);
 		isActive = false;
-		this.xPos = newXPos;
-		this.yPos = newYPos;
+		for(int i = 0; i < newXPos.length; i++) {
+			Coord coord = new Coord(newXPos[i],newYPos[i]);
+			coords.add(coord);
+		}
+		
 	}
 	
 	//Methods
 	public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map)
 	{
-		for(int i = 0; i < xPos.length;i++)
+		//para cada coordenada que a alavanca "funciona"
+		for(int i = 0; i < coords.size();i++)
 		{
-			Interactive current = interactives.get(i);
-			if(current instanceof Door && current.getX() == xPos[i] && current.getY() == yPos[i])
-			{
-				((Door) current).toggleDoor(map);
+			for(Interactive current : interactives) {
+				if(current instanceof Door && current.getCoord().equals(coords.get(i)))
+				{
+					((Door) current).toggleDoor(map);
+				}
 			}
 		}
 		

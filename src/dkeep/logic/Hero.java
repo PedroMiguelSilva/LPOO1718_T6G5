@@ -22,9 +22,10 @@ public class Hero extends Entity
 	//Methods
 	public char move(Map map, char direction, ArrayList<Interactive> interactives)
 	{
-		int xFinal = this.getX();
-		int yFinal = this.getY();
-		
+		//int xFinal = this.getX();
+		//int yFinal = this.getY();
+		Coord newCoord = new Coord(this.getCoord());
+				
 		char symbWalkedInto;
 		
 		
@@ -32,37 +33,41 @@ public class Hero extends Entity
 		{
 		case 'a':
 		{
-			yFinal -= 1;
+			//yFinal -= 1;
+			newCoord.decY();
 			break;
 		}
 		case 'w':
 		{
-			xFinal -=  1;
+			//xFinal -=  1;
+			newCoord.decX();
 			break;
 		}
 		case 's':
 		{
-			xFinal +=  1;
+			//xFinal +=  1;
+			newCoord.incX();
 			break;
 		}
 		case 'd':
 		{
-			yFinal += 1;
+			//yFinal += 1;
+			newCoord.incY();
 			break;
 		}
 		}
 
-		symbWalkedInto = map.getChar(xFinal, yFinal);
+		symbWalkedInto = map.getChar(newCoord);
 		
-		if(map.canMove(xFinal, yFinal))
+		if(map.canMove(newCoord))
 		{
-			char symb = map.getChar(xFinal, yFinal);
+			char symb = map.getChar(newCoord);
 			
 			if(symb != ' ')		//moving into an interactable object
 			{
 				for(Interactive i : interactives)
 				{
-					if(i.getX() == xFinal && i.getY() == yFinal)//interactable has to be in the same coords as the hero intends to go to
+					if(i.getCoord().equals(newCoord))//interactable has to be in the same coords as the hero intends to go to
 					{
 						i.trigger(this,interactives,map);
 					}
@@ -70,10 +75,9 @@ public class Hero extends Entity
 			}
 			else				//moving into a clear space
 			{
-				map.setChar(this.getX(), this.getY(), ' ');
-				map.setChar(xFinal, yFinal, this.getSymb());
-				this.setX(xFinal);
-				this.setY(yFinal);
+				map.setChar(this.getCoord(), ' ');
+				map.setChar(newCoord, this.getSymb());
+				this.setCoord(newCoord);
 			}
 		}
 		else
@@ -91,13 +95,10 @@ public class Hero extends Entity
 
 	public boolean isDead(Map map,ArrayList<Enemy> enemies)
 	{
-		int x = this.getX();
-		int y = this.getY();
-
 		//loop through all the enemies, for each one compare their symbols
 		for(Enemy e : enemies)
 		{
-			if(map.isDangerous(x, y, e.getSymb()))
+			if(map.isDangerous(this.getCoord(), e.getSymb()))
 			{
 				return true;
 			}

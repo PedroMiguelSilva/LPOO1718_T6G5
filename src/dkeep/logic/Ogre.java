@@ -19,41 +19,48 @@ public class Ogre extends Enemy
 	{
 		Random  rand = new Random();
 		int move = rand.nextInt(4);
-		int xPos = this.getX();
-		int yPos = this.getY();
+		//int xPos = this.getX();
+		//int yPos = this.getY();
+		
+		Coord newCoord = new Coord(this.getCoord());
 
 		do
 		{
-			xPos = this.getX();
-			yPos = this.getY();
+			newCoord.setCoord(this.getCoord());
 			move = rand.nextInt(4);
 
 			switch(move)
 			{
 			case 0:
 			{
-				xPos++;
+				//xPos++;
+			newCoord.incX();
 				break;
 			}
 			case 1:
 			{
-				yPos++;
+				//yPos++;
+				newCoord.incY();
 				break;
 			}
 			case 2:
 			{
-				xPos--;
+				//xPos--;
+				newCoord.decX();
 				break;
 			}
 			case 3:
 			{
-				yPos--;
+				//yPos--;
+				newCoord.decY();
 				break;
 			}
 			}
-		}while(map.getChar(xPos, yPos) == 'x' || map.getChar(xPos, yPos) == 'i');
+			
+			
+		}while(map.getChar(newCoord) == 'x' || map.getChar(newCoord) == 'i');
 
-		char symb = map.getChar(xPos, yPos);
+		char symb = map.getChar(newCoord);
 		char prevSymb;
 		char postSymb;
 		
@@ -79,9 +86,8 @@ public class Ogre extends Enemy
 			postSymb = this.getSymb();
 		}
 		
-		map.setChar(this.getX(), this.getY(), prevSymb);
-		map.setChar(xPos, yPos, postSymb);
-		this.setX(xPos);
-		this.setY(yPos);
+		map.setChar(this.getCoord(), prevSymb);
+		map.setChar(newCoord, postSymb);
+		this.setCoord(newCoord);
 	}
 }
