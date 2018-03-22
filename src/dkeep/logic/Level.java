@@ -64,7 +64,6 @@ abstract public class Level
 	}
 
 	
-	
 	//SET METHODS
 	public void setMap(Map newMap)
 	{

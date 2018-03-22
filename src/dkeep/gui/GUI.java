@@ -61,7 +61,7 @@ public class GUI implements ActionListener {
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
-		
+
 		JLabel lblNewLabenterNumber = new JLabel("Number of Ogres");
 		GridBagConstraints gbc_lblNewLabenterNumber = new GridBagConstraints();
 		gbc_lblNewLabenterNumber.gridwidth = 3;
@@ -70,7 +70,7 @@ public class GUI implements ActionListener {
 		gbc_lblNewLabenterNumber.gridx = 0;
 		gbc_lblNewLabenterNumber.gridy = 2;
 		frame.getContentPane().add(lblNewLabenterNumber, gbc_lblNewLabenterNumber);
-		
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.gridwidth = 2;
@@ -80,7 +80,7 @@ public class GUI implements ActionListener {
 		gbc_textField.gridy = 2;
 		frame.getContentPane().add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblGuard = new JLabel("Guard personality");
 		GridBagConstraints gbc_lblGuard = new GridBagConstraints();
 		gbc_lblGuard.gridwidth = 3;
@@ -89,10 +89,10 @@ public class GUI implements ActionListener {
 		gbc_lblGuard.gridx = 0;
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
-		
+
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(this);
-		
+
 		JComboBox comboBox = new JComboBox();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
@@ -106,7 +106,7 @@ public class GUI implements ActionListener {
 		gbc_btnNewButton.gridx = 14;
 		gbc_btnNewButton.gridy = 4;
 		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
-		
+
 		JTextArea textArea = new JTextArea();
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridheight = 9;
@@ -116,7 +116,7 @@ public class GUI implements ActionListener {
 		gbc_textArea.gridx = 1;
 		gbc_textArea.gridy = 5;
 		frame.getContentPane().add(textArea, gbc_textArea);
-		
+
 		JButton btnUp = new JButton("Up");
 		btnUp.setName("up");
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
@@ -126,11 +126,11 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(btnUp, gbc_btnUp);
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
-		
-		
+
+
 		JButton btnLeft = new JButton("Left");
 		btnUp.setName("left");
 		GridBagConstraints gbc_btnLeft = new GridBagConstraints();
@@ -138,7 +138,7 @@ public class GUI implements ActionListener {
 		gbc_btnLeft.gridx = 13;
 		gbc_btnLeft.gridy = 9;
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
-		
+
 		JButton btnRight = new JButton("Right");
 		btnUp.setName("right");
 		GridBagConstraints gbc_btnRight = new GridBagConstraints();
@@ -146,7 +146,7 @@ public class GUI implements ActionListener {
 		gbc_btnRight.gridx = 15;
 		gbc_btnRight.gridy = 9;
 		frame.getContentPane().add(btnRight, gbc_btnRight);
-		
+
 		JButton btnDown = new JButton("Down");
 		btnUp.setName("down");
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
@@ -154,7 +154,7 @@ public class GUI implements ActionListener {
 		gbc_btnDown.gridx = 14;
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
-		
+
 		JLabel lblYouCanStart = new JLabel("You can start a new game");
 		GridBagConstraints gbc_lblYouCanStart = new GridBagConstraints();
 		gbc_lblYouCanStart.gridwidth = 4;
@@ -162,7 +162,7 @@ public class GUI implements ActionListener {
 		gbc_lblYouCanStart.gridx = 1;
 		gbc_lblYouCanStart.gridy = 14;
 		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
-		
+
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.insets = new Insets(0, 0, 5, 5);
@@ -179,7 +179,7 @@ public class GUI implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JButton action = (JButton) ae.getSource();
-		int status;
+		int status = 0;
 		switch(action.getName()) {
 		case "up":
 			status = game.getLevel().update('w');
@@ -195,8 +195,7 @@ public class GUI implements ActionListener {
 			break;
 		}
 		game.updateGameVariables(status,'p');
-		
-		}
 	}
+
 
 }
