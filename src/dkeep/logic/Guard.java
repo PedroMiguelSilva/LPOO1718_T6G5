@@ -1,18 +1,23 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+
 public class Guard extends Enemy
 {
 	//Attributes
-	char xPos[];
-	char yPos[];
+	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	int guardIndex;
 	
 	//Constructor
-	public Guard(int startX, int startY, char startSymb, char xPos[], char yPos[])
+	public Guard(int startX, int startY, char startSymb, int xPos[], int yPos[])
 	{
 		super(startX,startY,startSymb);
-		this.xPos = xPos;
-		this.yPos = yPos;
+		
+		for(int i = 0; i < xPos.length;i++) {
+			Coord coord = new Coord(xPos[i],yPos[i]);
+			coords.add(coord);
+		}
+		
 		guardIndex = 0;
 	}
 
@@ -20,14 +25,13 @@ public class Guard extends Enemy
 	public void move(Map map)
 	{
 		//local variables
-		int x = this.xPos[guardIndex];
-		int y = this.yPos[guardIndex];
+		Coord coord = coords.get(guardIndex);
 		
 		//delete previous location
-		map.setChar(x, y, ' ');
+		map.setChar(coord, ' ');
 		
 		//update index
-		if(guardIndex == xPos.length - 1)
+		if(guardIndex == coords.size() - 1)
 		{
 			guardIndex = 0;
 		}
@@ -35,11 +39,10 @@ public class Guard extends Enemy
 		{
 			guardIndex++;
 		}
-
-		x = this.xPos[guardIndex];
-		y = this.yPos[guardIndex];
 		
+		Coord fCoord = coords.get(guardIndex);
+				
 		//print new location
-		map.setChar(x, y, this.getSymb());
+		map.setChar(fCoord, this.getSymb());
 	}
 }

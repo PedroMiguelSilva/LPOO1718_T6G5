@@ -3,7 +3,7 @@ package dkeep.logic;
 public class Map
 {
 	//Attributes
-	private int width, height;
+	private int width, height;		//for size restriction purposes
 	private char[][] map;
 
 	//Constructor
@@ -34,30 +34,36 @@ public class Map
 	 * @param ent		- entity which movement is being tested
 	 * @return false if walking into wall, true otherwise
 	 */
-	public boolean canMove(int x, int y)
+	public boolean canMove(Coord coord)
 	{
-		if(map[x][y] == 'x')
+		if(getChar(coord) == 'x')
 			return false;
 		else
 			return true;
 	}
 
-	public void setChar(int x, int y, char newChar)
+	public void setChar(Coord coord, char newChar)
 	{
-		map[x][y] = newChar;
+		map[coord.getX()][coord.getY()] = newChar;
 	}
 
-	public char getChar(int x, int y)
+	public char getChar(Coord coord)
 	{
-		return map[x][y];
+		return map[coord.getX()][coord.getY()];
 	}
 
-	public boolean isDangerous(int x, int y, char symb)
+	public boolean isDangerous(Coord coord, char symb)
 	{
-		if(		getChar(x+1,y) == symb ||
-				getChar(x,y+1) == symb ||
-				getChar(x-1,y) == symb ||
-				getChar(x,y-1) == symb)
+		Coord c1 = new Coord(coord.getX(),coord.getY());
+		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
+		Coord c3 = new Coord(coord.getX()-1,coord.getY());
+		Coord c4 = new Coord(coord.getX(),coord.getY()-1);
+		
+		
+		if(		getChar(c1) == symb ||
+				getChar(c2) == symb ||
+				getChar(c3) == symb ||
+				getChar(c4) == symb)
 			return true;
 		else return false;
 	}
