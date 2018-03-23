@@ -1,8 +1,6 @@
 # LPOO1718_T6G5
 
 TODO LIST:
-
-	- change all the values of coordinates to a class named coordinates with x and y
 	
 	- generalize the movement of entities for all entities
 			(or just  movable ones since
@@ -14,6 +12,12 @@ TODO LIST:
 			position 0 of the object array) all the cells in the matrix would be initialized
 			with the begining of the map values or just with Clear objects yet to be
 			implemented
+			
+			NOTE: this can be accomplished by a two layer layout with basis of fixed objects and interactives and then movable object 			on top
+			
+	- constructor of the game must take as input the values given in the gui
+	
+	- get rid of enemy abstract class and implement an interface to force movement to movable classes such as hero ogre guard etc	
 			
 	- move the game logic of the levels "Level1" and "Level2" up to the abstract class "Level"
 			to prevent repetition of logic
