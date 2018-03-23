@@ -124,4 +124,26 @@ public class Game
 		
 		}
 	}
+	
+	public String mapString(Map map) {
+		String mapa = new String();
+		Character space = ' ';
+	
+		for(int i=0; i< map.getMap().length;i++)
+		{
+			for(int j=0; j<map.getMap()[i].length;j++)
+			{
+				/*if(map[i][j] == space)
+					mapa+= map[i][j];*/
+				mapa += map.getMap()[i][j] + " ";
+			}
+			mapa += "\n";
+		}		
+		
+		return mapa;
+	}
+	
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
 }

@@ -61,4 +61,7 @@ public class Map
 			return true;
 		else return false;
 	}
+	public char [][] getMap(){
+		return this.map;
+	}
 }

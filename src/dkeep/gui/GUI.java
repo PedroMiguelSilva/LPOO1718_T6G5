@@ -23,6 +23,7 @@ public class GUI implements ActionListener {
 	private JFrame frame;
 	private JTextField textField;
 	protected Game game;
+	protected int numberOfMoves=0;
 
 	/**
 	 * Launch the application.
@@ -46,7 +47,8 @@ public class GUI implements ActionListener {
 	public GUI() {
 		initialize();
 	}
-
+	 
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -89,9 +91,39 @@ public class GUI implements ActionListener {
 		gbc_lblGuard.gridx = 0;
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Courier New", Font.PLAIN, 27));
+		GridBagConstraints gbc_textArea = new GridBagConstraints();
+		gbc_textArea.gridheight = 9;
+		gbc_textArea.gridwidth = 12;
+		gbc_textArea.insets = new Insets(0, 0, 5, 5);
+		gbc_textArea.fill = GridBagConstraints.BOTH;
+		gbc_textArea.gridx = 1;
+		gbc_textArea.gridy = 5;
+		frame.getContentPane().add(textArea, gbc_textArea);
+		
+		
+		JLabel lblYouCanStart = new JLabel("You can start a new game");
+		GridBagConstraints gbc_lblYouCanStart = new GridBagConstraints();
+		gbc_lblYouCanStart.gridwidth = 4;
+		gbc_lblYouCanStart.insets = new Insets(0, 0, 5, 5);
+		gbc_lblYouCanStart.gridx = 1;
+		gbc_lblYouCanStart.gridy = 14;
+		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
+		
 
 		JButton btnNewButton = new JButton("New game");
-		btnNewButton.addActionListener(this);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game = new Game();
+				game.getLevel().getMap().printMap();
+				textArea.append(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+			}
+		
+		});
+
 
 		JComboBox comboBox = new JComboBox();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -107,15 +139,7 @@ public class GUI implements ActionListener {
 		gbc_btnNewButton.gridy = 4;
 		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
 
-		JTextArea textArea = new JTextArea();
-		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.gridheight = 9;
-		gbc_textArea.gridwidth = 12;
-		gbc_textArea.insets = new Insets(0, 0, 5, 5);
-		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 1;
-		gbc_textArea.gridy = 5;
-		frame.getContentPane().add(textArea, gbc_textArea);
+		
 
 		JButton btnUp = new JButton("Up");
 		btnUp.setName("up");
@@ -124,45 +148,89 @@ public class GUI implements ActionListener {
 		gbc_btnUp.gridx = 14;
 		gbc_btnUp.gridy = 8;
 		frame.getContentPane().add(btnUp, gbc_btnUp);
+	
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				int status = game.getLevel().update('w');
+				game.updateGameVariables(status,'w');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.getGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
 			}
 		});
 
 
 		JButton btnLeft = new JButton("Left");
-		btnUp.setName("left");
+		btnLeft.setName("left");
 		GridBagConstraints gbc_btnLeft = new GridBagConstraints();
 		gbc_btnLeft.insets = new Insets(0, 0, 5, 5);
 		gbc_btnLeft.gridx = 13;
 		gbc_btnLeft.gridy = 9;
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
+		
+		btnLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('a');
+				game.updateGameVariables(status,'a');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.getGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
 
+		
 		JButton btnRight = new JButton("Right");
-		btnUp.setName("right");
+		btnRight.setName("right");
 		GridBagConstraints gbc_btnRight = new GridBagConstraints();
 		gbc_btnRight.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRight.gridx = 15;
 		gbc_btnRight.gridy = 9;
 		frame.getContentPane().add(btnRight, gbc_btnRight);
+		
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('d');
+				game.updateGameVariables(status,'d');
+				game.mapString(game.getLevel().getMap());
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.getGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
 
+		
 		JButton btnDown = new JButton("Down");
-		btnUp.setName("down");
+		btnDown.setName("down");
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
 		gbc_btnDown.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDown.gridx = 14;
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
+		
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('s');
+				game.updateGameVariables(status,'s');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.getGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
 
-		JLabel lblYouCanStart = new JLabel("You can start a new game");
-		GridBagConstraints gbc_lblYouCanStart = new GridBagConstraints();
-		gbc_lblYouCanStart.gridwidth = 4;
-		gbc_lblYouCanStart.insets = new Insets(0, 0, 5, 5);
-		gbc_lblYouCanStart.gridx = 1;
-		gbc_lblYouCanStart.gridy = 14;
-		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
-
+		
+	
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.insets = new Insets(0, 0, 5, 5);
@@ -176,6 +244,7 @@ public class GUI implements ActionListener {
 		});
 	}
 
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JButton action = (JButton) ae.getSource();
