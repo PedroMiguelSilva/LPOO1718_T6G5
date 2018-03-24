@@ -4,12 +4,11 @@ abstract public class Entity
 {
 	//Attributes
 	private Coord coord;
-	private char symb;
-	private Symbol symb2;
+	private Symbol symb;
 		
 	
 	//Constructor
-	public Entity(int startX, int startY, char startSymb)
+	public Entity(int startX, int startY, Symbol startSymb)
 	{
 		this.coord = new Coord(startX,startY);
 		symb = startSymb;
@@ -27,7 +26,7 @@ abstract public class Entity
 		return coord.getY();
 	}
 	
-	public char getSymb()
+	public Symbol getSymb()
 	{
 		return this.symb;
 	}
@@ -42,7 +41,7 @@ abstract public class Entity
 		this.coord.setY(y);
 	}
 	
-	public void setSymb(char symb)
+	public void setSymb(Symbol symb)
 	{
 		this.symb = symb;
 	}

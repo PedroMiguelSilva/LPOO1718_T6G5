@@ -8,9 +8,9 @@ public class Ogre extends Enemy
 	private boolean onTopOfKey;
 
 	//Constructor
-	public Ogre(int startX, int startY, char startSymb)
+	public Ogre(int startX, int startY)
 	{
-		super(startX,startY,startSymb);
+		super(startX,startY,Symbol.OGRE);
 		onTopOfKey = false;
 	}
 
@@ -19,8 +19,6 @@ public class Ogre extends Enemy
 	{
 		Random  rand = new Random();
 		int move = rand.nextInt(4);
-		//int xPos = this.getX();
-		//int yPos = this.getY();
 		
 		Coord newCoord = new Coord(this.getCoord());
 
@@ -33,33 +31,45 @@ public class Ogre extends Enemy
 			{
 			case 0:
 			{
-				//xPos++;
-			newCoord.incX();
+				newCoord.incX();
 				break;
 			}
 			case 1:
 			{
-				//yPos++;
 				newCoord.incY();
 				break;
 			}
 			case 2:
 			{
-				//xPos--;
 				newCoord.decX();
 				break;
 			}
 			case 3:
 			{
-				//yPos--;
 				newCoord.decY();
 				break;
 			}
 			}
 			
 			
-		}while(map.getChar(newCoord) == 'x' || map.getChar(newCoord) == 'i');
+		//}while(map.getChar(newCoord) == 'x' || map.getChar(newCoord) == 'i');
+		}while(map.getBotEnt(newCoord).getSymb() == Symbol.WALL || 
+				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
+				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN);
 
+		//might move on top of the wall
+		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
+			this.setSymb(Symbol.OGRE_ON_KEY);
+			this.onTopOfKey = true;
+		}
+		else {
+			this.setSymb(Symbol.OGRE);
+			this.onTopOfKey = false;
+		}
+		
+		map.move(this, newCoord);
+		
+		/*
 		char symb = map.getChar(newCoord);
 		char prevSymb;
 		char postSymb;
@@ -89,5 +99,6 @@ public class Ogre extends Enemy
 		map.setChar(this.getCoord(), prevSymb);
 		map.setChar(newCoord, postSymb);
 		this.setCoord(newCoord);
+		*/
 	}
 }

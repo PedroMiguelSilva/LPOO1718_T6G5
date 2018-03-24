@@ -6,7 +6,7 @@ abstract public class Enemy extends Entity
 	
 	
 	//Constructor
-	public Enemy(int startX, int startY, char startSymb)
+	public Enemy(int startX, int startY, Symbol startSymb)
 	{
 		super(startX,startY,startSymb);
 	}

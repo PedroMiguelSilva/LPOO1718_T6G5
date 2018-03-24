@@ -1,6 +1,12 @@
 package dkeep.cli;
 
 import dkeep.logic.Game;
+import dkeep.logic.Map;
+import dkeep.logic.Entity;
+import dkeep.logic.Coord;
+import dkeep.logic.Clear;
+import dkeep.logic.Symbol;
+
 import java.util.Scanner;
 
 public class Start
@@ -21,6 +27,59 @@ public class Start
 
 		return N;
 	}
+	
+	public static Entity entToPrint(Map map, int i, int j) {
+		Coord coord = new Coord(i,j);
+		Entity entTop = map.getTopEnt(coord);
+		Entity entBot = map.getBotEnt(coord);
+		
+		if(entTop instanceof Clear)
+			return entBot;
+		else
+			return entTop;
+	}
+	
+	public static char symbolToChar(Symbol s) {
+		switch(s) {
+		case HERO:
+			return 'h';
+		case HERO_WITH_KEY:
+			return 'K';
+		case GUARD:
+			return 'g';
+		case WALL:
+			return 'x';
+		case CLEAR_SPACE:
+			return ' ';
+		case OGRE:
+			return 'o';
+		case OGRE_ON_KEY:
+			return '$';
+		case OGRE_WEAPON:
+			return '*';
+		case LEVER:
+			return 'k';
+		case KEY:
+			return 'k';
+		case DOOR_CLOSED:
+			return 'i';
+		case DOOR_OPEN:
+			return 'S';
+		default:
+			return ' ';
+		}
+	}
+	
+	public static void printMap(Map map) {
+		for(int i = 0 ; i < map.getHeight();i++) {
+			for(int j = 0; j < map.getWidth(); j++) {
+				Entity ent = entToPrint(map,i,j);
+				char charToPrint = symbolToChar(ent.getSymb());
+				System.out.print(charToPrint + " ");
+			}
+			System.out.println();
+		}
+	}
 
 	public static void main(String[] args)
 	{
@@ -38,13 +97,14 @@ public class Start
 		char quit = 'q';						//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
 
-		game.getLevel().getMap().printMap();
+		printMap(game.getLevel().getMap());
 
 		//GAME CYCLE
 		while(!(game.getGameOver() || game.getWonGame()) && cmd != quit)
 		{
 			//read user input
 			cmd = validChar(scan);
+			
 
 			//update the level
 			status = game.getLevel().update(cmd);
@@ -54,7 +114,7 @@ public class Start
 			
 			//print the current state of the game to console
 			if(!game.getWonGame())
-				game.getLevel().getMap().printMap();
+				printMap(game.getLevel().getMap());
 		}
 
 		//send end-game message to user

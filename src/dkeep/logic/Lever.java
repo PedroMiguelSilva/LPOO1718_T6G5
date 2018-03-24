@@ -9,15 +9,11 @@ public class Lever extends Interactive
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	
 	//Constructor
-	public Lever(int startX, int startY, char startSymb,int newXPos[],int newYPos[])
+	public Lever(int startX, int startY,ArrayList<Coord> coords)
 	{
-		super(startX,startY,startSymb);
+		super(startX,startY,Symbol.LEVER);
 		isActive = false;
-		for(int i = 0; i < newXPos.length; i++) {
-			Coord coord = new Coord(newXPos[i],newYPos[i]);
-			coords.add(coord);
-		}
-		
+		this.coords = coords;
 	}
 	
 	//Methods

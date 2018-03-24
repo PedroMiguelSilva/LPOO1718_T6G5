@@ -32,15 +32,37 @@ abstract public class Level
 	 */
 	abstract public int update(char heroMovement);
 	
+	public ArrayList<Entity> createWalls(ArrayList<Coord> coord){
+		ArrayList<Entity> result = new ArrayList<Entity>();
 	
+		for(Coord c : coord) {
+			Wall temp = new Wall(c);
+			result.add(temp);
+		}
+		
+		return result;
+	}
 	
+	public ArrayList<Entity> createDoors(ArrayList<Coord> coord){
+		ArrayList<Entity> result = new ArrayList<Entity>();
+		
+		for(Coord c : coord) {
+			Door temp = new Door(c);
+			result.add(temp);
+		}
+		return result;
+	}
 	
-	
-	
-	
-	
-	
-	
+	public ArrayList<Coord> posToCoords(int[] posX, int[] posY){
+		ArrayList<Coord> coords = new ArrayList<Coord>();
+		
+		for(int i = 0 ; i < posX.length ; i++) {
+			Coord temp = new Coord(posX[i],posY[i]);
+			coords.add(temp);
+		}
+		
+		return coords;
+	}
 	
 	//GET METHODS
 	public Map getMap()
