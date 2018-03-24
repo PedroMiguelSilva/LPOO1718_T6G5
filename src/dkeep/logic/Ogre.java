@@ -4,14 +4,10 @@ import java.util.Random;
 
 public class Ogre extends Enemy
 {
-	//Attributes
-	private boolean onTopOfKey;
-
 	//Constructor
 	public Ogre(int startX, int startY)
 	{
 		super(startX,startY,Symbol.OGRE);
-		onTopOfKey = false;
 	}
 
 	//Methods
@@ -60,11 +56,9 @@ public class Ogre extends Enemy
 		//might move on top of the wall
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.OGRE_ON_KEY);
-			this.onTopOfKey = true;
 		}
 		else {
 			this.setSymb(Symbol.OGRE);
-			this.onTopOfKey = false;
 		}
 		
 		map.move(this, newCoord);

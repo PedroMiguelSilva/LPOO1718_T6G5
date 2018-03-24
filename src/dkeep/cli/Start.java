@@ -46,6 +46,8 @@ public class Start
 		case HERO_WITH_KEY:
 			return 'K';
 		case GUARD:
+			return 'G';
+		case GUARD_SLEEP:
 			return 'g';
 		case WALL:
 			return 'x';

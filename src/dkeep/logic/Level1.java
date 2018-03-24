@@ -29,7 +29,7 @@ public class Level1 extends Level
 		//SET ENEMIES
 		int xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
 		int yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
-		Guard guard = new Guard(1,8,posToCoords(xPos,yPos));
+		Drunken guard = new Drunken(1,8,posToCoords(xPos,yPos));
 		enemiesLevel1.add(guard);
 		this.setEnemies(enemiesLevel1);
 		entities.add(guard);

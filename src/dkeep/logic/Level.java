@@ -23,10 +23,7 @@ abstract public class Level
 	public void moveEnemies(ArrayList<Enemy> enemies) {
 		for(Enemy e: this.getEnemies())
 		{
-			if(e instanceof Guard || e instanceof Ogre)
-			{
-				e.move(this.getMap());
-			}
+			e.move(this.getMap());
 		}
 	}
 	

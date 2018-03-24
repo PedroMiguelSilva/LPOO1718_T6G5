@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-abstract public class Enemy extends Entity
+abstract public class Enemy extends Entity implements Move
 {
 	//Attributes
 	
@@ -11,7 +11,18 @@ abstract public class Enemy extends Entity
 		super(startX,startY,startSymb);
 	}
 	
-	
-	//Methods
-	abstract public void move(Map map);
+	public int getNextIndex(int index, int size, boolean reverse) {
+		if(reverse)
+			index -= 1;
+		else
+			index += 1;
+		
+		if(index == -1)
+			return size-1;
+		else if(index == size)
+			return 0;
+		else
+			return index;
+		
+	}
 }

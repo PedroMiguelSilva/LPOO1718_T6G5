@@ -97,6 +97,9 @@ public class Map
 	
 	public boolean isDangerous(Coord coord, Symbol symb, int xMax, int yMax)
 	{
+		if(symb == Symbol.GUARD_SLEEP)
+			return false;
+		
 		Coord c1 = new Coord(coord.getX(),coord.getY());
 		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
 		Coord c3 = new Coord(coord.getX()-1,coord.getY());
