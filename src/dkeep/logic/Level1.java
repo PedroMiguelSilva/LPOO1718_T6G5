@@ -56,72 +56,14 @@ public class Level1 extends Level
 		
 		Map mapLvl1 = new Map(10,10,entities);
 		this.setMap(mapLvl1);
-		
-		/*
-		char map1 [][] = {
-				{'x','x','x','x','x','x','x','x','x','x'},
-				{'x','h',' ',' ','3',' ','x',' ','g','x'},
-				{'x','x','x',' ','x','x','x',' ',' ','x'},
-				{'x',' ','5',' ','4',' ','x',' ',' ','x'},
-				{'x','x','x',' ','x','x','x',' ',' ','x'},
-				{'1',' ',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'2',' ',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x','x','x',' ','x','x','x','x',' ','x'},
-				{'x',' ','6',' ','7',' ','x','k',' ','x'},
-				{'x','x','x','x','x','x','x','x','x','x'}
-		};
-		*/
 	}
 
-	/*
-	 * @brief 	updates the logic of the game acording to heroMovement
-	 * @param 	heroMovement
-	 * 				direction in which the user wants to move
-	 * @return	0
-	 * 				keep playing
-	 * 			1
-	 * 				hero died
-	 * 			2	
-	 * 				level up
-	 */
-	public int update(char heroMovement) //TODO CHECK IF HERO IS ON TOP OF 'S'
-	{
-		//local variables
-		int status = 0;
-
-		//Moving hero		
-		this.getHero().move(getMap(), heroMovement, getInteractives());
-		
-		//check if he won
+	public boolean hasWonLevel() {
 		Coord curr = this.getHero().getCoord();
 		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)
-			return 2;
-		
-		//Checking if hero died from moving
-		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
-		{
-			this.getHero().setDead();
-			return 1;
-		}
-
-		//Moving enemies
-		for(Enemy e: this.getEnemies())
-		{
-			if(e instanceof Guard || e instanceof Ogre)
-			{
-				e.move(this.getMap());
-			}
-		}
-
-		//Checking if hero died from enemy movement
-		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
-		{
-			this.getHero().setDead();
-			return 1;
-		}
-
-
-		return status;
+			return true;
+		else
+			return false;
 	}
 
 }

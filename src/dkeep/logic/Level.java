@@ -10,12 +10,25 @@ abstract public class Level
 	private ArrayList<Interactive> interactives;
 	private Map map;
 	
-
-	//Constructor
-
+	abstract public boolean hasWonLevel();
 	
-	//Methods
+	public boolean heroDied() {
+		if(this.getHero().isDead(this.getMap(), this.getEnemies())) {
+			this.getHero().setDead();
+			return true;
+		}
+		return false;
+	}
 
+	public void moveEnemies(ArrayList<Enemy> enemies) {
+		for(Enemy e: this.getEnemies())
+		{
+			if(e instanceof Guard || e instanceof Ogre)
+			{
+				e.move(this.getMap());
+			}
+		}
+	}
 	
 	/*
 	 * @brief 	updates the logic of the game acording to heroMovement
@@ -27,10 +40,32 @@ abstract public class Level
 	 * 				hero died
 	 * 			2	
 	 * 				level up
-	 * 			3
-	 * 				won game
 	 */
-	abstract public int update(char heroMovement);
+	public int update(char heroMove) {
+		
+		//move hero
+		this.getHero().move(getMap(), heroMove, getInteractives());
+		
+		//check if won
+		if(hasWonLevel())
+			return 2;
+		
+		//check if hero died from moving
+		if(heroDied())
+			return 1;
+		
+		//move enemies
+		moveEnemies(this.getEnemies());
+		
+		//check if hero died from moving
+		if(heroDied())
+			return 1;
+		
+		return 0;
+	}
+
+	
+	//Methods
 	
 	public ArrayList<Entity> createWalls(ArrayList<Coord> coord){
 		ArrayList<Entity> result = new ArrayList<Entity>();
@@ -63,6 +98,9 @@ abstract public class Level
 		
 		return coords;
 	}
+	
+	
+	
 	
 	//GET METHODS
 	public Map getMap()

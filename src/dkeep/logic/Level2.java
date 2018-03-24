@@ -55,55 +55,13 @@ public class Level2 extends Level
 		Map mapLvl2 = new Map(9,9,entities);
 		this.setMap(mapLvl2);
 	}
-
-	/*
-	 * @brief 	updates the logic of the game acording to heroMovement
-	 * @param 	heroMovement
-	 * 				direction in which the user wants to move
-	 * @return	0
-	 * 				keep playing
-	 * 			1
-	 * 				hero died
-	 * 			2	
-	 * 				level up
-
-	 */
-	public int update(char heroMovement)
-	{
-		//local variales
-		int status = 0;
-		char symbHeroIsOn;
-
-		//Moving hero
-		this.getHero().move(getMap(), heroMovement,this.getInteractives());
+	
+	public boolean hasWonLevel() {
 		Coord curr = this.getHero().getCoord();
 		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)
-			return 2;
-
-		//Checking if hero died from moving
-		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
-		{
-			return 1;
-		}
-
-		//Moving enemies
-		for(Enemy e: this.getEnemies())
-		{
-			if(e instanceof Guard || e instanceof Ogre)
-			{
-				e.move(this.getMap());
-			}
-		}
-
-		//Checking if hero died from enemy movement
-		if(this.getHero().isDead(this.getMap(),this.getEnemies()))
-		{
-			return 1;
-		}
-
-
-		return status;
+			return true;
+		else
+			return false;
 	}
-
 
 }
