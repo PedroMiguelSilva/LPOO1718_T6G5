@@ -6,6 +6,7 @@ import org.junit.Test;
 import dkeep.logic.Cmd;
 import dkeep.logic.Coord;
 import dkeep.logic.Game;
+import dkeep.logic.Symbol;
 
 
 public class TestDungeonGameLogic {
@@ -56,6 +57,35 @@ public class TestDungeonGameLogic {
 		assertEquals(1,game.getCurrentLevel());
 	}
 	
+	@Test
+	public void testHeroOpenLeverAndDoorsOpen() {
+		Game game = new Game(1);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		Coord door1 = new Coord(5,0);
+		Coord door2 = new Coord(6,0);
+		assertEquals(Symbol.DOOR_CLOSED, game.getLevel().getMap().getEnt(door1).getSymb());
+		assertEquals(Symbol.DOOR_CLOSED, game.getLevel().getMap().getEnt(door2).getSymb());
+		game.moveHero(Cmd.LEFT);
+		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getEnt(door1).getSymb());
+		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getEnt(door2).getSymb());
+	}
 	
 
 }
