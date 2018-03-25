@@ -19,18 +19,6 @@ public class Rookie extends Enemy
 	@Override
 	public void move(Map map)
 	{
-		//update index
-		if(guardIndex == coords.size() - 1)
-		{
-			guardIndex = 0;
-		}
-		else
-		{
-			guardIndex++;
-		}
-		
-		Coord fCoord = coords.get(guardIndex);
-		
-		map.move(this, fCoord);
+		guardIndex = move_aux(guardIndex,coords,false,map);
 	}
 }

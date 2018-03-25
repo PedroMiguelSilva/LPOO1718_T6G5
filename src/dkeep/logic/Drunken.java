@@ -47,9 +47,7 @@ public class Drunken extends Enemy{
 		}
 		
 		if(!sleeping) {
-			guardIndex = getNextIndex(guardIndex,coords.size(),this.reverse);
-			Coord fCoord = coords.get(guardIndex);
-			map.move(this, fCoord);
+			guardIndex = move_aux(guardIndex,coords,reverse,map);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package dkeep.logic;
 
+import java.util.ArrayList;
+
 abstract public class Enemy extends Entity implements Move
 {
 	//Attributes
@@ -23,6 +25,12 @@ abstract public class Enemy extends Entity implements Move
 			return 0;
 		else
 			return index;
-		
+	}
+	
+	protected int move_aux(int index, ArrayList<Coord> coords,boolean reverse, Map map) {
+		index = getNextIndex(index,coords.size(),reverse);
+		Coord fCoord = coords.get(index);
+		map.move(this,fCoord);
+		return index;
 	}
 }
