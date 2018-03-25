@@ -87,5 +87,42 @@ public class TestDungeonGameLogic {
 		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getEnt(door2).getSymb());
 	}
 	
-
+	@Test
+	public void testHeroOpenLeverAndDoorsOpen() {
+		Game game = new Game(1);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		assertEquals(1,game.getCurrentLevel());
+		game.moveHero(Cmd.LEFT);
+		assertEquals(2,game.getCurrentLevel());
+		
+	}
+	
 }
