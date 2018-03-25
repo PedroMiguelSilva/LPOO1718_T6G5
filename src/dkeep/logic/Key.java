@@ -20,8 +20,6 @@ public class Key extends Interactive
 		Clear temp = new Clear(hero.getCoord());
 		hero.setKey(this);
 		hero.setSymb(Symbol.HERO_WITH_KEY);
-		//map.setChar(this.getCoord(), hero.getSymb());
-		//map.setChar(hero.getCoord(), ' ');
 		map.move(hero, this.getCoord());
 		hero.getCoord().setCoord(this.getCoord());
 		map.setBotEnt(hero.getCoord(), temp);

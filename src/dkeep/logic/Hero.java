@@ -81,10 +81,6 @@ public class Hero extends Entity
 
 			if(symb == Symbol.CLEAR_SPACE)				//moving into an empty space
 			{
-				//actually call the move
-				//map.setChar(this.getCoord(), ' ');
-				//map.setChar(newCoord, this.getSymb());
-				//this.setCoord(newCoord);
 				map.move(this, newCoord);
 			}
 			else										//moving into interactable

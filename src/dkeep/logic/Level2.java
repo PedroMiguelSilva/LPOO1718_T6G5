@@ -9,22 +9,6 @@ public class Level2 extends Level
 	//Constructor
 	public Level2()
 	{
-		/*
-		char map2 [][] = {
-				{'x','x','x','x','x','x','x','x','x'},
-				{'i',' ',' ',' ','o',' ',' ','k','x'},
-				{'x',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x',' ',' ',' ',' ',' ',' ',' ','x'},
-				{'x','h',' ',' ',' ',' ',' ',' ','x'},
-				{'x','x','x','x','x','x','x','x','x'}
-		};
-		*/
-		//Map mapLevel2 = new Map(9,9,map2);
-		//this.setMap(mapLevel2);
-		
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		ArrayList<Enemy> enemiesLevel2 = new ArrayList<Enemy>();
 		ArrayList<Interactive> interactives = new ArrayList<Interactive>();

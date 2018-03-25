@@ -18,6 +18,7 @@ public class Ogre extends Enemy
 		}
 		isStun = false;
 		roundsStun = 0;
+		this.hasClub = hasClub;
 	}
 
 	public void stun() {
@@ -88,7 +89,7 @@ public class Ogre extends Enemy
 			map.move(this, newCoord);
 		}
 			
-		
-		weapon.swing(map,this);
+		if(hasClub)
+			weapon.swing(map,this);
 	}
 }

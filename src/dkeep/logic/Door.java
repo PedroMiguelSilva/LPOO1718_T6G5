@@ -26,19 +26,13 @@ public class Door extends Interactive
 	{
 		if(open)
 		{
-			//since this means the door is open then just move the hero to the cell on top of the door
 			map.move(hero, this.getCoord());
-			
-			//map.setChar(getCoord(), hero.getSymb());
-			//map.setChar(getCoord(), ' ');
 		}
 		else if(hero.getKey().getDoorCoord().equals(this.getCoord()))
 		{
 			//just open the door by changing the boolean and the symbol of the door
-			
 			open = true;
 			this.setSymb(Symbol.DOOR_OPEN);
-			//map.setChar(getCoord(), 'S');
 		}
 	}
 	
