@@ -46,28 +46,28 @@ public class Hero extends Entity
 	}	
 
 		//Methods
-		public void move(Map map, char direction, ArrayList<Interactive> interactives,ArrayList<Enemy> enemies){
+		public void move(Map map, Cmd cmd, ArrayList<Interactive> interactives,ArrayList<Enemy> enemies){
 
 			Coord newCoord = new Coord(this.getCoord());
 
-			switch(direction)
+			switch(cmd)
 			{
-			case 'a':
+			case LEFT:
 			{
 				newCoord.decY();
 				break;
 			}
-			case 'w':
+			case UP:
 			{
 				newCoord.decX();
 				break;
 			}
-			case 's':
+			case DOWN:
 			{
 				newCoord.incX();
 				break;
 			}
-			case 'd':
+			case RIGHT:
 			{
 				newCoord.incY();
 				break;

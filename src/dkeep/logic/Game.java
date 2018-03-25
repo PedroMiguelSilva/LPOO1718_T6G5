@@ -114,9 +114,9 @@ public class Game
 		return quit;
 	}
 	
-	public void updateGameVariables(int status, char quit)
+	public void updateGameVariables(int status, Cmd cmd)
 	{
-		if(quit == 'q')
+		if(cmd == Cmd.QUIT)
 		{
 			this.setQuit();
 		}

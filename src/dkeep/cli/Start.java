@@ -1,44 +1,75 @@
 package dkeep.cli;
 
+import java.lang.Character;
 import dkeep.logic.Game;
 import dkeep.logic.Map;
 import dkeep.logic.Entity;
 import dkeep.logic.Coord;
 import dkeep.logic.Clear;
+import dkeep.logic.Cmd;
 import dkeep.logic.Symbol;
 
 import java.util.Scanner;
 
 public class Start
 {
+
+	public static Cmd parseCharToCmd(char n) {
+		switch(n) {
+		case 'a':
+		case 'A':
+			return Cmd.LEFT;
+		case 's':
+		case 'S':
+			return Cmd.DOWN;
+		case 'd':
+		case 'D':
+			return Cmd.RIGHT;
+		case 'w':
+		case 'W':
+			return Cmd.UP;
+		default:
+			return Cmd.QUIT;
+		}
+	}
+
 	/*
 	 * @brief Returns one of the chars that are used for movement (WASD)
 	 *
 	 * @return either W, A, S or D
 	 */
-	public static char validChar(Scanner scan)
+	public static Cmd validChar(Scanner scan)
 	{
 		System.out.println("Use W,A,S,D to move! \n");
 		char N;
 		do
 		{
 			N = scan.next().charAt(0);
-		} while(N != 'a' && N != 'w'&& N != 's'&& N != 'd'&& N!= 'q');
+		} while(N != 'a' &&
+				N != 'A' &&
+				N != 's' &&
+				N != 'S' &&
+				N != 'd' &&
+				N != 'D' &&
+				N != 'w' &&
+				N != 'W' &&
+				N != 'q' &&
+				N != 'Q');
 
-		return N;
+		return parseCharToCmd(N);
 	}
-	
+
 	public static Entity entToPrint(Map map, int i, int j) {
 		Coord coord = new Coord(i,j);
 		Entity entTop = map.getTopEnt(coord);
 		Entity entBot = map.getBotEnt(coord);
-		
+
 		if(entTop instanceof Clear)
 			return entBot;
 		else
 			return entTop;
 	}
-	
+
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
 		case HERO:
@@ -77,7 +108,7 @@ public class Start
 			return ' ';
 		}
 	}
-	
+
 	public static void printMap(Map map) {
 		for(int i = 0 ; i < map.getHeight();i++) {
 			for(int j = 0; j < map.getWidth(); j++) {
@@ -101,8 +132,8 @@ public class Start
 		 * 2 - level up
 		 */
 		int status = 0;							//state of the game
-		char cmd = '0';							//command given by user
-		char quit = 'q';						//command quit
+		Cmd cmd = Cmd.START;								//command given by user
+		Cmd quit = Cmd.QUIT;						//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
 
 		printMap(game.getLevel().getMap());
@@ -112,14 +143,14 @@ public class Start
 		{
 			//read user input
 			cmd = validChar(scan);
-			
+
 
 			//update the level
 			status = game.getLevel().update(cmd);
-			
+
 			//update the game
 			game.updateGameVariables(status,cmd);
-			
+
 			//print the current state of the game to console
 			if(!game.getWonGame())
 				printMap(game.getLevel().getMap());
@@ -127,7 +158,7 @@ public class Start
 
 		//send end-game message to user
 		game.sendFinalMessage();
-		
+
 		//close scanner
 		scan.close();
 	}

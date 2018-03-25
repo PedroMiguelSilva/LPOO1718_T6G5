@@ -38,10 +38,10 @@ abstract public class Level
 	 * 			2	
 	 * 				level up
 	 */
-	public int update(char heroMove) {
+	public int update(Cmd cmd) {
 		
 		//move hero
-		this.getHero().move(getMap(), heroMove, getInteractives(), getEnemies());
+		this.getHero().move(getMap(), cmd, getInteractives(), getEnemies());
 		
 		//check if won
 		if(hasWonLevel())
