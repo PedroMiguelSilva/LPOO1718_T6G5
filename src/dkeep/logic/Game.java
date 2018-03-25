@@ -12,25 +12,45 @@ public class Game
 	private boolean wonGame;
 	private boolean quit;
 	
+	private ArrayList<Level> getLevelArray(){
+		return this.levels;
+	}
 	
+	private int getMaxLevel() {
+		return this.MAX_LEVEL;
+	}
 	
 	//CONSTRUCTOR
-	public Game()
+	public Game(int maxLevel)
 	{
 		super();
 		currentLevel = 1;
 		gameOver = false;
-		MAX_LEVEL = 2;
+		MAX_LEVEL = maxLevel;
 		wonGame = false;
 		quit = false;
 		
 		ArrayList<Level> temp = new ArrayList<Level>();
-		Level lvl1 = new Level1();
-		Level lvl2 = new Level2();
 		
+		Level lvl1 = new Level1();
 		temp.add(lvl1);
-		temp.add(lvl2);
+		
+		if(MAX_LEVEL == 2) {
+			Level lvl2 = new Level2();
+			temp.add(lvl2);
+		}
+
 		this.setLevels(temp);
+	}
+	
+	public Game(Game game) {
+		super();
+		this.levels = game.getLevelArray();
+		this.currentLevel = game.getCurrentLevel();
+		this.MAX_LEVEL = game.getMaxLevel();
+		this.gameOver = game.getGameOver();
+		this.wonGame = game.getWonGame();
+		this.quit = game.getGameOver();
 	}
 	
 	//METHODS

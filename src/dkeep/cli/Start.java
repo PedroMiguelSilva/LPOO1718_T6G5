@@ -92,7 +92,7 @@ public class Start
 	public static void main(String[] args)
 	{
 		//initiate level with level = 1
-		Game game = new Game();
+		Game game = new Game(2);
 
 		/*
 		 * STATUS
