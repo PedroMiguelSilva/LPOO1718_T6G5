@@ -7,7 +7,7 @@ abstract public class Interactive extends Entity
 	//Attributes
 	
 	//Constructor
-	public Interactive(int startX, int startY, char startSymb)
+	public Interactive(int startX, int startY, Symbol startSymb)
 	{
 		super(startX,startY,startSymb);
 	}

@@ -147,6 +147,22 @@ public class GUI implements ActionListener {
 		gbc_btnUp.gridx = 14;
 		gbc_btnUp.gridy = 8;
 		frame.getContentPane().add(btnUp, gbc_btnUp);
+<<<<<<< HEAD
+=======
+	
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('w');
+				game.updateGameVariables(status,'w');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.isGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
+>>>>>>> master
 
 
 		JButton btnLeft = new JButton("Left");
@@ -156,6 +172,22 @@ public class GUI implements ActionListener {
 		gbc_btnLeft.gridx = 13;
 		gbc_btnLeft.gridy = 9;
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
+<<<<<<< HEAD
+=======
+		
+		btnLeft.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('a');
+				game.updateGameVariables(status,'a');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.isGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
+>>>>>>> master
 
 
 		JButton btnRight = new JButton("Right");
@@ -165,6 +197,23 @@ public class GUI implements ActionListener {
 		gbc_btnRight.gridx = 15;
 		gbc_btnRight.gridy = 9;
 		frame.getContentPane().add(btnRight, gbc_btnRight);
+<<<<<<< HEAD
+=======
+		
+		btnRight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('d');
+				game.updateGameVariables(status,'d');
+				game.mapString(game.getLevel().getMap());
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.isGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
+>>>>>>> master
 
 
 		JButton btnDown = new JButton("Down");
@@ -174,6 +223,22 @@ public class GUI implements ActionListener {
 		gbc_btnDown.gridx = 14;
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
+<<<<<<< HEAD
+=======
+		
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int status = game.getLevel().update('s');
+				game.updateGameVariables(status,'s');
+				textArea.setText(game.mapString(game.getLevel().getMap()));
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.isGameOver() ==  true)
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+				if(game.getWonGame() == true)
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+			}
+		});
+>>>>>>> master
 
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();

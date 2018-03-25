@@ -8,20 +8,21 @@ public class Key extends Interactive
 	Coord doorC;
 
 	//Constructor
-	public Key(int startX, int startY, char startSymb, int x, int y)
+	public Key(int startX, int startY, int x, int y)
 	{
-		super(startX,startY,startSymb);
+		super(startX,startY,Symbol.KEY);
 		doorC = new Coord(x,y);
 	}
 
 	@Override
 	public void trigger(Hero hero, ArrayList<Interactive> interactives, Map map)
 	{
+		Clear temp = new Clear(hero.getCoord());
 		hero.setKey(this);
-		hero.setSymb('K');
-		map.setChar(this.getCoord(), hero.getSymb());
-		map.setChar(hero.getCoord(), ' ');
+		hero.setSymb(Symbol.HERO_WITH_KEY);
+		map.move(hero, this.getCoord());
 		hero.getCoord().setCoord(this.getCoord());
+		map.setBotEnt(hero.getCoord(), temp);
 	}
 
 	//Methods

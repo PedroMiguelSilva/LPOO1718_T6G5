@@ -4,23 +4,34 @@ import java.util.Random;
 
 public class Ogre extends Enemy
 {
-	//Attributes
-	private boolean onTopOfKey;
-
+	private boolean hasClub;
+	private boolean isStun;
+	private int roundsStun;
+	private Club weapon;
+	
 	//Constructor
-	public Ogre(int startX, int startY, char startSymb)
-	{
-		super(startX,startY,startSymb);
-		onTopOfKey = false;
+	public Ogre(int startX, int startY,boolean hasClub){
+		super(startX,startY,Symbol.OGRE);
+		if(hasClub) {
+			Club temp = new Club(startX,startY+1);
+			this.weapon = temp;
+		}
+		isStun = false;
+		roundsStun = 0;
+		this.hasClub = hasClub;
 	}
 
+	public void stun() {
+		isStun = true;
+		roundsStun = 3;
+		this.setSymb(Symbol.OGRE_STUNED);
+	}
+	
 	//Methods
 	public void move(Map map)
 	{
 		Random  rand = new Random();
 		int move = rand.nextInt(4);
-		//int xPos = this.getX();
-		//int yPos = this.getY();
 		
 		Coord newCoord = new Coord(this.getCoord());
 
@@ -33,61 +44,52 @@ public class Ogre extends Enemy
 			{
 			case 0:
 			{
-				//xPos++;
-			newCoord.incX();
+				newCoord.incX();
 				break;
 			}
 			case 1:
 			{
-				//yPos++;
 				newCoord.incY();
 				break;
 			}
 			case 2:
 			{
-				//xPos--;
 				newCoord.decX();
 				break;
 			}
 			case 3:
 			{
-				//yPos--;
 				newCoord.decY();
 				break;
 			}
 			}
 			
 			
-		}while(map.getChar(newCoord) == 'x' || map.getChar(newCoord) == 'i');
+		}while(map.getBotEnt(newCoord).getSymb() == Symbol.WALL || 
+				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
+				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN);
 
-		char symb = map.getChar(newCoord);
-		char prevSymb;
-		char postSymb;
-		
-		if(symb == 'k')
-		{
-			onTopOfKey = true;			
-			prevSymb = ' ';
-			postSymb = '$';
-			this.setSymb('$');
+		//might move on top of the wall
+		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
+			this.setSymb(Symbol.OGRE_ON_KEY);
 		}
-		else
-		{
-			this.setSymb('o');
-			if(onTopOfKey)
-			{
-				prevSymb = 'k';
-				onTopOfKey = false;
-			}
-			else
-			{
-				prevSymb = ' ';
-			}
-			postSymb = this.getSymb();
+		else if(!isStun){
+			this.setSymb(Symbol.OGRE);
 		}
 		
-		map.setChar(this.getCoord(), prevSymb);
-		map.setChar(newCoord, postSymb);
-		this.setCoord(newCoord);
+		
+		if(isStun && roundsStun > 1) {
+			roundsStun -=1;
+		}			
+		else if(roundsStun == 1) {
+			roundsStun = 0;
+			isStun = false;
+		}
+		else {
+			map.move(this, newCoord);
+		}
+			
+		if(hasClub)
+			weapon.swing(map,this);
 	}
 }
