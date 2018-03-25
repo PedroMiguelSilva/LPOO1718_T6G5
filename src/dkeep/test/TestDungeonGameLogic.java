@@ -29,7 +29,6 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testHeroIsCapturedByGuard() {
 		Game game = new Game(1);
-		assertFalse(game.isGameOver());
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -40,5 +39,23 @@ public class TestDungeonGameLogic {
 		game.moveHero(Cmd.RIGHT);
 		assertTrue(game.isGameOver());
 	}
+	
+	@Test
+	public void testHeroMoveTowardsCloseDoor() {
+		Game game = new Game(1);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		assertEquals(1,game.getCurrentLevel());
+		game.moveHero(Cmd.LEFT);
+		assertEquals(1,game.getCurrentLevel());
+	}
+	
+	
 
 }
