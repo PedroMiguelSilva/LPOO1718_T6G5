@@ -155,7 +155,7 @@ public class GUI implements ActionListener {
 				game.updateGameVariables(status,'w');
 				textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.getGameOver() ==  true)
+				if(game.isGameOver() ==  true)
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 				if(game.getWonGame() == true)
 					lblYouCanStart.setText("You Won!! The Hero has escaped");
@@ -177,7 +177,7 @@ public class GUI implements ActionListener {
 				game.updateGameVariables(status,'a');
 				textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.getGameOver() ==  true)
+				if(game.isGameOver() ==  true)
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 				if(game.getWonGame() == true)
 					lblYouCanStart.setText("You Won!! The Hero has escaped");
@@ -200,7 +200,7 @@ public class GUI implements ActionListener {
 				game.mapString(game.getLevel().getMap());
 				textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.getGameOver() ==  true)
+				if(game.isGameOver() ==  true)
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 				if(game.getWonGame() == true)
 					lblYouCanStart.setText("You Won!! The Hero has escaped");
@@ -222,7 +222,7 @@ public class GUI implements ActionListener {
 				game.updateGameVariables(status,'s');
 				textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.getGameOver() ==  true)
+				if(game.isGameOver() ==  true)
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 				if(game.getWonGame() == true)
 					lblYouCanStart.setText("You Won!! The Hero has escaped");

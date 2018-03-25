@@ -3,6 +3,7 @@ package dkeep.test;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import dkeep.logic.Cmd;
 import dkeep.logic.Coord;
 import dkeep.logic.Game;
 
@@ -13,8 +14,23 @@ public class TestDungeonGameLogic {
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
-		game.getLevel().update('d');
+		game.getLevel().update(Cmd.RIGHT);
 		assertEquals(new Coord(1,2),game.getLevel().getHero().getCoord());
+	}
+	
+	@Test
+	public void testHeroIsCapturedByGuard() {
+		Game game = new Game(1);
+		assertFalse(game.isGameOver());
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		assertFalse(game.isGameOver());
+		game.moveHero(Cmd.RIGHT);
+		assertTrue(game.isGameOver());
 	}
 
 }

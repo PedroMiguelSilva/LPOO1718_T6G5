@@ -48,13 +48,18 @@ public class Game
 		this.levels = game.getLevelArray();
 		this.currentLevel = game.getCurrentLevel();
 		this.MAX_LEVEL = game.getMaxLevel();
-		this.gameOver = game.getGameOver();
+		this.gameOver = game.isGameOver();
 		this.wonGame = game.getWonGame();
-		this.quit = game.getGameOver();
+		this.quit = game.isGameOver();
 	}
 	
 	//METHODS
 	
+	public void moveHero(Cmd cmd) {
+		int status = 0;
+		status = this.getLevel().update(cmd);
+		this.updateGameVariables(status, cmd);
+	}
 	/*
 	 * @return the current level
 	 */
@@ -84,7 +89,7 @@ public class Game
 		}
 	}
 	
-	public boolean getGameOver()
+	public boolean isGameOver()
 	{
 		return this.gameOver;
 	}

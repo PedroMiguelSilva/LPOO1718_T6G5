@@ -131,7 +131,7 @@ public class Start
 		 * 1 - hero died
 		 * 2 - level up
 		 */
-		int status = 0;							//state of the game
+
 		Cmd cmd = Cmd.START;								//command given by user
 		Cmd quit = Cmd.QUIT;						//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
@@ -139,17 +139,13 @@ public class Start
 		printMap(game.getLevel().getMap());
 
 		//GAME CYCLE
-		while(!(game.getGameOver() || game.getWonGame()) && cmd != quit)
+		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit)
 		{
 			//read user input
 			cmd = validChar(scan);
 
-
 			//update the level
-			status = game.getLevel().update(cmd);
-
-			//update the game
-			game.updateGameVariables(status,cmd);
+			game.moveHero(cmd);
 
 			//print the current state of the game to console
 			if(!game.getWonGame())
