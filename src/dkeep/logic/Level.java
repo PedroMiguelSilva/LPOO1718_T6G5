@@ -41,7 +41,7 @@ abstract public class Level
 	public int update(char heroMove) {
 		
 		//move hero
-		this.getHero().move(getMap(), heroMove, getInteractives());
+		this.getHero().move(getMap(), heroMove, getInteractives(), getEnemies());
 		
 		//check if won
 		if(hasWonLevel())
@@ -53,6 +53,9 @@ abstract public class Level
 		
 		//move enemies
 		moveEnemies(this.getEnemies());
+		
+		//hero attacks
+		this.getHero().stunNearBy(enemies);
 		
 		//check if hero died from moving
 		if(heroDied())

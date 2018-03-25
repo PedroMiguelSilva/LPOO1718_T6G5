@@ -5,6 +5,8 @@ import java.util.Random;
 public class Ogre extends Enemy
 {
 	private boolean hasClub;
+	private boolean isStun;
+	private int roundsStun;
 	private Club weapon;
 	
 	//Constructor
@@ -14,8 +16,16 @@ public class Ogre extends Enemy
 			Club temp = new Club(startX,startY+1);
 			this.weapon = temp;
 		}
+		isStun = false;
+		roundsStun = 0;
 	}
 
+	public void stun() {
+		isStun = true;
+		roundsStun = 3;
+		this.setSymb(Symbol.OGRE_STUNED);
+	}
+	
 	//Methods
 	public void move(Map map)
 	{
@@ -62,11 +72,22 @@ public class Ogre extends Enemy
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.OGRE_ON_KEY);
 		}
-		else {
+		else if(!isStun){
 			this.setSymb(Symbol.OGRE);
 		}
 		
-		map.move(this, newCoord);
+		
+		if(isStun && roundsStun > 1) {
+			roundsStun -=1;
+		}			
+		else if(roundsStun == 1) {
+			roundsStun = 0;
+			isStun = false;
+		}
+		else {
+			map.move(this, newCoord);
+		}
+			
 		
 		weapon.swing(map,this);
 	}

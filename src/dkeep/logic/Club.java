@@ -43,10 +43,12 @@ public class Club extends Entity{
 			}
 
 
-		}while(map.getBotEnt(newCoord).getSymb() == Symbol.WALL || 
-				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
-				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN ||
-				map.getBotEnt(newCoord).getSymb() == Symbol.OGRE_WEAPON);
+		}while(map.getEnt(newCoord).getSymb() == Symbol.WALL || 
+				map.getEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
+				map.getEnt(newCoord).getSymb() == Symbol.DOOR_OPEN ||
+				map.getEnt(newCoord).getSymb() == Symbol.OGRE ||
+				map.getEnt(newCoord).getSymb() == Symbol.OGRE_STUNED ||
+				map.getEnt(newCoord).getSymb() == Symbol.OGRE_WEAPON);
 		
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.CLUB_ON_KEY);

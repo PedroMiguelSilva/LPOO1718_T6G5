@@ -33,14 +33,16 @@ public class Level2 extends Level
 		//no walls :)
 		
 		//SET HERO
-		Hero heroLevel2 = new Hero(7,1);
+		Hero heroLevel2 = new Hero(7,1,true);
 		this.setHero(heroLevel2);
 		entities.add(heroLevel2);
 		
 		//SET ENEMIES
-		Ogre ogre1 = new Ogre(1,4,true);
-		enemiesLevel2.add(ogre1);
-		entities.add(ogre1);
+		for(int i = 0; i < 3 ; i++) {
+			Ogre ogre1 = new Ogre(1,4,true);
+			enemiesLevel2.add(ogre1);
+			entities.add(ogre1);
+		}
 		this.setEnemies(enemiesLevel2);
 		
 		//SET INTERACTIVES

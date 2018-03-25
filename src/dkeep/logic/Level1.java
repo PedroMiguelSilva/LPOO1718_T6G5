@@ -22,7 +22,7 @@ public class Level1 extends Level
 		//this.setMap(mapLevel1);
 
 		//SET HERO
-		Hero heroLevel1 = new Hero(1,1);
+		Hero heroLevel1 = new Hero(1,1,false);
 		this.setHero(heroLevel1);
 		entities.add(heroLevel1);
 

@@ -95,30 +95,7 @@ public class Map
 		return false;
 	}
 	
-	public boolean isDangerous(Coord coord, Symbol symb, int xMax, int yMax)
-	{
-		if(symb == Symbol.GUARD_SLEEP)
-			return false;
-		
-		Coord c1 = new Coord(coord.getX(),coord.getY());
-		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
-		Coord c3 = new Coord(coord.getX()-1,coord.getY());
-		Coord c4 = new Coord(coord.getX(),coord.getY()-1);
 
-		if(!outOfBounds(c1,xMax,yMax) && getTopEnt(c1).getSymb() == symb)
-			return true;
-		
-		if(!outOfBounds(c2,xMax,yMax) && getTopEnt(c2).getSymb() == symb)
-			return true;
-		
-		if(!outOfBounds(c3,xMax,yMax) && getTopEnt(c3).getSymb() == symb)
-			return true;
-		
-		if(!outOfBounds(c4,xMax,yMax) && getTopEnt(c4).getSymb() == symb)
-			return true;
-		
-		return false;
-	}
 
 	public void move(Entity ent, Coord coord) {
 		//verifica se ha uma parede no nivel de baixo

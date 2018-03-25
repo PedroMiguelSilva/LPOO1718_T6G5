@@ -6,6 +6,7 @@ package dkeep.logic;
 public enum Symbol {
 	HERO,				//h
 	HERO_WITH_KEY,		//K
+	HERO_WITH_CLUB,		//A
 	GUARD,				//G
 	GUARD_SLEEP,		//g
 	WALL,				//x
@@ -13,6 +14,7 @@ public enum Symbol {
 	OGRE,				//o
 	OGRE_ON_KEY,		//$
 	OGRE_WEAPON,		//*
+	OGRE_STUNED,		//8
 	CLUB_ON_KEY,		//$
 	LEVER,				//k
 	KEY,				//k

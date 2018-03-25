@@ -45,6 +45,8 @@ public class Start
 			return 'H';
 		case HERO_WITH_KEY:
 			return 'K';
+		case HERO_WITH_CLUB:
+			return 'A';
 		case GUARD:
 			return 'G';
 		case GUARD_SLEEP:
@@ -59,6 +61,8 @@ public class Start
 			return '$';
 		case OGRE_WEAPON:
 			return '*';
+		case OGRE_STUNED:
+			return '8';
 		case CLUB_ON_KEY:
 			return '$';
 		case LEVER:
