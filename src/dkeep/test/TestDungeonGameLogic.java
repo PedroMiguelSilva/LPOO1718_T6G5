@@ -14,8 +14,16 @@ public class TestDungeonGameLogic {
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
-		game.getLevel().update(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
 		assertEquals(new Coord(1,2),game.getLevel().getHero().getCoord());
+	}
+	
+	@Test
+	public void testMoveHeroIntoWall() {
+		Game game = new Game(1);
+		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
+		game.moveHero(Cmd.UP);
+		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
 	}
 	
 	@Test
