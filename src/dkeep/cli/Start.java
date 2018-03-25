@@ -1,6 +1,5 @@
 package dkeep.cli;
 
-import java.lang.Character;
 import dkeep.logic.Game;
 import dkeep.logic.Map;
 import dkeep.logic.Entity;

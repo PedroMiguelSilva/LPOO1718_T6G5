@@ -88,7 +88,7 @@ public class TestDungeonGameLogic {
 	}
 	
 	@Test
-	public void testHeroOpenLeverAndDoorsOpen() {
+	public void testHeroOpenLeverAndWinLevel() {
 		Game game = new Game(1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
