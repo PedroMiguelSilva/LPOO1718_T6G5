@@ -13,6 +13,7 @@ public enum Symbol {
 	OGRE,				//o
 	OGRE_ON_KEY,		//$
 	OGRE_WEAPON,		//*
+	CLUB_ON_KEY,		//$
 	LEVER,				//k
 	KEY,				//k
 	DOOR_CLOSED,		//i

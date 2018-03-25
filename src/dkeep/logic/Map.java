@@ -125,10 +125,12 @@ public class Map
 		if(getEnt(coord).getSymb() == Symbol.WALL)
 			return;
 
-		//passar o local anterior dele para limpo
-		Clear temp = new Clear(ent.getCoord());
-		this.setTopEnt(ent.getCoord(), temp);
-
+		//passar o local anterior dele para limpo caso o objeto que estiver lá for ele
+		if(this.getTopEnt(ent.getCoord()).getSymb() == ent.getSymb()) {
+			Clear temp = new Clear(ent.getCoord());
+			this.setTopEnt(ent.getCoord(), temp);
+		}
+		
 		//coloca lo no sitio para onde ele quer ir
 		this.setTopEnt(coord, ent);
 

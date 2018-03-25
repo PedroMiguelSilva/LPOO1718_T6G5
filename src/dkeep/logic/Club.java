@@ -2,31 +2,20 @@ package dkeep.logic;
 
 import java.util.Random;
 
-public class Ogre extends Enemy
-{
-	private boolean hasClub;
-	private Club weapon;
-	
-	//Constructor
-	public Ogre(int startX, int startY,boolean hasClub){
-		super(startX,startY,Symbol.OGRE);
-		if(hasClub) {
-			Club temp = new Club(startX,startY+1);
-			this.weapon = temp;
-		}
+public class Club extends Entity{
+
+	public Club(int startX, int startY) {
+		super(startX, startY, Symbol.OGRE_WEAPON);
 	}
 
-	//Methods
-	public void move(Map map)
-	{
+	public void swing(Map map, Entity ent) {
 		Random  rand = new Random();
 		int move = rand.nextInt(4);
-		
 		Coord newCoord = new Coord(this.getCoord());
 
 		do
 		{
-			newCoord.setCoord(this.getCoord());
+			newCoord.setCoord(ent.getCoord());
 			move = rand.nextInt(4);
 
 			switch(move)
@@ -52,22 +41,20 @@ public class Ogre extends Enemy
 				break;
 			}
 			}
-			
-			
+
+
 		}while(map.getBotEnt(newCoord).getSymb() == Symbol.WALL || 
 				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
-				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN);
-
-		//might move on top of the wall
+				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN ||
+				map.getBotEnt(newCoord).getSymb() == Symbol.OGRE_WEAPON);
+		
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
-			this.setSymb(Symbol.OGRE_ON_KEY);
+			this.setSymb(Symbol.CLUB_ON_KEY);
 		}
 		else {
-			this.setSymb(Symbol.OGRE);
+			this.setSymb(Symbol.OGRE_WEAPON);
 		}
 		
 		map.move(this, newCoord);
-		
-		weapon.swing(map,this);
 	}
 }

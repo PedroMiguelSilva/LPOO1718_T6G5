@@ -42,7 +42,7 @@ public class Start
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
 		case HERO:
-			return 'h';
+			return 'H';
 		case HERO_WITH_KEY:
 			return 'K';
 		case GUARD:
@@ -50,7 +50,7 @@ public class Start
 		case GUARD_SLEEP:
 			return 'g';
 		case WALL:
-			return 'x';
+			return 'X';
 		case CLEAR_SPACE:
 			return ' ';
 		case OGRE:
@@ -59,6 +59,8 @@ public class Start
 			return '$';
 		case OGRE_WEAPON:
 			return '*';
+		case CLUB_ON_KEY:
+			return '$';
 		case LEVER:
 			return 'k';
 		case KEY:

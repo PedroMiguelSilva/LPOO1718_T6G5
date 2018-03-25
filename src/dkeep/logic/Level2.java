@@ -38,7 +38,7 @@ public class Level2 extends Level
 		entities.add(heroLevel2);
 		
 		//SET ENEMIES
-		Ogre ogre1 = new Ogre(1,4);
+		Ogre ogre1 = new Ogre(1,4,true);
 		enemiesLevel2.add(ogre1);
 		entities.add(ogre1);
 		this.setEnemies(enemiesLevel2);

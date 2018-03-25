@@ -94,6 +94,12 @@ public class Hero extends Entity
 			}
 		}
 
+		if(map.isDangerous(this.getCoord(), Symbol.OGRE_WEAPON,map.getHeight(),map.getWidth()))
+		{
+			isAlive = false;
+			return true;
+		}
+		
 		//no enemy was next to the hero
 		return false;
 	}
