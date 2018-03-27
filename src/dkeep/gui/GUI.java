@@ -16,7 +16,15 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import dkeep.logic.Clear;
+import dkeep.logic.Cmd;
+import dkeep.logic.Coord;
+import dkeep.logic.Entity;
 import dkeep.logic.Game;
+import dkeep.logic.Map;
+import dkeep.logic.Symbol;
+import dkeep.cli.Start;
 
 public class GUI implements ActionListener {
 
@@ -47,8 +55,7 @@ public class GUI implements ActionListener {
 	public GUI() {
 		initialize();
 	}
-
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -93,7 +100,7 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 27));
+		textArea.setFont(new Font("Courier New", Font.PLAIN, 16));
 		GridBagConstraints gbc_textArea = new GridBagConstraints();
 		gbc_textArea.gridheight = 9;
 		gbc_textArea.gridwidth = 12;
@@ -116,14 +123,12 @@ public class GUI implements ActionListener {
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game = new Game();
-				game.getLevel().getMap().printMap();
+				game = new Game(2);
+				Start.printMap(game.getLevel().getMap());
 				textArea.append(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 			}
-
 		});
-
 
 		JComboBox comboBox = new JComboBox();
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
@@ -147,22 +152,6 @@ public class GUI implements ActionListener {
 		gbc_btnUp.gridx = 14;
 		gbc_btnUp.gridy = 8;
 		frame.getContentPane().add(btnUp, gbc_btnUp);
-<<<<<<< HEAD
-=======
-	
-		btnUp.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int status = game.getLevel().update('w');
-				game.updateGameVariables(status,'w');
-				textArea.setText(game.mapString(game.getLevel().getMap()));
-				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.isGameOver() ==  true)
-					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
-				if(game.getWonGame() == true)
-					lblYouCanStart.setText("You Won!! The Hero has escaped");
-			}
-		});
->>>>>>> master
 
 
 		JButton btnLeft = new JButton("Left");
@@ -172,22 +161,6 @@ public class GUI implements ActionListener {
 		gbc_btnLeft.gridx = 13;
 		gbc_btnLeft.gridy = 9;
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
-<<<<<<< HEAD
-=======
-		
-		btnLeft.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int status = game.getLevel().update('a');
-				game.updateGameVariables(status,'a');
-				textArea.setText(game.mapString(game.getLevel().getMap()));
-				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.isGameOver() ==  true)
-					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
-				if(game.getWonGame() == true)
-					lblYouCanStart.setText("You Won!! The Hero has escaped");
-			}
-		});
->>>>>>> master
 
 
 		JButton btnRight = new JButton("Right");
@@ -197,23 +170,6 @@ public class GUI implements ActionListener {
 		gbc_btnRight.gridx = 15;
 		gbc_btnRight.gridy = 9;
 		frame.getContentPane().add(btnRight, gbc_btnRight);
-<<<<<<< HEAD
-=======
-		
-		btnRight.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int status = game.getLevel().update('d');
-				game.updateGameVariables(status,'d');
-				game.mapString(game.getLevel().getMap());
-				textArea.setText(game.mapString(game.getLevel().getMap()));
-				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.isGameOver() ==  true)
-					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
-				if(game.getWonGame() == true)
-					lblYouCanStart.setText("You Won!! The Hero has escaped");
-			}
-		});
->>>>>>> master
 
 
 		JButton btnDown = new JButton("Down");
@@ -223,22 +179,6 @@ public class GUI implements ActionListener {
 		gbc_btnDown.gridx = 14;
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
-<<<<<<< HEAD
-=======
-		
-		btnDown.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int status = game.getLevel().update('s');
-				game.updateGameVariables(status,'s');
-				textArea.setText(game.mapString(game.getLevel().getMap()));
-				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.isGameOver() ==  true)
-					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
-				if(game.getWonGame() == true)
-					lblYouCanStart.setText("You Won!! The Hero has escaped");
-			}
-		});
->>>>>>> master
 
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
@@ -268,11 +208,11 @@ public class GUI implements ActionListener {
 				if(e.getSource() == btnExit) {
 					System.exit(0);
 				}
-				int status = game.getLevel().update(var);
-				game.updateGameVariables(status,var);
+				int status = game.getLevel().update(Start.parseCharToCmd(var));
+				game.updateGameVariables(status,Start.parseCharToCmd(var));
 				textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.getGameOver() ==  true) {
+				if(game.isGameOver() ==  true) {
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 					btnDown.setEnabled(false);
 					btnUp.setEnabled(false);
@@ -304,31 +244,27 @@ public class GUI implements ActionListener {
 
 
 
-
-
-
-
-
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JButton action = (JButton) ae.getSource();
 		int status = 0;
 		switch(action.getName()) {
 		case "up":
-			status = game.getLevel().update('w');
+			status = game.getLevel().update(Start.parseCharToCmd('w'));
 			break;
 		case "down":
-			status = game.getLevel().update('s');
+			status = game.getLevel().update(Start.parseCharToCmd('s'));
 			break;
 		case "right":
-			status = game.getLevel().update('d');
+			status = game.getLevel().update(Start.parseCharToCmd('d'));
 			break;
 		case "left":
-			status = game.getLevel().update('a');
+			status = game.getLevel().update(Start.parseCharToCmd('a'));
 			break;
 		}
-		game.updateGameVariables(status,'p');
+		game.updateGameVariables(status,Start.parseCharToCmd('p'));
 	}
 
 
 }
+
