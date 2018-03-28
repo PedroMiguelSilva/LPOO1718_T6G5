@@ -131,7 +131,7 @@ public class Start
 		 * 2 - level up
 		 */
 
-		Cmd cmd = Cmd.START;								//command given by user
+		Cmd cmd = Cmd.START;						//command given by user
 		Cmd quit = Cmd.QUIT;						//command quit
 		Scanner scan = new Scanner(System.in);	//initiate scanner
 
