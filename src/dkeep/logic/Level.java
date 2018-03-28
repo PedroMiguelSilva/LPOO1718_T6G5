@@ -41,6 +41,9 @@ abstract public class Level
 	public int update(Cmd cmd) {
 		
 		//move hero
+		if(this.getHero() == null)
+			System.out.print("lol");
+		
 		this.getHero().move(getMap(), cmd, getInteractives(), getEnemies());
 		
 		//check if won
@@ -123,6 +126,44 @@ abstract public class Level
 		return this.interactives;
 	}
 
+	public Hero getHeroFromMap() {
+		for(int i = 0 ; i < map.getMap().length; i++) {
+			for(int j = 0; j < map.getMap()[0].length; j++) {
+				if(map.getMap()[i][j].getTop() instanceof Hero) {
+					return (Hero)map.getMap()[i][j].getTop();
+				}
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<Enemy> getEnemiesFromMap(){
+		ArrayList<Enemy> result = new ArrayList<Enemy>();
+		for(int i = 0 ; i < map.getMap().length; i++) {
+			for(int j = 0; j < map.getMap()[0].length; j++) {
+				if(map.getMap()[i][j].getTop() instanceof Ogre) {
+					result.add((Ogre)map.getMap()[i][j].getTop());
+				}
+			}
+		}
+		return result;
+	}
+	
+	public ArrayList<Interactive> getInteractivesFromMap(){
+		ArrayList<Interactive> result = new ArrayList<Interactive>();
+		
+		for(int i = 0 ; i < map.getMap().length; i++) {
+			for(int j = 0; j < map.getMap()[0].length; j++) {
+				if(map.getMap()[i][j].getBot() instanceof Key) {
+					result.add((Key)map.getMap()[i][j].getBot());
+				}
+				else if(map.getMap()[i][j].getBot() instanceof Door) {
+					result.add((Door)map.getMap()[i][j].getBot());
+				}
+			}
+		}
+		return result;
+	}
 	
 	//SET METHODS
 	public void setMap(Map newMap)

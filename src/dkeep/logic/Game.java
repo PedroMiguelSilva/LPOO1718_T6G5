@@ -36,7 +36,16 @@ public class Game
 		temp.add(lvl1);
 		
 		if(MAX_LEVEL == 2) {
-			Level lvl2 = new Level2();
+			char[][] map = {
+					{'X','X','X','X','X'},
+					{'X','H',' ','o','X'},
+					{'X',' ',' ',' ','X'},
+					{'i','k',' ',' ','X'},
+					{'X','X','X','X','X'}
+					
+			};
+			
+			Level lvl2 = new Level2(map);
 			temp.add(lvl2);
 		}
 

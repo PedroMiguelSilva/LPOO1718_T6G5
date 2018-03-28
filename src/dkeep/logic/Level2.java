@@ -42,6 +42,20 @@ public class Level2 extends Level
 		this.setMap(mapLvl2);
 	}
 	
+	public Level2(char[][] map) {
+		Map lvl2 = new Map(5,5,map);
+		this.setMap(lvl2);
+		
+		//set hero from map
+		this.setHero(getHeroFromMap());
+		
+		//set enemies from map
+		this.setEnemies(getEnemiesFromMap());
+		
+		//set interactives from map
+		this.setInteractives(getInteractivesFromMap());
+	}
+	
 	public boolean hasWonLevel() {
 		Coord curr = this.getHero().getCoord();
 		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)

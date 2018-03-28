@@ -9,3 +9,6 @@ TODO LIST:
 	- get rid of enemy abstract class and implement an interface to force movement to movable classes such as hero ogre guard etc 
 	
 	- make sure we can create a game from a map since its usefull for testing purposes and for the costumizable level
+	
+	MOST IMPORTANT - MAJOR REFACTOR
+	- be able to build level from its char perspetive and its set of rules

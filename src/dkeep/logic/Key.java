@@ -14,6 +14,11 @@ public class Key extends Interactive
 		doorC = new Coord(x,y);
 	}
 
+	public Key(int startX, int startY){
+		super(startX,startY,Symbol.KEY);
+		doorC = new Coord(0,0);
+	}
+	
 	@Override
 	public void trigger(Hero hero, ArrayList<Interactive> interactives, Map map)
 	{

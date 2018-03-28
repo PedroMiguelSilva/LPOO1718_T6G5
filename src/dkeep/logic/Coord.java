@@ -57,7 +57,13 @@ public class Coord {
 		if(obj == null)
 			return false;
 		
+		if(getX() == 0 && getY() == 0)
+			return true;
+		
 		Coord coord = (Coord) obj;
+		if(coord.getX() == 0 && coord.getY() == 0)
+			return true;
+		
 		if(this.getX() == coord.getX() && this.getY() == coord.getY())
 			return true;
 		else

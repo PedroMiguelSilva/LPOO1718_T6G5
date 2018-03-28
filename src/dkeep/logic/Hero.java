@@ -16,7 +16,7 @@ public class Hero extends Entity
 		super(startX , startY , Symbol.HERO);
 		isAlive = true;
 		wonLevel = false;
-		Key key1 = new Key(0,0,0,0);
+		Key key1 = new Key(0,0,100,100);
 		this.key = key1;
 		this.isArmed = isArmed;
 
