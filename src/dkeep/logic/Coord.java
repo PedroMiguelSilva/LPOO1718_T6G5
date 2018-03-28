@@ -59,7 +59,6 @@ public class Coord {
 		
 		if(getX() == 0 && getY() == 0)
 			return true;
-		
 		Coord coord = (Coord) obj;
 		if(coord.getX() == 0 && coord.getY() == 0)
 			return true;
