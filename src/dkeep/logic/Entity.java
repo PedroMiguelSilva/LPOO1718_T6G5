@@ -31,16 +31,6 @@ abstract public class Entity
 		return this.symb;
 	}
 	
-	public void setX(int x)
-	{
-		this.coord.setX(x);
-	}
-	
-	public void setY(int y)
-	{
-		this.coord.setY(y);
-	}
-	
 	public void setSymb(Symbol symb)
 	{
 		this.symb = symb;

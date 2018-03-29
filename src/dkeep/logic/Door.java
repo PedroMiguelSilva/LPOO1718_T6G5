@@ -40,7 +40,7 @@ public class Door extends Interactive
 	 * @brief just need to change the symbol of the door and its boolean
 	 */
 	public void toggleDoor(Map map){
-		if(open)						//close door
+		if(open)						    //close door
 			setSymb(Symbol.DOOR_CLOSED);
 		else								//open door
 			setSymb(Symbol.DOOR_OPEN);
