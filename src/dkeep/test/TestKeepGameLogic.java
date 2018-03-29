@@ -50,4 +50,15 @@ public class TestKeepGameLogic {
 	}
 	
 
+	@Test
+	public void heroMovesIntoClosedDoorWithKey() {
+		Game game = new Game(map);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		Coord coord = new Coord(2,0);
+		assertEquals(Symbol.DOOR_CLOSED, game.getLevel().getMap().getBotEnt(coord).getSymb());
+		game.moveHero(Cmd.LEFT);
+		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getBotEnt(coord).getSymb());
+	}
 }
