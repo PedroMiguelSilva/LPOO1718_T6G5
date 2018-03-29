@@ -61,4 +61,16 @@ public class TestKeepGameLogic {
 		game.moveHero(Cmd.LEFT);
 		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getBotEnt(coord).getSymb());
 	}
+	
+	@Test
+	public void heroMoveIntoOpenDoorAndWins() {
+		Game game = new Game(map);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.LEFT);
+		assertEquals(false,game.getWonGame());
+		game.moveHero(Cmd.LEFT);
+		assertEquals(true,game.getWonGame());
+	}
 }
