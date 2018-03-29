@@ -43,7 +43,7 @@ public class Level2 extends Level
 	}
 	
 	public Level2(char[][] map) {
-		Map lvl2 = new Map(5,5,map);
+		Map lvl2 = new Map(map.length,map[0].length,map);
 		this.setMap(lvl2);
 		
 		//set hero from map

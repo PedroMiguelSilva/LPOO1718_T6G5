@@ -8,6 +8,7 @@ public class Ogre extends Enemy
 	private boolean isStun;
 	private int roundsStun;
 	private Club weapon;
+	private Cmd lastCmd;
 	
 	//Constructor
 	public Ogre(int startX, int startY,boolean hasClub){
@@ -19,6 +20,11 @@ public class Ogre extends Enemy
 		isStun = false;
 		roundsStun = 0;
 		this.hasClub = hasClub;
+		this.lastCmd = Cmd.START;
+	}
+	
+	public Cmd getLastCmd() {
+		return lastCmd;
 	}
 	
 	public boolean getIsStun() {
@@ -49,21 +55,25 @@ public class Ogre extends Enemy
 			case 0:
 			{
 				newCoord.incX();
+				this.lastCmd = Cmd.DOWN;
 				break;
 			}
 			case 1:
 			{
 				newCoord.incY();
+				this.lastCmd = Cmd.RIGHT;
 				break;
 			}
 			case 2:
 			{
 				newCoord.decX();
+				this.lastCmd = Cmd.UP;
 				break;
 			}
 			case 3:
 			{
 				newCoord.decY();
+				this.lastCmd = Cmd.LEFT;				
 				break;
 			}
 			}
