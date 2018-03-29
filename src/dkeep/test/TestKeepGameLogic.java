@@ -7,6 +7,7 @@ import org.junit.Test;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.Ogre;
+import dkeep.logic.Symbol;
 
 public class TestKeepGameLogic {
 
@@ -28,4 +29,12 @@ public class TestKeepGameLogic {
 		assertEquals(true,o.getIsStun());
 	}
 
+	@Test
+	public void heroMovesIntoKeyAndChangesRepresentation() {
+		Game game = new Game(map);
+		game.moveHero(Cmd.DOWN);
+		assertEquals(Symbol.HERO_WITH_CLUB,game.getLevel().getHero().getSymb());
+		game.moveHero(Cmd.DOWN);
+		assertEquals(Symbol.HERO_WITH_KEY,game.getLevel().getHero().getSymb());
+	}
 }
