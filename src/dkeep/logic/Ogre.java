@@ -20,6 +20,10 @@ public class Ogre extends Enemy
 		roundsStun = 0;
 		this.hasClub = hasClub;
 	}
+	
+	public boolean getIsStun() {
+		return isStun;
+	}
 
 	public void stun() {
 		isStun = true;

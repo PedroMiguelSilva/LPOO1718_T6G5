@@ -20,6 +20,19 @@ public class Game
 		return this.MAX_LEVEL;
 	}
 	
+	public Game(char[][] map) {
+		super();
+		currentLevel = 1;
+		gameOver = false;
+		MAX_LEVEL = 1;
+		wonGame = false;
+		quit = false;
+		ArrayList<Level> temp = new ArrayList<Level>();
+		Level lvl2 = new Level2(map);
+		temp.add(lvl2);
+		this.setLevels(temp);
+	}
+	
 	//CONSTRUCTOR
 	public Game(int maxLevel)
 	{
