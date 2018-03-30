@@ -8,6 +8,7 @@ import dkeep.logic.Coord;
 import dkeep.logic.Drunken;
 import dkeep.logic.Game;
 import dkeep.logic.OgreType;
+import dkeep.logic.Suspicious;
 import dkeep.logic.Symbol;
 
 
@@ -143,9 +144,44 @@ public class TestDungeonGameLogic {
 				hasChangedDirection = true;
 			if(g.hasWokenUp())
 				wokeUp = true;
+		}	
+	}
+	
+	@Test(timeout = 1000)
+	public void testSuspiciousGuardCreationAndMovement() {
+		Game game = new Game(OgreType.SUSPICIOUS,1,1);
+		Suspicious s = (Suspicious)game.getLevel().getEnemies().get(0);
+		boolean hasDecreased = false, hasIncreased = false;
+		
+		int currIndex = s.getIndex(), prevIndex = s.getIndex();
+		int coordSize = s.getCoordSize();
+		
+		while(!hasDecreased || !hasIncreased) {
+			//update values
+			game.moveHero(Cmd.UP);
+			currIndex = s.getIndex();
+			
+			if(isLessThan(currIndex,prevIndex,coordSize)) {
+				hasDecreased = true;
+			}
+			else {
+				hasIncreased = true;
+			}
+			
+			prevIndex = currIndex;
 		}
-		
-		
+	}
+
+	private boolean isLessThan(int currIndex, int prevIndex, int coordSize) {
+		if(Math.abs(currIndex-prevIndex) == 1) {
+			//two followed values
+			return currIndex < prevIndex;
+		}
+		else if(currIndex == coordSize-1) {
+			return true;
+		}
+		else
+			return false;
 	}
 	
 }

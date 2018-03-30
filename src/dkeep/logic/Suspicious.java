@@ -27,4 +27,11 @@ public class Suspicious extends Enemy{
 		guardIndex = move_aux(guardIndex,coords,reverse,map);
 	}
 
+	public int getIndex() {
+		return this.guardIndex;
+	}
+	
+	public int getCoordSize() {
+		return coords.size();
+	}
 }

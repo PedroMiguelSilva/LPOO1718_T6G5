@@ -49,7 +49,7 @@ public class Game
 		temp.add(lvl2);
 		this.setLevels(temp);
 	}
-	
+	/*
 	//CONSTRUCTOR
 	public Game(int maxLevel)
 	{
@@ -83,6 +83,8 @@ public class Game
 
 		this.setLevels(temp);
 	}
+	
+	*/
 	/*
 	public Game(Game game) {
 		super();
