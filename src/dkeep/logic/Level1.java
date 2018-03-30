@@ -7,18 +7,18 @@ public class Level1 extends Level
 	//Attributes
 
 	//Constructor
-	public Level1()
+	public Level1(OgreType type)
 	{
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
 		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
-		
+
 		//walls
 		int wallX[] = {1,2,2,2,2,2,3,4,4,4,4,4,7,7,7,7,7,7,8};
 		int wallY[] = {6,1,2,4,5,6,6,1,2,4,5,6,1,2,4,5,6,7,6};
 		ArrayList<Entity> walls = createWalls(posToCoords(wallX,wallY));
 		entities.addAll(walls);
-		
+
 		//this.setMap(mapLevel1);
 
 		//SET HERO
@@ -29,10 +29,27 @@ public class Level1 extends Level
 		//SET ENEMIES
 		int xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
 		int yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
-		Rookie guard = new Rookie(1,8,posToCoords(xPos,yPos));
-		enemiesLevel1.add(guard);
+		
+		switch(type) {
+		case ROOKIE:
+			Rookie rookie = new Rookie(1,8,posToCoords(xPos,yPos));
+			enemiesLevel1.add(rookie);
+			entities.add(rookie);
+			break;
+		case SUSPICIOUS:
+			Suspicious susp = new Suspicious(1,8,posToCoords(xPos,yPos));
+			enemiesLevel1.add(susp);
+			entities.add(susp);
+			break;
+		case DRUNKEN:
+			Drunken drunk = new Drunken(1,8,posToCoords(xPos,yPos));
+			enemiesLevel1.add(drunk);
+			entities.add(drunk);
+			break;
+		default:
+		}
 		this.setEnemies(enemiesLevel1);
-		entities.add(guard);
+		
 
 		//SET INTERACTIVES
 		int doorX[] = {1,3,3,8,8};
@@ -41,9 +58,9 @@ public class Level1 extends Level
 		int lever1TrigX[] = {5,6};									//coordinates of objects triggered by lever
 		int lever1TrigY[] = {0,0};									//coordinates of objects triggered by lever
 		Lever lever1 = new Lever(8,7,posToCoords(lever1TrigX,lever1TrigY));
-		
+
 		interactives.add(lever1);
-		
+
 		Door door1 = new Door(5,0);
 		interactives.add(door1);
 		Door door2 = new Door(6,0);
@@ -53,7 +70,7 @@ public class Level1 extends Level
 		entities.add(door2);
 		entities.addAll(doors);
 		this.setInteractives(interactives);
-		
+
 		Map mapLvl1 = new Map(10,10,entities);
 		this.setMap(mapLvl1);
 	}

@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import dkeep.logic.Cmd;
 import dkeep.logic.Coord;
+import dkeep.logic.Drunken;
 import dkeep.logic.Game;
+import dkeep.logic.OgreType;
 import dkeep.logic.Symbol;
 
 
@@ -13,7 +15,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testMoveHeroIntoFreeCell() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
 		game.moveHero(Cmd.RIGHT);
 		assertEquals(new Coord(1,2),game.getLevel().getHero().getCoord());
@@ -21,7 +23,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testMoveHeroIntoWall() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
 		game.moveHero(Cmd.UP);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
@@ -29,7 +31,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroIsCapturedByGuard() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -43,7 +45,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroMoveTowardsCloseDoor() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -59,7 +61,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroOpenLeverAndDoorsOpen() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -89,7 +91,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroOpenLeverAndWinLevel() {
-		Game game = new Game(1);
+		Game game = new Game(OgreType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -122,6 +124,27 @@ public class TestDungeonGameLogic {
 		assertEquals(1,game.getCurrentLevel());
 		game.moveHero(Cmd.LEFT);
 		assertEquals(2,game.getCurrentLevel());
+		
+	}
+	
+	//testing the drunken guard
+	@Test
+	public void testDrunkenGuardCreationAndMovement() {
+		Game game = new Game(OgreType.DRUNKEN,2,1);
+		
+		boolean hasSlept = false,hasChangedDirection = false, wokeUp = false;
+		
+		while(!hasSlept || !hasChangedDirection || !wokeUp) {
+			game.moveHero(Cmd.UP);
+			Drunken g = (Drunken)game.getLevel().getEnemies().get(0);
+			if(g.isSleeping())
+				hasSlept = true;
+			if(g.hasChangedDirection())
+				hasChangedDirection = true;
+			if(g.hasWokenUp())
+				wokeUp = true;
+		}
+		
 		
 	}
 	

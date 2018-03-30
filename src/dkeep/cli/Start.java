@@ -2,6 +2,7 @@ package dkeep.cli;
 
 import dkeep.logic.Game;
 import dkeep.logic.Map;
+import dkeep.logic.OgreType;
 import dkeep.logic.Entity;
 import dkeep.logic.Coord;
 import dkeep.logic.Clear;
@@ -32,6 +33,22 @@ public class Start
 		}
 	}
 
+	public static void sendFinalMessage(Game game)
+	{
+		if(game.isGameOver())
+		{
+			System.out.println("Game Over");
+		}
+		else if(game.getWonGame())
+		{
+			System.out.println("Congratz, you won game");
+		}
+		else if(game.getQuit())
+		{
+			System.out.println("Quit Game");
+		}
+	}
+	
 	/*
 	 * @brief Returns one of the chars that are used for movement (WASD)
 	 *
@@ -122,7 +139,9 @@ public class Start
 	public static void main(String[] args)
 	{
 		//initiate level with level = 1
-		Game game = new Game(2);
+		int NUMBER_OF_OGRES = 2;
+		int MAX_LEVEL = 2;
+		Game game = new Game(OgreType.ROOKIE,NUMBER_OF_OGRES,MAX_LEVEL);
 
 		/*
 		 * STATUS
@@ -152,7 +171,7 @@ public class Start
 		}
 
 		//send end-game message to user
-		game.sendFinalMessage();
+		sendFinalMessage(game);
 
 		//close scanner
 		scan.close();

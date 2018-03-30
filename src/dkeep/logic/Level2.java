@@ -7,7 +7,7 @@ public class Level2 extends Level
 	//Attributes
 
 	//Constructor
-	public Level2()
+	public Level2(int nOgre)
 	{
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		ArrayList<Enemy> enemiesLevel2 = new ArrayList<Enemy>();
@@ -22,7 +22,7 @@ public class Level2 extends Level
 		entities.add(heroLevel2);
 		
 		//SET ENEMIES
-		for(int i = 0; i < 3 ; i++) {
+		for(int i = 0; i < nOgre ; i++) {
 			Ogre ogre1 = new Ogre(1,4,true);
 			enemiesLevel2.add(ogre1);
 			entities.add(ogre1);
@@ -41,6 +41,8 @@ public class Level2 extends Level
 		Map mapLvl2 = new Map(9,9,entities);
 		this.setMap(mapLvl2);
 	}
+	
+	
 	
 	public Level2(char[][] map) {
 		Map lvl2 = new Map(map.length,map[0].length,map);

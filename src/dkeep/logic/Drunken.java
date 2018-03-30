@@ -11,6 +11,16 @@ public class Drunken extends Enemy{
 	private boolean sleeping;
 	private int roundsSleeping;
 	private boolean reverse;
+	private boolean hasChangeDirection;
+	private boolean hasWokenUp;
+	
+	public boolean hasChangedDirection() {
+		return this.hasChangeDirection;
+	}
+	
+	public boolean hasWokenUp(){
+		return this.hasWokenUp;
+	}
 	
 	public Drunken(int startX, int startY, ArrayList<Coord> coords) {
 		super(startX, startY, Symbol.GUARD);
@@ -20,8 +30,13 @@ public class Drunken extends Enemy{
 		sleeping = false;
 		roundsSleeping = 0;
 		reverse = false;
+		hasChangeDirection = false;
 	}
 
+	public boolean isSleeping() {
+		return this.sleeping;
+	}
+	
 	@Override
 	public void move(Map map) {
 		
@@ -35,9 +50,11 @@ public class Drunken extends Enemy{
 			if(roundsSleeping == 0) {
 				sleeping = false;
 				this.setSymb(Symbol.GUARD);
+				hasWokenUp = true;
 			}
 			if(changeDirection > 0.5) {	//change direction
-				reverse = !reverse;				
+				reverse = !reverse;
+				hasChangeDirection = true;
 			}
 		}
 		else if(keepMoving < oddSleep) {//starts sleeping

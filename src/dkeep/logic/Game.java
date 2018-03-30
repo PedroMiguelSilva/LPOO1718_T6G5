@@ -20,6 +20,23 @@ public class Game
 		return this.MAX_LEVEL;
 	}
 	
+	//para criar dois niveis com mapa default mas com estes valores
+	public Game(OgreType type, int nOgre, int maxLevel) {
+		super();
+		currentLevel = 1;
+		MAX_LEVEL = maxLevel;
+		wonGame = false;
+		quit = false;
+		ArrayList<Level> temp = new ArrayList<Level>();
+		Level lvl1 = new Level1(type);
+		temp.add(lvl1);
+		
+		Level lvl2 = new Level2(nOgre);
+		temp.add(lvl2);
+		
+		this.setLevels(temp);
+	}
+	
 	public Game(char[][] map) {
 		super();
 		currentLevel = 1;
@@ -45,7 +62,7 @@ public class Game
 		
 		ArrayList<Level> temp = new ArrayList<Level>();
 		
-		Level lvl1 = new Level1();
+		Level lvl1 = new Level1(OgreType.ROOKIE);
 		temp.add(lvl1);
 		
 		if(MAX_LEVEL == 2) {
@@ -66,7 +83,7 @@ public class Game
 
 		this.setLevels(temp);
 	}
-	
+	/*
 	public Game(Game game) {
 		super();
 		this.levels = game.getLevelArray();
@@ -76,7 +93,7 @@ public class Game
 		this.wonGame = game.getWonGame();
 		this.quit = game.isGameOver();
 	}
-	
+	*/
 	//METHODS
 	
 	public void moveHero(Cmd cmd) {
@@ -96,22 +113,7 @@ public class Game
 	{
 		this.levels = lvl;
 	}
-	
-	public void sendFinalMessage()
-	{
-		if(gameOver)
-		{
-			System.out.println("Game Over");
-		}
-		else if(wonGame)
-		{
-			System.out.println("Congratz, you won game");
-		}
-		else if(quit)
-		{
-			System.out.println("Quit Game");
-		}
-	}
+
 	
 	public boolean isGameOver()
 	{

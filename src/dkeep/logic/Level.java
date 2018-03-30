@@ -40,10 +40,7 @@ abstract public class Level
 	 */
 	public int update(Cmd cmd) {
 		
-		//move hero
-		if(this.getHero() == null)
-			System.out.print("lol");
-		
+		//move hero		
 		this.getHero().move(getMap(), cmd, getInteractives(), getEnemies());
 		
 		//check if won
