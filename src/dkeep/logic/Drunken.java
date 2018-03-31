@@ -3,6 +3,10 @@ package dkeep.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
+/* Represents a Drunken guard
+ * @version 1.0
+ * @since 1.0
+ */
 public class Drunken extends Enemy{
 
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
@@ -22,6 +26,14 @@ public class Drunken extends Enemy{
 		return this.hasWokenUp;
 	}
 	
+	/* Creates a Drunken guard with specified starting coordinates and patrol route
+	 * @param startX
+	 * 			The Drunken's start x position
+	 * @param startY
+	 * 			The Drunken's start y position
+	 * @param coords
+	 * 			Array with coordinates of the patrol route of the guard
+	 */ 
 	public Drunken(int startX, int startY, ArrayList<Coord> coords) {
 		super(startX, startY, Symbol.GUARD);
 		this.coords = coords;
@@ -33,10 +45,16 @@ public class Drunken extends Enemy{
 		hasChangeDirection = false;
 	}
 
+	/* @return Returns if the Drunken guard is sleeping or not
+	 */
 	public boolean isSleeping() {
 		return this.sleeping;
 	}
 	
+	/* Move Drunken guard along his patrol route
+	 * @param map
+	 * 			Map in which the changes should be made
+	 */
 	@Override
 	public void move(Map map) {
 		
