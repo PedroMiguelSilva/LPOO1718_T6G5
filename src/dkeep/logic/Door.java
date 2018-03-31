@@ -2,25 +2,42 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/*
+ * Represents a Door
+ * @version 1.0
+ * @since 1.0
+ */
 public class Door extends Interactive
 {
-	//Attributes
 	private boolean open;
 	
-	
-	//Constructor
+	/* Creates a Door with specified x and y position
+	 * @param startX
+	 * 			The Door's x position
+	 * @param startY
+	 * 			The Door's y position
+	 */
 	public Door(int startX, int startY){
 		super(startX,startY,Symbol.DOOR_CLOSED);
 		this.open = false;
 	}
 	
-	public Door(Coord c) {
-		this(c.getX(), c.getY());
+	/* Creates a Door with specified coordinates
+	 * @param coord
+	 * 			Object with values of x and y
+	 */
+	public Door(Coord coord) {
+		this(coord.getX(), coord.getY());
 	}
 
-	/*
-	 * @brief if the door is open then move the hero on top of the door, if the door is closed then open the door
-	 * 
+	/* Hero moves towards the Door
+	 * Hero opens the Door with Key if it's closed, moves Hero on top of Door if it's open
+	 * @param hero
+	 * 			Hero that is moving against the Door
+	 * @param interactives
+	 * 			Array of Interactive objects that might be triggered
+	 * @param map
+	 * 			Map in which the updates should be made
 	 */
 	public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map)
 	{
@@ -36,10 +53,9 @@ public class Door extends Interactive
 		}
 	}
 	
-	/*
-	 * @brief just need to change the symbol of the door and its boolean
+	/* Open or close door
 	 */
-	public void toggleDoor(Map map){
+	public void toggleDoor(){
 		if(open)						    //close door
 			setSymb(Symbol.DOOR_CLOSED);
 		else								//open door
