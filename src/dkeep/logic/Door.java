@@ -2,8 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/*
- * Represents a Door
+/* Represents a Door
  * @version 1.0
  * @since 1.0
  */
