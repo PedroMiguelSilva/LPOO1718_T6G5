@@ -2,12 +2,17 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/* Represents the first Level known as Dungeon
+ * @version 1.0
+ * @since 1.0
+ */
 public class Level1 extends Level
 {
-	//Attributes
-
-	//Constructor
-	public Level1(OgreType type)
+	/* Create a Dungeon with a specified guard
+	 * @param type
+	 * 			Type of the Guard of the Dungeon
+	 */
+	public Level1(GuardType type)
 	{
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
@@ -75,6 +80,9 @@ public class Level1 extends Level
 		this.setMap(mapLvl1);
 	}
 
+	/* Checks if the specific level winning condition has been reached
+	 * @return Winning condition was met or not
+	 */
 	public boolean hasWonLevel() {
 		Coord curr = this.getHero().getCoord();
 		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)

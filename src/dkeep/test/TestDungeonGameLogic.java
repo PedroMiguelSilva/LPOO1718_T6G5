@@ -7,7 +7,7 @@ import dkeep.logic.Cmd;
 import dkeep.logic.Coord;
 import dkeep.logic.Drunken;
 import dkeep.logic.Game;
-import dkeep.logic.OgreType;
+import dkeep.logic.GuardType;
 import dkeep.logic.Suspicious;
 import dkeep.logic.Symbol;
 
@@ -16,7 +16,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testMoveHeroIntoFreeCell() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
 		game.moveHero(Cmd.RIGHT);
 		assertEquals(new Coord(1,2),game.getLevel().getHero().getCoord());
@@ -24,7 +24,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testMoveHeroIntoWall() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
 		game.moveHero(Cmd.UP);
 		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
@@ -32,7 +32,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroIsCapturedByGuard() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -46,7 +46,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroMoveTowardsCloseDoor() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -62,7 +62,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroOpenLeverAndDoorsOpen() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -92,7 +92,7 @@ public class TestDungeonGameLogic {
 	
 	@Test
 	public void testHeroOpenLeverAndWinLevel() {
-		Game game = new Game(OgreType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -131,7 +131,7 @@ public class TestDungeonGameLogic {
 	//testing the drunken guard
 	@Test
 	public void testDrunkenGuardCreationAndMovement() {
-		Game game = new Game(OgreType.DRUNKEN,2,1);
+		Game game = new Game(GuardType.DRUNKEN,2,1);
 		
 		boolean hasSlept = false,hasChangedDirection = false, wokeUp = false;
 		
@@ -149,7 +149,7 @@ public class TestDungeonGameLogic {
 	
 	@Test(timeout = 1000)
 	public void testSuspiciousGuardCreationAndMovement() {
-		Game game = new Game(OgreType.SUSPICIOUS,1,1);
+		Game game = new Game(GuardType.SUSPICIOUS,1,1);
 		Suspicious s = (Suspicious)game.getLevel().getEnemies().get(0);
 		boolean hasDecreased = false, hasIncreased = false;
 		

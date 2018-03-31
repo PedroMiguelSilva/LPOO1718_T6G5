@@ -2,7 +2,7 @@ package dkeep.cli;
 
 import dkeep.logic.Game;
 import dkeep.logic.Map;
-import dkeep.logic.OgreType;
+import dkeep.logic.GuardType;
 import dkeep.logic.Entity;
 import dkeep.logic.Coord;
 import dkeep.logic.Clear;
@@ -141,7 +141,7 @@ public class Start
 		//initiate level with level = 1
 		int NUMBER_OF_OGRES = 2;
 		int MAX_LEVEL = 2;
-		Game game = new Game(OgreType.ROOKIE,NUMBER_OF_OGRES,MAX_LEVEL);
+		Game game = new Game(GuardType.ROOKIE,NUMBER_OF_OGRES,MAX_LEVEL);
 
 		/*
 		 * STATUS

@@ -35,7 +35,7 @@ public class Game
 	 * @param maxLevel
 	 * 			Max level alowed
 	 */
-	public Game(OgreType type, int nOgre, int maxLevel) {
+	public Game(GuardType type, int nOgre, int maxLevel) {
 		super();
 		currentLevel = 1;
 		MAX_LEVEL = maxLevel;

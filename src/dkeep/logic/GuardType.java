@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-public enum OgreType {
+public enum GuardType {
 	ROOKIE,
 	DRUNKEN,
 	SUSPICIOUS;
