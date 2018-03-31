@@ -23,6 +23,7 @@ import dkeep.logic.Coord;
 import dkeep.logic.Entity;
 import dkeep.logic.Game;
 import dkeep.logic.Map;
+import dkeep.logic.OgreType;
 import dkeep.logic.Symbol;
 import dkeep.cli.Start;
 
@@ -123,7 +124,7 @@ public class GUI implements ActionListener {
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game = new Game(2);
+				game = new Game(OgreType.ROOKIE,2,2);
 				Start.printMap(game.getLevel().getMap());
 				textArea.append(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
