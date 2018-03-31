@@ -2,12 +2,28 @@ package dkeep.logic;
 
 import java.util.Random;
 
+/* Represents the Club of the an Ogre
+ * @version 1.0
+ * @since 1.0 
+ */
 public class Club extends Entity{
 
+	/* Creates a Club with specified x and y position
+	 * @param startX
+	 * 			The Club's x position
+	 * @param startY
+	 * 			The Club's y position
+	 */
 	public Club(int startX, int startY) {
 		super(startX, startY, Symbol.OGRE_WEAPON);
 	}
 
+	/* Swings the Club
+	 * @param map
+	 * 			The map in which the Club is updated in
+	 * @param ent
+	 * 			Entity equipped with the Club
+	 */
 	public void swing(Map map, Entity ent) {
 		Random  rand = new Random();
 		int move = rand.nextInt(4);
