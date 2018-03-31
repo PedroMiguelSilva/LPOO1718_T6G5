@@ -218,7 +218,6 @@ public class Game
 	
 	public String mapString(Map map) {
 		String mapa = new String();
-		Character space = ' ';
 	
 		for(int i=0; i< map.getMap().length;i++)
 		{
