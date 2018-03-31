@@ -1,7 +1,6 @@
 package dkeep.logic;
 
-/*
- * Represents a Cell
+/* Represents a Cell
  * @version 1.0
  * @since 1.0
  */
