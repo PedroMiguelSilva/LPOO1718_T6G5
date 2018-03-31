@@ -2,9 +2,12 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/* Represents the game
+ * @version 1.0
+ * @since 1.0
+ */
 public class Game
 {
-	//ATRIBUTES
 	private ArrayList<Level> levels;
 	private int currentLevel;
 	private int MAX_LEVEL;
@@ -12,15 +15,26 @@ public class Game
 	private boolean wonGame;
 	private boolean quit;
 	
+	/* @return Array with levels of the game
+	 */
 	private ArrayList<Level> getLevelArray(){
 		return this.levels;
 	}
 	
+	/* @return Max level reachable in this game
+	 */
 	private int getMaxLevel() {
 		return this.MAX_LEVEL;
 	}
 	
-	//para criar dois niveis com mapa default mas com estes valores
+	/* Create a Game with default maps but with specified variables
+	 * @param type
+	 * 			Type of guard found in Dungeon (level 1)
+	 * @param nOgre
+	 * 			Number of ogres found in Keep (level 2)
+	 * @param maxLevel
+	 * 			Max level alowed
+	 */
 	public Game(OgreType type, int nOgre, int maxLevel) {
 		super();
 		currentLevel = 1;
@@ -37,6 +51,10 @@ public class Game
 		this.setLevels(temp);
 	}
 	
+	/* Create a Game with a costumizable Keep
+	 * @param map
+	 * 			Char map that sets initial game information
+	 */
 	public Game(char[][] map) {
 		super();
 		currentLevel = 1;
@@ -96,57 +114,82 @@ public class Game
 		this.quit = game.isGameOver();
 	}
 	*/
-	//METHODS
+
 	
+	/* Move Hero of the Game
+	 * @param cmd
+	 * 			Command of the user
+	 */
 	public void moveHero(Cmd cmd) {
 		int status = 0;
 		status = this.getLevel().update(cmd);
 		this.updateGameVariables(status, cmd);
 	}
-	/*
-	 * @return the current level
+	
+	/* @return the current level
 	 */
 	public Level getLevel()
 	{
 		return levels.get(currentLevel-1);
 	}
 	
+	/* Set array of levels to the game
+	 * @param lvl
+	 * 			Array of levels to be set
+	 */
 	public void setLevels(ArrayList<Level> lvl)
 	{
 		this.levels = lvl;
 	}
 
-	
+	/* @return Game is over
+	 */
 	public boolean isGameOver()
 	{
 		return this.gameOver;
 	}
 	
+	/* @return Game was won
+	 */
 	public boolean getWonGame()
 	{
 		return this.wonGame;
 	}
 	
+	/* Set Game over
+	 */
 	public void setGameOVer()
 	{
 		this.gameOver = true;
 	}
 	
+	/* Set Game won
+	 */
 	public void setWonGame()
 	{
 		this.wonGame = true;
 	}
 
+	/* Set Quit from Game
+	 */
 	public void setQuit()
 	{
 		this.quit = true;
 	}
 	
+	/* @return Quit from Game
+	 */
 	public boolean getQuit()
 	{
 		return quit;
 	}
 	
+	/* Update values of Game according to game logic and user command
+	 * @param status
+	 * 			Status returned from game logic
+	 * @param cmd
+	 * 			Command from user
+	 */
 	public void updateGameVariables(int status, Cmd cmd)
 	{
 		if(cmd == Cmd.QUIT)
@@ -177,6 +220,13 @@ public class Game
 		
 		}
 	}
+
+	/* @return Current Level index
+	 */
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+	
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
 		case HERO:
@@ -233,7 +283,4 @@ public class Game
 		return mapa;
 	}
 	
-	public int getCurrentLevel() {
-		return currentLevel;
-	}
 }
