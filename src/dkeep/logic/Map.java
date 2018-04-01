@@ -215,4 +215,13 @@ public class Map
 	public int getWidth() {
 		return this.width;
 	}
+	
+	public boolean isSymbolInCoord(Coord coord, Symbol[] symbArray) {
+		Symbol temp = getEnt(coord).getSymb();
+		for(int i = 0; i < symbArray.length;i++) {
+			if(temp == symbArray[i])
+				return true;
+		}
+		return false;
+	}
 }

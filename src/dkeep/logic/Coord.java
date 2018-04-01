@@ -1,5 +1,7 @@
 package dkeep.logic;
 
+import java.util.Random;
+
 /* Represents a Coordinate
  * @version 1.0
  * @since 1.0
@@ -74,6 +76,27 @@ public class Coord {
 	public void setCoord(Coord coord) {
 		this.x = coord.getX();
 		this.y = coord.getY();
+	}
+	
+	/* Return a random Coord Adjacent to this Coord
+	 * @return Random adjacent coordinate
+	 */
+	public Coord getRandomAdjacentCoord() {
+		Random rand = new Random();
+		int move = rand.nextInt(4);
+		Coord newCoord = new Coord(this);
+		
+		switch(move) {
+		case 0:
+			newCoord.incX();break;
+		case 1:
+			newCoord.incY();break;
+		case 2:
+			newCoord.decX();break;
+		case 3:
+			newCoord.decY();break;
+		}
+		return newCoord;
 	}
 	
 	/* Returns if two Coord objects are equal based on its x and y values
