@@ -25,7 +25,7 @@ public class Lever extends Interactive
 			for(Interactive current : interactives) {
 				if(current instanceof Door && current.getCoord().equals(coords.get(i)))
 				{
-					((Door) current).toggleDoor(map);
+					((Door) current).toggleDoor();
 				}
 			}
 		}
