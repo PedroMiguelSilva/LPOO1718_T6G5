@@ -15,16 +15,7 @@ public class Drunken extends Enemy{
 	private boolean sleeping;
 	private int roundsSleeping;
 	private boolean reverse;
-	private boolean hasChangeDirection;
-	private boolean hasWokenUp;
 	
-	public boolean hasChangedDirection() {
-		return this.hasChangeDirection;
-	}
-	
-	public boolean hasWokenUp(){
-		return this.hasWokenUp;
-	}
 	
 	/* Creates a Drunken guard with specified starting coordinates and patrol route
 	 * @param startX
@@ -42,7 +33,6 @@ public class Drunken extends Enemy{
 		sleeping = false;
 		roundsSleeping = 0;
 		reverse = false;
-		hasChangeDirection = false;
 	}
 
 	/* @return Returns if the Drunken guard is sleeping or not
@@ -62,17 +52,15 @@ public class Drunken extends Enemy{
 		double keepMoving = rand.nextDouble();
 		double changeDirection = rand.nextDouble();
 		
-		
+
 		if(sleeping) {					//sleeping
 			roundsSleeping -= 1;
 			if(roundsSleeping == 0) {
 				sleeping = false;
 				this.setSymb(Symbol.GUARD);
-				hasWokenUp = true;
 			}
 			if(changeDirection > 0.5) {	//change direction
 				reverse = !reverse;
-				hasChangeDirection = true;
 			}
 		}
 		else if(keepMoving < oddSleep) {//starts sleeping
@@ -85,6 +73,5 @@ public class Drunken extends Enemy{
 			guardIndex = move_aux(guardIndex,coords,reverse,map);
 		}
 	}
-
 
 }

@@ -1,14 +1,12 @@
 package dkeep.logic;
 
-import java.util.Random;
-
 public class Ogre extends Enemy
 {
 	private boolean hasClub;
 	private boolean isStun;
 	private int roundsStun;
 	private Club weapon;
-	private Cmd lastCmd;
+	private Symbol[] cantWalkInto;
 	
 	//Constructor
 	public Ogre(int startX, int startY,boolean hasClub){
@@ -20,11 +18,8 @@ public class Ogre extends Enemy
 		isStun = false;
 		roundsStun = 0;
 		this.hasClub = hasClub;
-		this.lastCmd = Cmd.START;
-	}
-	
-	public Cmd getLastCmd() {
-		return lastCmd;
+		Symbol[] temp = {Symbol.WALL,Symbol.DOOR_CLOSED,Symbol.DOOR_OPEN};
+		cantWalkInto = temp;
 	}
 	
 	public boolean getIsStun() {
@@ -38,60 +33,7 @@ public class Ogre extends Enemy
 	}
 	
 	//Methods
-	public void move(Map map)
-	{
-		Random  rand = new Random();
-		int move = rand.nextInt(4);
-		
-		Coord newCoord = new Coord(this.getCoord());
-
-		do
-		{
-			newCoord.setCoord(this.getCoord());
-			move = rand.nextInt(4);
-
-			switch(move)
-			{
-			case 0:
-			{
-				newCoord.incX();
-				this.lastCmd = Cmd.DOWN;
-				break;
-			}
-			case 1:
-			{
-				newCoord.incY();
-				this.lastCmd = Cmd.RIGHT;
-				break;
-			}
-			case 2:
-			{
-				newCoord.decX();
-				this.lastCmd = Cmd.UP;
-				break;
-			}
-			case 3:
-			{
-				newCoord.decY();
-				this.lastCmd = Cmd.LEFT;				
-				break;
-			}
-			}
-			
-			
-		}while(map.getBotEnt(newCoord).getSymb() == Symbol.WALL || 
-				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_CLOSED ||
-				map.getBotEnt(newCoord).getSymb() == Symbol.DOOR_OPEN);
-
-		//might move on top of the wall
-		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
-			this.setSymb(Symbol.OGRE_ON_KEY);
-		}
-		else if(!isStun){
-			this.setSymb(Symbol.OGRE);
-		}
-		
-		
+	private void updateStunStatus() {
 		if(isStun && roundsStun > 1) {
 			roundsStun -=1;
 		}			
@@ -99,11 +41,32 @@ public class Ogre extends Enemy
 			roundsStun = 0;
 			isStun = false;
 		}
-		else {
+	}
+	
+	private void moveOgre(Map map,Coord newCoord) {
+		if(!isStun) {
 			map.move(this, newCoord);
+			this.setSymb(Symbol.OGRE);
 		}
 			
 		if(hasClub)
 			weapon.swing(map,this);
+	}
+	
+	public void move(Map map)
+	{
+		Coord newCoord;
+
+		do
+		{
+			newCoord = this.getCoord().getRandomAdjacentCoord();
+		}while(map.isSymbolInCoord(newCoord, cantWalkInto));
+
+		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
+			this.setSymb(Symbol.OGRE_ON_KEY);
+		}		
+		
+		updateStunStatus();
+		moveOgre(map,newCoord);
 	}
 }

@@ -140,10 +140,10 @@ public class TestDungeonGameLogic {
 			Drunken g = (Drunken)game.getLevel().getEnemies().get(0);
 			if(g.isSleeping())
 				hasSlept = true;
-			if(g.hasChangedDirection())
-				hasChangedDirection = true;
-			if(g.hasWokenUp())
-				wokeUp = true;
+			//if(g.hasChangedDirection())
+			//	hasChangedDirection = true;
+			//if(g.hasWokenUp())
+			//	wokeUp = true;
 		}	
 	}
 	
