@@ -53,24 +53,13 @@ abstract public class Level
 	public int update(Cmd cmd) {
 		if(cmd == Cmd.START || cmd == Cmd.QUIT)
 			return 0;
-		
 		this.getHero().move(getMap(), cmd, getInteractives(), getEnemies());
-		
-		//check if won
 		if(hasWonLevel())
 			return 2;
-		
-		//check if hero died from moving
 		if(heroDied())
 			return 1;
-		
-		//move enemies
 		moveEnemies(this.getEnemies());
-		
-		//hero attacks
 		this.getHero().stunNearBy(enemies);
-		
-		//check if hero died from moving
 		if(heroDied())
 			return 1;
 		

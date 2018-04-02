@@ -25,7 +25,7 @@ import dkeep.logic.Game;
 import dkeep.logic.Map;
 import dkeep.logic.GuardType;
 import dkeep.logic.Symbol;
-import dkeep.cli.Start;
+//import dkeep.cli.Start;
 
 public class GUI implements ActionListener {
 
@@ -125,7 +125,7 @@ public class GUI implements ActionListener {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game = new Game(GuardType.ROOKIE,2,2);
-				Start.printMap(game.getLevel().getMap());
+				//Start.printMap(game.getLevel().getMap());
 				textArea.append(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 			}

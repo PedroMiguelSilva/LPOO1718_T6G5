@@ -96,7 +96,7 @@ public class Start
 	}
 
 	public static void main(String[] args){
-		Game game = new Game(GuardType.DRUNKEN,2,2);
+		Game game = new Game(GuardType.ROOKIE,0,2);
 		Cmd cmd = Cmd.START, quit = Cmd.QUIT;						
 		Scanner scan = new Scanner(System.in);	
 
@@ -107,7 +107,6 @@ public class Start
 			printMap(game.moveHero(cmd));				
 		}
 		
-		printMap(game.moveHero(Cmd.START));
 		sendFinalMessage(game);
 		scan.close();
 	}

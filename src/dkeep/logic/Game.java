@@ -16,17 +16,6 @@ public class Game
 	private boolean wonGame;
 	private boolean quit;
 	
-	/* @return Array with levels of the game
-	 */
-	private ArrayList<Level> getLevelArray(){
-		return this.levels;
-	}
-	
-	/* @return Max level reachable in this game
-	 */
-	private int getMaxLevel() {
-		return this.MAX_LEVEL;
-	}
 	
 	/* Create a Game with default maps but with specified variables
 	 * @param type
@@ -34,7 +23,7 @@ public class Game
 	 * @param nOgre
 	 * 			Number of ogres found in Keep (level 2)
 	 * @param maxLevel
-	 * 			Max level alowed
+	 * 			Max level allowed
 	 */
 	public Game(GuardType type, int nOgre, int maxLevel) {
 		super();
@@ -52,7 +41,7 @@ public class Game
 		this.setLevels(temp);
 	}
 	
-	/* Create a Game with a costumizable Keep
+	/* Create a Game with a customisable Keep
 	 * @param map
 	 * 			Char map that sets initial game information
 	 */
@@ -68,54 +57,6 @@ public class Game
 		temp.add(lvl2);
 		this.setLevels(temp);
 	}
-	/*
-	//CONSTRUCTOR
-	public Game(int maxLevel)
-	{
-		super();
-		currentLevel = 1;
-		gameOver = false;
-		MAX_LEVEL = maxLevel;
-		wonGame = false;
-		quit = false;
-		
-		ArrayList<Level> temp = new ArrayList<Level>();
-		
-		Level lvl1 = new Level1(OgreType.ROOKIE);
-		temp.add(lvl1);
-		
-		if(MAX_LEVEL == 2) {
-			char[][] map2 = {
-					{'X','X','X','X','X','X','X'},
-					{'X','H',' ',' ',' ',' ','X'},
-					{'i',' ',' ',' ',' ',' ','X'},
-					{'X','k',' ',' ',' ',' ','X'},
-					{'X',' ',' ',' ','o',' ','X'},
-					{'X',' ',' ',' ',' ',' ','X'},
-					{'X','X','X','X','X','X','X'}
-					
-			};
-			
-			Level lvl2 = new Level2(map2);
-			temp.add(lvl2);
-		}
-
-		this.setLevels(temp);
-	}
-	
-	*/
-	/*
-	public Game(Game game) {
-		super();
-		this.levels = game.getLevelArray();
-		this.currentLevel = game.getCurrentLevel();
-		this.MAX_LEVEL = game.getMaxLevel();
-		this.gameOver = game.isGameOver();
-		this.wonGame = game.getWonGame();
-		this.quit = game.isGameOver();
-	}
-	*/
-
 	
 	/* Move Hero of the Game
 	 * @param cmd
@@ -127,6 +68,36 @@ public class Game
 		this.updateGameVariables(status, cmd);
 		return getSymbolMap();
 	}
+	
+	/* @return Current Level index
+	 */
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+		
+	/* @return Game is over
+	 */
+	public boolean isGameOver()
+	{
+		return this.gameOver;
+	}
+	
+	/* @return Game was won
+	 */
+	public boolean getWonGame()
+	{
+		return this.wonGame;
+	}
+	
+	/* @return Quit from Game
+	 */
+	public boolean getQuit()
+	{
+		return quit;
+	}
+	
+	
+	
 	
 	/* @return the current level
 	 */
@@ -144,20 +115,6 @@ public class Game
 		this.levels = lvl;
 	}
 
-	/* @return Game is over
-	 */
-	public boolean isGameOver()
-	{
-		return this.gameOver;
-	}
-	
-	/* @return Game was won
-	 */
-	public boolean getWonGame()
-	{
-		return this.wonGame;
-	}
-	
 	/* Set Game over
 	 */
 	private void setGameOVer()
@@ -177,13 +134,6 @@ public class Game
 	private void setQuit()
 	{
 		this.quit = true;
-	}
-	
-	/* @return Quit from Game
-	 */
-	public boolean getQuit()
-	{
-		return quit;
 	}
 	
 	/* Update values of Game according to game logic and user command
@@ -208,46 +158,10 @@ public class Game
 		}
 	}
 
-	/* @return Current Level index
+	/* @return Matrix of Symbols of current Map
 	 */
-	public int getCurrentLevel() {
-		return currentLevel;
-	}
-	
-	public static char symbolToChar(Symbol s) {
-		switch(s) {
-		case HERO: return 'H';
-		case HERO_WITH_KEY:return 'K';	case HERO_WITH_CLUB:return 'A';
-		case GUARD:return 'G';			case GUARD_SLEEP:return 'g';
-		case WALL:return 'X';			case CLUB_ON_KEY:return '$';
-		case OGRE:return 'o';			case OGRE_ON_KEY:return '$';
-		case OGRE_WEAPON:return '*';	case OGRE_STUNED:return '8';
-		case LEVER:return 'k';			case KEY:return 'k';
-		case DOOR_CLOSED:return 'i'; 	case DOOR_OPEN:return 'S';
-		case CLEAR_SPACE:
-		default:return ' ';
-		}
-	}
-	
 	private Symbol[][] getSymbolMap(){
 		return getLevel().getMap().getSymbolMap();
 	}
-	
-	public String mapString(Map map) {
-		String mapa = new String();
-	
-		for(int i=0; i< map.getMap().length;i++)
-		{
-			for(int j=0; j<map.getMap()[i].length;j++)
-			{
-				Coord coord = new Coord(i,j);
-				mapa += symbolToChar(map.getEnt(coord).getSymb())+ " ";
-				
-			}
-			mapa += "\n";
-		}		
 		
-		return mapa;
-	}
-	
 }
