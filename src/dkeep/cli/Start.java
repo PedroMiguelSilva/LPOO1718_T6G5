@@ -101,12 +101,10 @@ public class Start
 		}
 	}
 
-	public static void printMap(Map map) {
-		for(int i = 0 ; i < map.getHeight();i++) {
-			for(int j = 0; j < map.getWidth(); j++) {
-				Entity ent = entToPrint(map,i,j);
-				char charToPrint = symbolToChar(ent.getSymb());
-				System.out.print(charToPrint + " ");
+	public static void printMap(Symbol[][] map) {
+		for(int i = 0 ; i < map.length;i++) {
+			for(int j = 0; j < map[0].length; j++) {
+				System.out.print(symbolToChar(map[i][j]) + " ");
 			}
 			System.out.println();
 		}
@@ -117,12 +115,12 @@ public class Start
 		Cmd cmd = Cmd.START, quit = Cmd.QUIT;						
 		Scanner scan = new Scanner(System.in);	
 
-		printMap(game.getLevel().getMap());
+		printMap(game.getLevel().getMap().getSymbolMap());
 		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit) {
 			cmd = validChar(scan);
 			game.moveHero(cmd);
 			if(!game.getWonGame())
-				printMap(game.getLevel().getMap());
+				printMap(game.getLevel().getMap().getSymbolMap());
 		}
 		sendFinalMessage(game);
 		scan.close();

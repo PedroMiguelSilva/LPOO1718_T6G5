@@ -73,6 +73,17 @@ public class Map
 		}
 	}
 	
+	public Symbol[][] getSymbolMap(){
+		Symbol[][] result = new Symbol[height][width];
+		
+		for(int i = 0 ; i < height ; i++) {
+			for(int j = 0 ; j < width ; j++) {
+				result[i][j] = map[i][j].getEnt().getSymb();
+			}
+		}
+		return result;
+	}
+	
 	public Map(int w, int h, ArrayList<Entity> entities)
 	{
 		this.width = w;

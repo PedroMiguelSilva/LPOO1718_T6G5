@@ -49,4 +49,11 @@ public class Cell {
 	public void setTop(Entity top) {
 		this.top = top;
 	}
+	
+	public Entity getEnt() {
+		if(top.getSymb() == Symbol.CLEAR_SPACE)
+			return bot;
+		else
+			return top;
+	}
 }
