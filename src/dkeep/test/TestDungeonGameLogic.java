@@ -4,11 +4,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import dkeep.logic.Cmd;
-import dkeep.logic.Coord;
-import dkeep.logic.Drunken;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
-import dkeep.logic.Suspicious;
 import dkeep.logic.Symbol;
 
 
@@ -17,18 +14,21 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
-		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
-		game.moveHero(Cmd.RIGHT);
-		assertEquals(new Coord(1,2),game.getLevel().getHero().getCoord());
+		Symbol[][] map = game.moveHero(Cmd.START);
+		assertEquals(Symbol.HERO, map[1][1]);
+		map = game.moveHero(Cmd.RIGHT);
+		assertEquals(Symbol.HERO,map[1][2]);
 	}
 	
 	@Test
 	public void testMoveHeroIntoWall() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
-		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
-		game.moveHero(Cmd.UP);
-		assertEquals(new Coord(1,1),game.getLevel().getHero().getCoord());
+		Symbol[][] map = game.moveHero(Cmd.START);
+		assertEquals(Symbol.HERO, map[1][1]);
+		map = game.moveHero(Cmd.UP);
+		assertEquals(Symbol.HERO,map[1][1]);
 	}
+	
 	
 	@Test
 	public void testHeroIsCapturedByGuard() {
@@ -63,6 +63,7 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testHeroOpenLeverAndDoorsOpen() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
+		Symbol[][] map = game.moveHero(Cmd.START);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -80,19 +81,17 @@ public class TestDungeonGameLogic {
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		Coord door1 = new Coord(5,0);
-		Coord door2 = new Coord(6,0);
-		assertEquals(Symbol.DOOR_CLOSED, game.getLevel().getMap().getEnt(door1).getSymb());
-		assertEquals(Symbol.DOOR_CLOSED, game.getLevel().getMap().getEnt(door2).getSymb());
-		game.moveHero(Cmd.LEFT);
-		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getEnt(door1).getSymb());
-		assertEquals(Symbol.DOOR_OPEN, game.getLevel().getMap().getEnt(door2).getSymb());
+		map = game.moveHero(Cmd.DOWN);
+		assertEquals(Symbol.DOOR_CLOSED, map[5][0]);
+		assertEquals(Symbol.DOOR_CLOSED, map[6][0]);
+		map = game.moveHero(Cmd.LEFT);
+		assertEquals(Symbol.DOOR_OPEN, map[5][0]);
+		assertEquals(Symbol.DOOR_OPEN, map[6][0]);
 	}
 	
 	@Test
 	public void testHeroOpenLeverAndWinLevel() {
-		Game game = new Game(GuardType.ROOKIE,2,1);
+		Game game = new Game(GuardType.ROOKIE,2,2);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -125,63 +124,122 @@ public class TestDungeonGameLogic {
 		assertEquals(1,game.getCurrentLevel());
 		game.moveHero(Cmd.LEFT);
 		assertEquals(2,game.getCurrentLevel());
-		
 	}
 	
-	//testing the drunken guard
+	public int searchGuardX(Symbol[][] map) {
+		for(int i = 0 ; i < map.length ; i++) {
+			for(int j = 0; j < map[0].length ; j++) {
+				if(map[i][j] == Symbol.GUARD_SLEEP || map[i][j] == Symbol.GUARD) {
+					return i;
+				}
+			}
+		}
+		return 0;
+	}
+	
+	public int searchGuardY(Symbol[][] map) {
+		for(int i = 0 ; i < map.length ; i++) {
+			for(int j = 0; j < map[0].length ; j++) {
+				if(map[i][j] == Symbol.GUARD_SLEEP || map[i][j] == Symbol.GUARD) {
+					return j;
+				}
+			}
+		}
+		return 0;
+	}
+	
 	@Test
 	public void testDrunkenGuardCreationAndMovement() {
 		Game game = new Game(GuardType.DRUNKEN,2,1);
+		Symbol[][] map = game.moveHero(Cmd.START);
+		int x = searchGuardX(map);
+		int prevX = x;
+		int y = searchGuardY(map);
+		int prevY = y;
+		boolean left = true, down = false,right = false, up = false;
 		
 		boolean hasSlept = false,hasChangedDirection = false, wokeUp = false;
 		
 		while(!hasSlept || !hasChangedDirection || !wokeUp) {
-			game.moveHero(Cmd.UP);
-			Drunken g = (Drunken)game.getLevel().getEnemies().get(0);
-			if(g.isSleeping())
+			map = game.moveHero(Cmd.UP);
+			x = searchGuardX(map);
+			y = searchGuardY(map);
+			
+			if(map[x][y] == Symbol.GUARD_SLEEP)
 				hasSlept = true;
-			//if(g.hasChangedDirection())
-			//	hasChangedDirection = true;
-			//if(g.hasWokenUp())
-			//	wokeUp = true;
+			
+			if(map[x][y] == Symbol.GUARD && hasSlept)
+				wokeUp = true;
+			
+			if(hasReversedDirection(x,prevX,y,prevY,left,down,right,up)) {
+				hasChangedDirection = true;
+			}
+			
+			prevX = x;
+			prevY = y;
 		}	
 	}
 	
 	@Test(timeout = 1000)
 	public void testSuspiciousGuardCreationAndMovement() {
 		Game game = new Game(GuardType.SUSPICIOUS,1,1);
-		Suspicious s = (Suspicious)game.getLevel().getEnemies().get(0);
-		boolean hasDecreased = false, hasIncreased = false;
+		Symbol[][] map = game.moveHero(Cmd.START);
+		int x = searchGuardX(map);
+		int prevX = x;
+		int y = searchGuardY(map);
+		int prevY = y;
+		boolean left = true, down = true,right = false, up = false, hasChangedDirectionOnce = false;
 		
-		int currIndex = s.getIndex(), prevIndex = s.getIndex();
-		int coordSize = s.getCoordSize();
+		//int currIndex = s.getIndex(), prevIndex = s.getIndex();
+		//int coordSize = s.getCoordSize();
 		
-		while(!hasDecreased || !hasIncreased) {
+		while(!hasChangedDirectionOnce) {
 			//update values
-			game.moveHero(Cmd.UP);
-			currIndex = s.getIndex();
+			map = game.moveHero(Cmd.UP);
+			x = searchGuardX(map);
+			y = searchGuardY(map);
 			
-			if(isLessThan(currIndex,prevIndex,coordSize)) {
-				hasDecreased = true;
-			}
-			else {
-				hasIncreased = true;
+			if(hasReversedDirection(x,prevX,y,prevY,left,down,right,up)) {
+				hasChangedDirectionOnce = true;
 			}
 			
-			prevIndex = currIndex;
+			
+			prevX = x;
+			prevY = y;
 		}
 	}
+	
 
-	private boolean isLessThan(int currIndex, int prevIndex, int coordSize) {
-		if(Math.abs(currIndex-prevIndex) == 1) {
-			//two followed values
-			return currIndex < prevIndex;
+	private boolean hasReversedDirection(int x, int prevX, int y, int prevY,boolean left, boolean down, boolean right, boolean up) {
+		boolean newMoveLeft = left;
+		boolean newMoveDown = down;
+		boolean newMoveUp = up;
+		boolean newMoveRight = right;
+		
+		if(x-prevX > 0) {
+			up = true;
 		}
-		else if(currIndex == coordSize-1) {
+		else if(x-prevX < 0) {
+			down = true;
+		}
+		else if(y-prevY > 0) {
+			left = true;
+		}
+		else if(y-prevY < 0 ) {
+			right = true;
+		}
+		
+		if(newMoveLeft && !left || !newMoveLeft && left)
 			return true;
-		}
+		else if(newMoveDown && !down|| !newMoveDown && down)
+			return true;
+		else if(newMoveUp && !up|| !newMoveUp && up)
+			return true;
+		else if(newMoveRight && !right|| !newMoveRight && right)
+			return true;
 		else
 			return false;
+		
 	}
 	
 }

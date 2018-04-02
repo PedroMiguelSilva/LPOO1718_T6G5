@@ -34,22 +34,10 @@ public class Suspicious extends Enemy{
 		Random rand = new Random();
 		double change = rand.nextDouble();
 		
-		if(change > 0.9) {
+		if(change > 0.8) {
 			reverse = !reverse;
 		}
 
 		guardIndex = move_aux(guardIndex,coords,reverse,map);
-	}
-
-	/* @return Index of the guard in the route
-	 */
-	public int getIndex() {
-		return this.guardIndex;
-	}
-	
-	/* @return Size of patrol route
-	 */
-	public int getCoordSize() {
-		return coords.size();
 	}
 }
