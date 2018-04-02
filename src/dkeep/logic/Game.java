@@ -100,6 +100,15 @@ public class Game
 		return gameOver || wonGame || quit;
 	}
 	
+	public String endingMessage() {
+		if(isGameOver())
+			return "Game Over";
+		else if(getWonGame())
+			return "Congratulations";
+		else
+			return "Quit Game";
+	}
+	
 	
 	/* @return the current level
 	 */

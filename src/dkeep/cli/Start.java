@@ -24,22 +24,6 @@ public class Start
 			return Cmd.QUIT;
 		}
 	}
-
-	public static void sendFinalMessage(Game game)
-	{
-		if(game.isGameOver())
-		{
-			System.out.println("Game Over");
-		}
-		else if(game.getWonGame())
-		{
-			System.out.println("Congratz, you won game");
-		}
-		else if(game.getQuit())
-		{
-			System.out.println("Quit Game");
-		}
-	}
 	
 	private static char minimize(char N) {
 		if(N == 'A')return 'a';
@@ -99,13 +83,17 @@ public class Start
 		Game game = new Game(GuardType.ROOKIE,0,2);
 		Cmd cmd = Cmd.START;						
 		Scanner scan = new Scanner(System.in);
+		boolean firstCall = true;
 		
 		do {
+			if(!firstCall) {
+				cmd = validChar(scan);
+			}
+			firstCall = false;
 			printMap(game.moveHero(cmd));
-			cmd = validChar(scan);
 		}while(!game.gameEnded());
 		
-		sendFinalMessage(game);
+		System.out.println(game.endingMessage());
 		scan.close();
 	}
 }
