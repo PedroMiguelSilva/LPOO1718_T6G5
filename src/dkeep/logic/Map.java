@@ -79,26 +79,6 @@ public class Map
 
 		map = getClearMap(w,h);
 		setWalls();
-
-		/*
-		for(int i = 0 ; i < h; i++){
-			for(int j = 0; j < w; j++){
-				Clear tempClearTop = new Clear(i,j);
-				Clear tempClearBot = new Clear(i,j);
-				Wall tempWall = new Wall(i,j);
-				Cell cellWall = new Cell(tempClearTop,tempWall);
-				Cell cellClear = new Cell(tempClearTop,tempClearBot);
-
-				if(i == 0 || j == 0 || i == (h-1) || j == (w-1)) {
-					map[i][j] = cellWall;
-				}else {
-					map[i][j] = cellClear;
-				}
-
-			}
-		}
-		*/
-
 		addEntitiesToMap(entities);
 	}
 
@@ -121,31 +101,30 @@ public class Map
 		this(w,h,charMapToSymbolMap(charMap,w,h));
 	}
 	
-	private void addElementToMap(Cell[][] tempMap, Symbol[][] bluePrint,int x, int y) {
-		
-		switch(bluePrint[x][y]) {
-		case WALL:
-			Wall wall = new Wall(x,y);
-			tempMap[x][y].setBot(wall);
-			break;
+	private Entity entityToBeAdded(Symbol symb,Coord coord) {
+		switch(symb) {
 		case DOOR_CLOSED:
-			Door door = new Door(x,y);
-			tempMap[x][y].setBot(door);
-			break;
+			return new Door(coord);
 		case KEY:
-			Key key = new Key(x,y);
-			tempMap[x][y].setBot(key);
-			break;
+			return new Key(coord);
 		case OGRE:
-			Ogre ogre = new Ogre(x,y,false);
-			tempMap[x][y].setTop(ogre);
-			break;
+			return new Ogre(coord,false);
 		case HERO:
-			Hero hero = new Hero(x,y,true);
-			tempMap[x][y].setTop(hero);
-			break;
+			return new Hero(coord,true);
+		case WALL:
 		default:
+			return new Wall(coord);
 		}
+	}
+	
+	private void addElementToMap(Cell[][] tempMap, Symbol[][] bluePrint,int x, int y) {
+		Coord temp = new Coord(x,y);
+		Entity element = entityToBeAdded(bluePrint[x][y],temp);
+		
+		if(element instanceof Ogre || element instanceof Hero)
+			tempMap[x][y].setTop(element);
+		else
+			tempMap[x][y].setBot(element);
 	}
 
 	/*

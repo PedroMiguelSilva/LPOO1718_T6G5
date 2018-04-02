@@ -22,6 +22,10 @@ public class Ogre extends Enemy
 		cantWalkInto = temp;
 	}
 	
+	public Ogre(Coord coord, boolean hasClub) {
+		this(coord.getX(),coord.getY(),hasClub);
+	}
+	
 	public boolean getIsStun() {
 		return isStun;
 	}

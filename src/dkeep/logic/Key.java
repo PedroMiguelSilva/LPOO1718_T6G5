@@ -38,6 +38,10 @@ public class Key extends Interactive
 		doorC = new Coord(0,0);
 	}
 	
+	public Key(Coord coord) {
+		this(coord.getX(),coord.getY());
+	}
+	
 	/* Hero walks into the key and picks it up
 	 * @param hero
 	 * 			Hero that picks the Key

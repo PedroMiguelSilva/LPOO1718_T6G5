@@ -34,6 +34,9 @@ public class Hero extends Entity
 			this.setSymb(Symbol.HERO_WITH_CLUB);
 	}
 
+	public Hero(Coord coord, boolean isArmed) {
+		this(coord.getX(),coord.getY(),isArmed);
+	}
 	
 	//NOTE: CAN BE CHANGED TO CHECK ELEMENTS AROUND HERO AND STUN THEM
 	/* Stun ogres around Hero if Hero is Armed
