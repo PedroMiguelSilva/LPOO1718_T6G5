@@ -62,11 +62,12 @@ public class Game
 	 * @param cmd
 	 * 			Command of the user
 	 */
-	public Symbol[][] moveHero(Cmd cmd) {
+	public GameState moveHero(Cmd cmd) {
 		int status = 0;
 		status = this.getLevel().update(cmd);
 		this.updateGameVariables(status, cmd);
-		return getSymbolMap();
+		GameState gameState = new GameState(getSymbolMap(),this);
+		return gameState;
 	}
 	
 	/* @return Current Level index
