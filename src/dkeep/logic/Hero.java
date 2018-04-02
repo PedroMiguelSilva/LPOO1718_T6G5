@@ -127,7 +127,7 @@ public class Hero extends Entity
 	 * 			Maximum value that y can have
 	 * @return Hero died from an Enemy of symbol symb
 	 */
-	public boolean isDangerous(Map map, Symbol symb, int xMax, int yMax)
+	public boolean isDangerous(Map map, Symbol symb, Coord coord)
 	{
 		if(symb == Symbol.GUARD_SLEEP || symb == Symbol.OGRE_STUNED)
 			return false;
@@ -139,16 +139,16 @@ public class Hero extends Entity
 		Coord c3 = new Coord(temp.getX()-1,temp.getY());
 		Coord c4 = new Coord(temp.getX(),temp.getY()-1);
 
-		if(!map.outOfBounds(c1,xMax,yMax) && map.getTopEnt(c1).getSymb() == symb)
+		if(!map.outOfBounds(c1,coord) && map.getTopEnt(c1).getSymb() == symb)
 			return true;
 
-		if(!map.outOfBounds(c2,xMax,yMax) && map.getTopEnt(c2).getSymb() == symb)
+		if(!map.outOfBounds(c2,coord) && map.getTopEnt(c2).getSymb() == symb)
 			return true;
 
-		if(!map.outOfBounds(c3,xMax,yMax) && map.getTopEnt(c3).getSymb() == symb)
+		if(!map.outOfBounds(c3,coord) && map.getTopEnt(c3).getSymb() == symb)
 			return true;
 
-		if(!map.outOfBounds(c4,xMax,yMax) && map.getTopEnt(c4).getSymb() == symb)
+		if(!map.outOfBounds(c4,coord) && map.getTopEnt(c4).getSymb() == symb)
 			return true;
 
 		return false;
@@ -163,13 +163,14 @@ public class Hero extends Entity
 	 */
 	public boolean isDead(Map map,ArrayList<Enemy> enemies)
 	{
+		Coord border = new Coord(map.getHeight(),map.getWidth());
 		for(Enemy e : enemies)	{
-			if(isDangerous(map, e.getSymb(),map.getHeight(),map.getWidth())){
+			if(isDangerous(map, e.getSymb(),border)){
 				isAlive = false;
 				return true;
 			}
 		}
-		if(isDangerous(map, Symbol.OGRE_WEAPON,map.getHeight(),map.getWidth())){
+		if(isDangerous(map, Symbol.OGRE_WEAPON,border)){
 			isAlive = false;
 			return true;
 		}

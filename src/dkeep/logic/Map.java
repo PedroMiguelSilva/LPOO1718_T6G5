@@ -39,7 +39,8 @@ public class Map
 		}
 	}
 
-	private static Symbol[][] charMapToSymbolMap(char[][] charMap, int w, int h){
+	private static Symbol[][] charMapToSymbolMap(char[][] charMap){
+		int h = charMap.length, w = charMap[0].length; 
 		Symbol[][] result = new Symbol[h][w];
 		for(int x = 0; x < h; x++) {
 			for(int y = 0 ; y < w ; y++) {
@@ -83,22 +84,22 @@ public class Map
 	}
 
 	//conseguir um construtor atraves de um array de simbolos
-	public Map(int w, int h, Symbol[][] bluePrint) {
-		this.width = w;
-		this.height = h;
+	public Map(Symbol[][] bluePrint) {
+		this.width = bluePrint.length;
+		this.height = bluePrint[0].length;
 		
-		Cell[][] result = getClearMap(w,h);
+		Cell[][] result = getClearMap(width,height);
 
-		for(int x = 0; x < h; x++) {
-			for(int y = 0; y < w ;y++) {
-				addElementToMap(result,bluePrint,x,y);
+		for(int x = 0; x < height; x++) {
+			for(int y = 0; y < width ;y++) {
+				addElementToMap(result,bluePrint,new Coord(x,y));
 			}
 		}
 		this.map = result;
 	}
 
-	public Map(int w, int h, char[][] charMap) {
-		this(w,h,charMapToSymbolMap(charMap,w,h));
+	public Map(char[][] charMap) {
+		this(charMapToSymbolMap(charMap));
 	}
 	
 	private Entity entityToBeAdded(Symbol symb,Coord coord) {
@@ -117,14 +118,13 @@ public class Map
 		}
 	}
 	
-	private void addElementToMap(Cell[][] tempMap, Symbol[][] bluePrint,int x, int y) {
-		Coord temp = new Coord(x,y);
-		Entity element = entityToBeAdded(bluePrint[x][y],temp);
+	private void addElementToMap(Cell[][] tempMap, Symbol[][] bluePrint,Coord coord) {
+		Entity element = entityToBeAdded(bluePrint[coord.getX()][coord.getY()],coord);
 		
 		if(element instanceof Ogre || element instanceof Hero)
-			tempMap[x][y].setTop(element);
+			tempMap[coord.getX()][coord.getY()].setTop(element);
 		else
-			tempMap[x][y].setBot(element);
+			tempMap[coord.getX()][coord.getY()].setBot(element);
 	}
 
 	/*
@@ -168,10 +168,10 @@ public class Map
 			return getTopEnt(coord);
 	}
 
-	public boolean outOfBounds(Coord coord, int xMax, int yMax) {
-		if(coord.getX() < 0 || coord.getX() > xMax)
+	public boolean outOfBounds(Coord coord, Coord outOfBounds) {
+		if(coord.getX() < 0 || coord.getX() > outOfBounds.getX())
 			return true;
-		if(coord.getY() < 0 || coord.getY() > yMax)
+		if(coord.getY() < 0 || coord.getY() > outOfBounds.getY())
 			return true;
 
 		return false;
