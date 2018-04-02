@@ -17,14 +17,12 @@ public class Drunken extends Enemy{
 	private boolean reverse;
 	
 	
-	/* Creates a Drunken guard with specified starting coordinates and patrol route
-	 * @param startX
-	 * 			The Drunken's start x position
-	 * @param startY
-	 * 			The Drunken's start y position
+	/* Creates a Drunken guard with specified starting coordinate and patrol route
+	 * @param pos
+	 * 			Starting coordinate
 	 * @param coords
 	 * 			Array with coordinates of the patrol route of the guard
-	 */ 
+	 */
 	public Drunken(Coord pos, ArrayList<Coord> coords) {
 		super(pos, Symbol.GUARD);
 		this.coords = coords;
@@ -41,6 +39,8 @@ public class Drunken extends Enemy{
 		return this.sleeping;
 	}
 	
+	/* Wake up the Drunken guard
+	 */
 	private void wakeUp() {
 		Random rand = new Random();
 		double changeDirection = rand.nextDouble();
@@ -51,6 +51,8 @@ public class Drunken extends Enemy{
 		}
 	}
 	
+	/* Update the sleeping status of Drunken guard
+	 */
 	private void updateSleepStatus() {
 		Random rand = new Random();
 		double keepMoving = rand.nextDouble();
