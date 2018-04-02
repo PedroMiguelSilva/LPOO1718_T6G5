@@ -35,8 +35,7 @@ public class Map
 			return Symbol.OGRE;
 		case 'H':
 			return Symbol.HERO;
-		default:
-			return Symbol.CLEAR_SPACE;
+		default: return Symbol.CLEAR_SPACE;
 		}
 	}
 
