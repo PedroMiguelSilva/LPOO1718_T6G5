@@ -96,7 +96,9 @@ public class Game
 		return quit;
 	}
 	
-	
+	public boolean gameEnded() {
+		return gameOver || wonGame || quit;
+	}
 	
 	
 	/* @return the current level

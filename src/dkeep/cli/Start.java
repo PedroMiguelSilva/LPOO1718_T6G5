@@ -97,15 +97,13 @@ public class Start
 
 	public static void main(String[] args){
 		Game game = new Game(GuardType.ROOKIE,0,2);
-		Cmd cmd = Cmd.START, quit = Cmd.QUIT;						
-		Scanner scan = new Scanner(System.in);	
-
-		printMap(game.moveHero(cmd));
+		Cmd cmd = Cmd.START;						
+		Scanner scan = new Scanner(System.in);
 		
-		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit) {
+		do {
+			printMap(game.moveHero(cmd));
 			cmd = validChar(scan);
-			printMap(game.moveHero(cmd));				
-		}
+		}while(!game.gameEnded());
 		
 		sendFinalMessage(game);
 		scan.close();
