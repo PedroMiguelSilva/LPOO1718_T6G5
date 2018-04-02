@@ -17,7 +17,7 @@ public class Door extends Interactive
 	 * 			The Door's y position
 	 */
 	public Door(int startX, int startY){
-		super(startX,startY,Symbol.DOOR_CLOSED);
+		super(new Coord(startX,startY),Symbol.DOOR_CLOSED);
 		this.open = false;
 	}
 	

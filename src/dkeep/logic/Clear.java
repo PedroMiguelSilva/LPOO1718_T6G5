@@ -13,7 +13,7 @@ public class Clear extends Neutral{
 	 * 			The Clear Entity y position 
 	 */
 	public Clear(int startX, int startY) {
-		super(startX, startY, Symbol.CLEAR_SPACE);
+		super(new Coord(startX,startY), Symbol.CLEAR_SPACE);
 	}
 	
 	/* Creates a Clear Entity with specified coordinates
@@ -21,7 +21,7 @@ public class Clear extends Neutral{
 	 * 			The coordinate of the Clear Entity
 	 */
 	public Clear(Coord coord) {
-		super(coord.getX(),coord.getY(),Symbol.CLEAR_SPACE);
+		super(coord,Symbol.CLEAR_SPACE);
 	}
 
 }

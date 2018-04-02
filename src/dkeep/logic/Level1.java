@@ -26,14 +26,15 @@ public class Level1 extends Level
 	}
 
 	private Enemy createGuard(GuardType type,ArrayList<Coord> coords) {
+		Coord pos = new Coord(1,8);
 		switch(type) {
 		case SUSPICIOUS:
-			return new Suspicious(1,8,coords);
+			return new Suspicious(pos,coords);
 		case DRUNKEN:
-			return new Drunken(1,8,coords);
+			return new Drunken(pos,coords);
 		case ROOKIE:
 		default:
-			return new Rookie(1,8,coords);
+			return new Rookie(pos,coords);
 		}
 	}
 	

@@ -28,7 +28,8 @@ public class Level2 extends Level
 	}
 	
 	private void setKey(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
-		Key key1 = new Key(1,7,1,0);
+		Coord pos = new Coord(1,7), door = new Coord(1,0);
+		Key key1 = new Key(pos,door);
 		interactives.add(key1);
 		entities.add(key1);
 	}
@@ -41,7 +42,8 @@ public class Level2 extends Level
 	
 	private void setOgres(ArrayList<Entity> entities,ArrayList<Enemy> enemiesLevel2,int nOgre) {
 		for(int i = 0; i < nOgre ; i++) {
-			Ogre ogre1 = new Ogre(1,4,true);
+			Coord pos = new Coord(1,4);
+			Ogre ogre1 = new Ogre(pos,true);
 			enemiesLevel2.add(ogre1);
 			entities.add(ogre1);
 		}
@@ -59,7 +61,7 @@ public class Level2 extends Level
 	 * 			Matrix of chars with information for	 the Level
 	 */
 	public Level2(char[][] map) {
-		Map lvl2 = new Map(map.length,map[0].length,map);
+		Map lvl2 = new Map(map);
 		this.setMap(lvl2);
 		
 		//set hero from map

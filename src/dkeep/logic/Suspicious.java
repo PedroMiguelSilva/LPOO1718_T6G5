@@ -9,8 +9,8 @@ public class Suspicious extends Enemy{
 	private int guardIndex;
 	private boolean reverse;
 	
-	public Suspicious(int startX, int startY, ArrayList<Coord> coords) {
-		super(startX, startY, Symbol.GUARD);
+	public Suspicious(Coord pos, ArrayList<Coord> coords) {
+		super(pos, Symbol.GUARD);
 		this.coords = coords;
 		guardIndex = 0;
 	}

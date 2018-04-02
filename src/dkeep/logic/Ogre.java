@@ -9,10 +9,12 @@ public class Ogre extends Enemy
 	private Symbol[] cantWalkInto;
 	
 	//Constructor
-	public Ogre(int startX, int startY,boolean hasClub){
-		super(startX,startY,Symbol.OGRE);
+	public Ogre(Coord pos,boolean hasClub){
+		super(pos,Symbol.OGRE);
 		if(hasClub) {
-			Club temp = new Club(startX,startY+1);
+			Coord club = new Coord(pos);
+			pos.incX();
+			Club temp = new Club(club);
 			this.weapon = temp;
 		}
 		isStun = false;
@@ -22,9 +24,6 @@ public class Ogre extends Enemy
 		cantWalkInto = temp;
 	}
 	
-	public Ogre(Coord coord, boolean hasClub) {
-		this(coord.getX(),coord.getY(),hasClub);
-	}
 	
 	public boolean getIsStun() {
 		return isStun;

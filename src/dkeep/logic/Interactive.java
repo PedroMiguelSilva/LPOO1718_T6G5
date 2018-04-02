@@ -16,9 +16,9 @@ abstract public class Interactive extends Entity
 	 * @param startSymbol
 	 * 			The Interactive's start symbol
 	 */
-	public Interactive(int startX, int startY, Symbol startSymb)
+	public Interactive(Coord pos, Symbol startSymb)
 	{
-		super(startX,startY,startSymb);
+		super(pos,startSymb);
 	}
 	
 	/* Hero moves towards the Door

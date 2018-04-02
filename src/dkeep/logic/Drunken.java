@@ -25,8 +25,8 @@ public class Drunken extends Enemy{
 	 * @param coords
 	 * 			Array with coordinates of the patrol route of the guard
 	 */ 
-	public Drunken(int startX, int startY, ArrayList<Coord> coords) {
-		super(startX, startY, Symbol.GUARD);
+	public Drunken(Coord pos, ArrayList<Coord> coords) {
+		super(pos, Symbol.GUARD);
 		this.coords = coords;
 		guardIndex = 0;
 		oddSleep = 0.2;

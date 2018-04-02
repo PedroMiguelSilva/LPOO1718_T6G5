@@ -9,8 +9,8 @@ public class Rookie extends Enemy
 	int guardIndex;
 	
 	//Constructor
-	public Rookie(int startX, int startY, ArrayList<Coord> coords){
-		super(startX,startY,Symbol.GUARD);
+	public Rookie(Coord pos, ArrayList<Coord> coords){
+		super(pos,Symbol.GUARD);
 		this.coords = coords;
 		
 		guardIndex = 0;

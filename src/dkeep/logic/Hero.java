@@ -23,10 +23,10 @@ public class Hero extends Entity
 	 */
 	public Hero(int startX, int startY, boolean isArmed)
 	{
-		super(startX , startY , Symbol.HERO);
+		super(new Coord(startX,startY) , Symbol.HERO);
 		isAlive = true;
 		wonLevel = false;
-		Key key1 = new Key(0,0,100,100);
+		Key key1 = new Key(new Coord(0,0),new Coord(100,100));
 		this.key = key1;
 		this.isArmed = isArmed;
 

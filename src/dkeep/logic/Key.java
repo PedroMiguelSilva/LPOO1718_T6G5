@@ -21,10 +21,10 @@ public class Key extends Interactive
 	 * @param doorY
 	 * 			The y coordinate of the door opened by this Key
 	 */
-	public Key(int startX, int startY, int doorX, int doorY)
+	public Key(Coord pos, Coord doorC)
 	{
-		super(startX,startY,Symbol.KEY);
-		doorC = new Coord(doorX,doorY);
+		super(pos,Symbol.KEY);
+		this.doorC = doorC;
 	}
 
 	/* Creates an universal Key with specified position

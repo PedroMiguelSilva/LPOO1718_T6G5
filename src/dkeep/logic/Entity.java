@@ -17,9 +17,8 @@ abstract public class Entity
 	 * @param startSymb
 	 * 			The Entity's start symbol
 	 */
-	public Entity(int startX, int startY, Symbol startSymb)
-	{
-		this.coord = new Coord(startX,startY);
+	public Entity(Coord pos, Symbol startSymb){
+		this.coord = pos;
 		symb = startSymb;
 	}
 	

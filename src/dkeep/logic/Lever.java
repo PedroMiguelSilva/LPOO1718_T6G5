@@ -11,7 +11,7 @@ public class Lever extends Interactive
 	//Constructor
 	public Lever(int startX, int startY,ArrayList<Coord> coords)
 	{
-		super(startX,startY,Symbol.LEVER);
+		super(new Coord(startX,startY),Symbol.LEVER);
 		isActive = false;
 		this.coords = coords;
 	}

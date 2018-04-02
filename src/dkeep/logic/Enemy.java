@@ -16,9 +16,9 @@ abstract public class Enemy extends Entity implements Move
 	 * @param startSymb
 	 * 			The Entity's start symbol
 	 */
-	public Enemy(int startX, int startY, Symbol startSymb)
+	public Enemy(Coord pos, Symbol startSymb)
 	{
-		super(startX,startY,startSymb);
+		super(pos,startSymb);
 	}
 	
 	/* Calculate the next index in the patrol route according

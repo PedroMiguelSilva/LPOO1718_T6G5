@@ -14,8 +14,8 @@ public class Club extends Entity{
 	 * @param startY
 	 * 			The Club's y position
 	 */
-	public Club(int startX, int startY) {
-		super(startX, startY, Symbol.OGRE_WEAPON);
+	public Club(Coord pos) {
+		super(pos, Symbol.OGRE_WEAPON);
 		Symbol[] temp = {
 				Symbol.OGRE,
 				Symbol.OGRE_STUNED,
