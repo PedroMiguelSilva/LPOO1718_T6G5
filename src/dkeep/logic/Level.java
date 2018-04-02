@@ -51,6 +51,9 @@ abstract public class Level
 	 * 				level up
 	 */
 	public int update(Cmd cmd) {
+		if(cmd == Cmd.START || cmd == Cmd.QUIT)
+			return 0;
+		
 		this.getHero().move(getMap(), cmd, getInteractives(), getEnemies());
 		
 		//check if won

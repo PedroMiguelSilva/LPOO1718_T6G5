@@ -121,10 +121,11 @@ public class Game
 	 * @param cmd
 	 * 			Command of the user
 	 */
-	public void moveHero(Cmd cmd) {
+	public Symbol[][] moveHero(Cmd cmd) {
 		int status = 0;
 		status = this.getLevel().update(cmd);
 		this.updateGameVariables(status, cmd);
+		return getSymbolMap();
 	}
 	
 	/* @return the current level
@@ -228,7 +229,7 @@ public class Game
 		}
 	}
 	
-	public Symbol[][] getSymbolMap(){
+	private Symbol[][] getSymbolMap(){
 		return getLevel().getMap().getSymbolMap();
 	}
 	
