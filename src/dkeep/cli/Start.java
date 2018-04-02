@@ -117,12 +117,12 @@ public class Start
 		Cmd cmd = Cmd.START, quit = Cmd.QUIT;						
 		Scanner scan = new Scanner(System.in);	
 
-		printMap(game.getLevel().getMap().getSymbolMap());
+		printMap(game.getSymbolMap());
 		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit) {
 			cmd = validChar(scan);
 			game.moveHero(cmd);
 			if(!game.getWonGame())
-				printMap(game.getLevel().getMap().getSymbolMap());
+				printMap(game.getSymbolMap());
 		}
 		sendFinalMessage(game);
 		scan.close();

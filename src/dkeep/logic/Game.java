@@ -227,6 +227,10 @@ public class Game
 		}
 	}
 	
+	public Symbol[][] getSymbolMap(){
+		return getLevel().getMap().getSymbolMap();
+	}
+	
 	public String mapString(Map map) {
 		String mapa = new String();
 	
