@@ -126,7 +126,7 @@ public class GUI implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				game = new Game(GuardType.ROOKIE,2,2);
 				//Start.printMap(game.getLevel().getMap());
-				textArea.append(game.mapString(game.getLevel().getMap()));
+				//textArea.append(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 			}
 		});
@@ -209,9 +209,9 @@ public class GUI implements ActionListener {
 				if(e.getSource() == btnExit) {
 					System.exit(0);
 				}
-				int status = game.getLevel().update(Start.parseCharToCmd(var));
-				game.updateGameVariables(status,Start.parseCharToCmd(var));
-				textArea.setText(game.mapString(game.getLevel().getMap()));
+				//int status = game.getLevel().update(Start.parseCharToCmd(var));
+				//game.updateGameVariables(status,Start.parseCharToCmd(var));
+				//textArea.setText(game.mapString(game.getLevel().getMap()));
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 				if(game.isGameOver() ==  true) {
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
@@ -251,19 +251,19 @@ public class GUI implements ActionListener {
 		int status = 0;
 		switch(action.getName()) {
 		case "up":
-			status = game.getLevel().update(Start.parseCharToCmd('w'));
+	//		status = game.getLevel().update(Start.parseCharToCmd('w'));
 			break;
 		case "down":
-			status = game.getLevel().update(Start.parseCharToCmd('s'));
+		//	status = game.getLevel().update(Start.parseCharToCmd('s'));
 			break;
 		case "right":
-			status = game.getLevel().update(Start.parseCharToCmd('d'));
+			//status = game.getLevel().update(Start.parseCharToCmd('d'));
 			break;
 		case "left":
-			status = game.getLevel().update(Start.parseCharToCmd('a'));
+		//	status = game.getLevel().update(Start.parseCharToCmd('a'));
 			break;
 		}
-		game.updateGameVariables(status,Start.parseCharToCmd('p'));
+		//game.updateGameVariables(status,Start.parseCharToCmd('p'));
 	}
 
 
