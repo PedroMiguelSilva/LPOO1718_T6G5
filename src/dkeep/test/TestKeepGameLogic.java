@@ -104,6 +104,6 @@ public class TestKeepGameLogic {
 				right = true;
 				
 		}
-		*/
 	}
+	*/
 }
