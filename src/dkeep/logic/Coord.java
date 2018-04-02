@@ -114,7 +114,7 @@ public class Coord {
 			newCoord.incX();break;
 		case RIGHT:
 			newCoord.incY();break;
-		case START:case QUIT:
+		case START:
 		default:
 		}
 		return newCoord;
