@@ -41,26 +41,23 @@ public class Drunken extends Enemy{
 		return this.sleeping;
 	}
 	
-	/* Move Drunken guard along his patrol route
-	 * @param map
-	 * 			Map in which the changes should be made
-	 */
-	@Override
-	public void move(Map map) {
-		
+	private void wakeUp() {
+		Random rand = new Random();
+		double changeDirection = rand.nextDouble();
+		sleeping = false;
+		this.setSymb(Symbol.GUARD);
+		if(changeDirection > 0.5) {	//change direction
+			reverse = !reverse;
+		}
+	}
+	
+	private void updateSleepStatus() {
 		Random rand = new Random();
 		double keepMoving = rand.nextDouble();
-		double changeDirection = rand.nextDouble();
-		
-
 		if(sleeping) {					//sleeping
 			roundsSleeping -= 1;
 			if(roundsSleeping == 0) {
-				sleeping = false;
-				this.setSymb(Symbol.GUARD);
-			}
-			if(changeDirection > 0.5) {	//change direction
-				reverse = !reverse;
+				wakeUp();
 			}
 		}
 		else if(keepMoving < oddSleep) {//starts sleeping
@@ -68,6 +65,15 @@ public class Drunken extends Enemy{
 			 roundsSleeping = 3;
 			 this.setSymb(Symbol.GUARD_SLEEP);
 		}
+	}
+	
+	/* Move Drunken guard along his patrol route
+	 * @param map
+	 * 			Map in which the changes should be made
+	 */
+	@Override
+	public void move(Map map) {
+		updateSleepStatus();
 		
 		if(!sleeping) {
 			guardIndex = move_aux(guardIndex,coords,reverse,map);

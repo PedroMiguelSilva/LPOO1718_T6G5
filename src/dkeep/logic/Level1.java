@@ -25,6 +25,18 @@ public class Level1 extends Level
 		entities.addAll(walls);
 	}
 
+	private Enemy createGuard(GuardType type,ArrayList<Coord> coords) {
+		switch(type) {
+		case SUSPICIOUS:
+			return new Suspicious(1,8,coords);
+		case DRUNKEN:
+			return new Drunken(1,8,coords);
+		case ROOKIE:
+		default:
+			return new Rookie(1,8,coords);
+		}
+	}
+	
 	/* Create Enemy for Level1
 	 */
 	private void setGuard(GuardType type,ArrayList<Enemy> enemies,ArrayList<Entity> entities) {
@@ -32,20 +44,7 @@ public class Level1 extends Level
 		int xPos[] = {1,1,2,3,4,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,5,4,3,2};
 		int yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
 
-		Enemy ent = new Rookie(1,8,posToCoords(xPos,yPos));
-
-		switch(type) {
-		case ROOKIE:
-			break;
-		case SUSPICIOUS:
-			ent = new Suspicious(1,8,posToCoords(xPos,yPos));
-			break;
-		case DRUNKEN:
-			ent = new Drunken(1,8,posToCoords(xPos,yPos));
-			break;
-		default:
-			break;
-		}
+		Enemy ent = createGuard(type,posToCoords(xPos,yPos));
 		
 		enemies.add(ent);
 		entities.add(ent);

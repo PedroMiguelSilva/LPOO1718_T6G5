@@ -85,7 +85,6 @@ public class Coord {
 		Random rand = new Random();
 		int move = rand.nextInt(4);
 		Coord newCoord = new Coord(this);
-
 		switch(move) {
 		case 0:
 			newCoord.incX();break;

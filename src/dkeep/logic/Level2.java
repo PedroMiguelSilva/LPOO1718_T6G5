@@ -56,7 +56,7 @@ public class Level2 extends Level
 	
 	/* Create a Keep from information of a matrix of chars
 	 * @param map
-	 * 			Matrix of chars with information for the Level
+	 * 			Matrix of chars with information for	 the Level
 	 */
 	public Level2(char[][] map) {
 		Map lvl2 = new Map(map.length,map[0].length,map);

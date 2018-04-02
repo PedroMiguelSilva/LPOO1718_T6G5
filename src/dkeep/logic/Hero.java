@@ -163,23 +163,16 @@ public class Hero extends Entity
 	 */
 	public boolean isDead(Map map,ArrayList<Enemy> enemies)
 	{
-		//loop through all the enemies, for each one compare their symbols
-		for(Enemy e : enemies)
-		{
-			if(isDangerous(map, e.getSymb(),map.getHeight(),map.getWidth()))
-			{
+		for(Enemy e : enemies)	{
+			if(isDangerous(map, e.getSymb(),map.getHeight(),map.getWidth())){
 				isAlive = false;
 				return true;
 			}
 		}
-
-		if(isDangerous(map, Symbol.OGRE_WEAPON,map.getHeight(),map.getWidth()))
-		{
+		if(isDangerous(map, Symbol.OGRE_WEAPON,map.getHeight(),map.getWidth())){
 			isAlive = false;
 			return true;
 		}
-
-		//no enemy was next to the hero
 		return false;
 	}
 
