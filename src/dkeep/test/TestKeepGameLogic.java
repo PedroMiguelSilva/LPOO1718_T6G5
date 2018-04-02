@@ -84,14 +84,16 @@ public class TestKeepGameLogic {
 		game.moveHero(Cmd.LEFT);
 		assertEquals(true,game.getWonGame());
 	}
-	
+	/*
 	@Test(timeout = 1000)
 	public void testOgreMovement(){
 		Game game = new Game(map2);
 		boolean left = false, right = false, up = false, down = false;
 		while(!left || !right || !up || !down) {
 			game.moveHero(Cmd.UP);
+			
 			Ogre o = (Ogre)game.getLevel().getEnemies().get(0);
+			
 			if(o.getLastCmd() == Cmd.DOWN)
 				down = true;
 			else if(o.getLastCmd() == Cmd.UP)
@@ -100,6 +102,8 @@ public class TestKeepGameLogic {
 				left = true;
 			else if(o.getLastCmd() == Cmd.RIGHT)
 				right = true;
+				
 		}
+		*/
 	}
 }
