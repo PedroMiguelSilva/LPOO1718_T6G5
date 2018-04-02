@@ -229,40 +229,20 @@ public class Game
 	
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
-		case HERO:
-			return 'H';
-		case HERO_WITH_KEY:
-			return 'K';
-		case HERO_WITH_CLUB:
-			return 'A';
-		case GUARD:
-			return 'G';
-		case GUARD_SLEEP:
-			return 'g';
-		case WALL:
-			return 'X';
+		case HERO: return 'H';
+		case HERO_WITH_KEY:return 'K';
+		case HERO_WITH_CLUB:return 'A';
+		case GUARD:return 'G';			case GUARD_SLEEP:return 'g';
+		case WALL:return 'X';
+		case OGRE:return 'o';
+		case OGRE_ON_KEY:return '$';
+		case OGRE_WEAPON:return '*';
+		case OGRE_STUNED:return '8';
+		case CLUB_ON_KEY:return '$';
+		case LEVER:return 'k';			case KEY:return 'k';
+		case DOOR_CLOSED:return 'i'; 	case DOOR_OPEN:return 'S';
 		case CLEAR_SPACE:
-			return ' ';
-		case OGRE:
-			return 'o';
-		case OGRE_ON_KEY:
-			return '$';
-		case OGRE_WEAPON:
-			return '*';
-		case OGRE_STUNED:
-			return '8';
-		case CLUB_ON_KEY:
-			return '$';
-		case LEVER:
-			return 'k';
-		case KEY:
-			return 'k';
-		case DOOR_CLOSED:
-			return 'i';
-		case DOOR_OPEN:
-			return 'S';
-		default:
-			return ' ';
+		default:return ' ';
 		}
 	}
 	
