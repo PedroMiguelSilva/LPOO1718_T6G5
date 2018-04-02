@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /* Represents the game
  * @version 1.0
  * @since 1.0
+ * 
  */
 public class Game
 {
@@ -128,7 +129,7 @@ public class Game
 	
 	/* @return the current level
 	 */
-	public Level getLevel()
+	private Level getLevel()
 	{
 		return levels.get(currentLevel-1);
 	}
@@ -137,7 +138,7 @@ public class Game
 	 * @param lvl
 	 * 			Array of levels to be set
 	 */
-	public void setLevels(ArrayList<Level> lvl)
+	private void setLevels(ArrayList<Level> lvl)
 	{
 		this.levels = lvl;
 	}
@@ -158,21 +159,21 @@ public class Game
 	
 	/* Set Game over
 	 */
-	public void setGameOVer()
+	private void setGameOVer()
 	{
 		this.gameOver = true;
 	}
 	
 	/* Set Game won
 	 */
-	public void setWonGame()
+	private void setWonGame()
 	{
 		this.wonGame = true;
 	}
 
 	/* Set Quit from Game
 	 */
-	public void setQuit()
+	private void setQuit()
 	{
 		this.quit = true;
 	}
@@ -190,7 +191,7 @@ public class Game
 	 * @param cmd
 	 * 			Command from user
 	 */
-	public void updateGameVariables(int status, Cmd cmd){
+	private void updateGameVariables(int status, Cmd cmd){
 		if(cmd == Cmd.QUIT){
 			this.setQuit();
 		}

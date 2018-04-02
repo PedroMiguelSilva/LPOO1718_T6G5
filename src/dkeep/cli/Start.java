@@ -70,19 +70,6 @@ public class Start
 
 		return parseCharToCmd(N);
 	}
-
-	/*
-	public static Entity entToPrint(Map map, int i, int j) {
-		Coord coord = new Coord(i,j);
-		Entity entTop = map.getTopEnt(coord);
-		Entity entBot = map.getBotEnt(coord);
-
-		if(entTop instanceof Clear)
-			return entBot;
-		else
-			return entTop;
-	}
-*/
 	
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
