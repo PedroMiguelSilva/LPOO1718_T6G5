@@ -49,15 +49,38 @@ public class Map
 		return result;
 	}
 
-	//ao construir tenho de criar cells vazias (clear) em todos os locais que nao tenha nenhum objecto (criar so com clear e depois ir atualizando)
+	private void addEntitiesToMap(ArrayList<Entity> entities) {
+		for(Entity ent : entities){
+			if(ent instanceof Interactive || ent instanceof Neutral) {
+				map[ent.getX()][ent.getY()].setBot(ent);
+			}else {
+				map[ent.getX()][ent.getY()].setTop(ent);
+			}
+		}
+	}
+	
+	private void setWalls(){
+		for(int i = 0; i < height ; i++) {
+			for(int j = 0 ; j < width ;j++ ) {
+				Clear clearTop = new Clear(i,j);
+				Wall wallBot = new Wall(i,j);
+				Cell wallCell = new Cell(clearTop,wallBot);
+				if(i == 0 || j == 0 || i == (height-1) || j == (width-1)) {
+					map[i][j] = wallCell;
+				}
+			}
+		}
+	}
+	
 	public Map(int w, int h, ArrayList<Entity> entities)
 	{
 		this.width = w;
 		this.height = h;
 
-		map = new Cell[h][w];
+		map = getClearMap(w,h);
+		setWalls();
 
-		//initialize every value of map with clear
+		/*
 		for(int i = 0 ; i < h; i++){
 			for(int j = 0; j < w; j++){
 				Clear tempClearTop = new Clear(i,j);
@@ -74,14 +97,9 @@ public class Map
 
 			}
 		}
+		*/
 
-		for(Entity ent : entities){
-			if(ent instanceof Interactive || ent instanceof Neutral) {
-				map[ent.getX()][ent.getY()].setBot(ent);
-			}else {
-				map[ent.getX()][ent.getY()].setTop(ent);
-			}
-		}
+		addEntitiesToMap(entities);
 	}
 
 	//conseguir um construtor atraves de um array de simbolos
