@@ -51,7 +51,7 @@ public class Start
 		if(N == 'S')return 's';
 		if(N == 'D')return 'd';
 		if(N == 'Q')return 'q';
-		return '0';
+		return N;
 	}
 	/*
 	 * @brief Returns one of the chars that are used for movement (WASD)

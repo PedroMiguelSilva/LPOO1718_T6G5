@@ -23,32 +23,28 @@ public class Map
 		return temp;
 	}
 
+	private static Symbol charToSymbol(char charSymb) {
+		switch(charSymb) {
+		case 'X':
+			return Symbol.WALL;
+		case 'i':
+			return Symbol.DOOR_CLOSED;
+		case 'k':
+			return Symbol.KEY;
+		case 'o':
+			return Symbol.OGRE;
+		case 'H':
+			return Symbol.HERO;
+		default:
+			return Symbol.CLEAR_SPACE;
+		}
+	}
+
 	private static Symbol[][] charMapToSymbolMap(char[][] charMap, int w, int h){
 		Symbol[][] result = new Symbol[h][w];
-		Symbol add;
 		for(int x = 0; x < h; x++) {
 			for(int y = 0 ; y < w ; y++) {
-				switch(charMap[x][y]) {
-				case 'X':
-					add = Symbol.WALL;
-					break;
-				case 'i':
-					add = Symbol.DOOR_CLOSED;
-					break;
-				case 'k':
-					add = Symbol.KEY;
-					break;
-				case 'o':
-					add = Symbol.OGRE;
-					break;
-					
-				case 'H':
-					add = Symbol.HERO;
-					break;
-				default:
-					add = Symbol.CLEAR_SPACE;
-				}
-				result[x][y] = add;
+				result[x][y] = charToSymbol(charMap[x][y]);
 			}
 		}
 		return result;
