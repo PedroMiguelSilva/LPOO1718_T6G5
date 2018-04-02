@@ -60,6 +60,29 @@ public class Hero extends Entity
 			}
 		}
 	}	
+	
+	/* Trigguer the Entity the Hero is moving towards
+	 * @param map
+	 * 			Map in which the changes should be saved
+	 * @param newCoord
+	 * 			Coordinates where the Hero is moving towards
+	 * @param interactives
+	 * 			Array of Interactable Entities
+	 */
+	private void triggerInteractives(Map map, Coord newCoord,ArrayList<Interactive> interactives) {
+		Symbol symb = map.getEnt(newCoord).getSymb();//quer saber qual é o elemento que esta onde ele quer ir
+		
+		if(symb == Symbol.CLEAR_SPACE){
+			map.move(this, newCoord);
+		}
+		else{
+			for(Interactive i : interactives){
+				if(i.getCoord().equals(newCoord)){
+					i.trigger(this,interactives,map);
+				}
+			}	
+		}
+	}
 
 	/* Move Hero
 	 * @param map
@@ -72,53 +95,12 @@ public class Hero extends Entity
 	public void move(Map map, Cmd cmd, ArrayList<Interactive> interactives,ArrayList<Enemy> enemies){
 
 		Coord newCoord = new Coord(this.getCoord());
-
-		switch(cmd)
-		{
-		case LEFT:
-		{
-			newCoord.decY();
-			break;
-		}
-		case UP:
-		{
-			newCoord.decX();
-			break;
-		}
-		case DOWN:
-		{
-			newCoord.incX();
-			break;
-		}
-		case RIGHT:
-		{
-			newCoord.incY();
-			break;
-		}
-		}
+		newCoord = this.getCoord().getAdjacentCoord(cmd);
 
 		if(!map.canMove(newCoord))
 			return;
-
-		Symbol symb = map.getEnt(newCoord).getSymb();//quer saber qual é o elemento que esta onde ele quer ir
-
-		if(symb == Symbol.CLEAR_SPACE)				//moving into an empty space
-		{
-			map.move(this, newCoord);
-		}
-		else										//moving into interactable
-		{
-			//TODO MAKE THIS ANOTHER FUNCTION TO MAKE CODE CLEAR
-			for(Interactive i : interactives)
-			{
-				if(i.getCoord().equals(newCoord))//interactable has to be in the same coords as the hero intends to go to
-				{
-					i.trigger(this,interactives,map);
-				}
-			}	
-		}
-
-
+		
+		triggerInteractives(map,newCoord,interactives);
 		stunNearBy(enemies);
 	}
 
