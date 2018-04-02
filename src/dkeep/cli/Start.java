@@ -1,11 +1,7 @@
 package dkeep.cli;
 
 import dkeep.logic.Game;
-import dkeep.logic.Map;
 import dkeep.logic.GuardType;
-import dkeep.logic.Entity;
-import dkeep.logic.Coord;
-import dkeep.logic.Clear;
 import dkeep.logic.Cmd;
 import dkeep.logic.Symbol;
 
