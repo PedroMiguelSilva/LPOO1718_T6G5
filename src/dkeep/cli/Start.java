@@ -75,6 +75,7 @@ public class Start
 		return parseCharToCmd(N);
 	}
 
+	/*
 	public static Entity entToPrint(Map map, int i, int j) {
 		Coord coord = new Coord(i,j);
 		Entity entTop = map.getTopEnt(coord);
@@ -85,7 +86,8 @@ public class Start
 		else
 			return entTop;
 	}
-
+*/
+	
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
 		case HERO: return 'H';
