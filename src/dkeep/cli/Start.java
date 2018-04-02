@@ -17,13 +17,13 @@ public class Start
 	public static Cmd parseCharToCmd(char n) {
 		switch(n) {
 		case 'a':
-		case 'A': return Cmd.LEFT;
+			return Cmd.LEFT;
 		case 's':
-		case 'S': return Cmd.DOWN;
+			return Cmd.DOWN;
 		case 'd':
-		case 'D': return Cmd.RIGHT;
+			return Cmd.RIGHT;
 		case 'w':
-		case 'W': return Cmd.UP;
+			return Cmd.UP;
 		default:
 			return Cmd.QUIT;
 		}
