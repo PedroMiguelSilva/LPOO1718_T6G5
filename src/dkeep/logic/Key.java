@@ -34,7 +34,7 @@ public class Key extends Interactive
 	 * 			The Key's y position 
 	 */
 	public Key(int startX, int startY){
-		super(startX,startY,Symbol.KEY);
+		super(new Coord(startX,startY),Symbol.KEY);
 		doorC = new Coord(0,0);
 	}
 	
