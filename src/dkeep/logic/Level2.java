@@ -12,39 +12,46 @@ public class Level2 extends Level
 	 * @param nOgre
 	 * 			Number of Ogres in the Keep
 	 */
-	public Level2(int nOgre)
-	{
+	public Level2(int nOgre){
 		ArrayList<Entity> entities = new ArrayList<Entity>();
 		ArrayList<Enemy> enemiesLevel2 = new ArrayList<Enemy>();
 		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
 		
-		//walls
-		//no walls :)
+		setHero(entities);
+		setOgres(entities,enemiesLevel2,nOgre);
+		setDoors(entities,interactives);
+		setKey(entities,interactives);
 		
-		//SET HERO
-		Hero heroLevel2 = new Hero(7,1,true);
-		this.setHero(heroLevel2);
-		entities.add(heroLevel2);
-		
-		//SET ENEMIES
+		this.setInteractives(interactives);
+		Map mapLvl2 = new Map(9,9,entities);
+		this.setMap(mapLvl2);
+	}
+	
+	private void setKey(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
+		Key key1 = new Key(1,7,1,0);
+		interactives.add(key1);
+		entities.add(key1);
+	}
+	
+	private void setDoors(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
+		Door door1 = new Door(1,0);
+		interactives.add(door1);
+		entities.add(door1);
+	}
+	
+	private void setOgres(ArrayList<Entity> entities,ArrayList<Enemy> enemiesLevel2,int nOgre) {
 		for(int i = 0; i < nOgre ; i++) {
 			Ogre ogre1 = new Ogre(1,4,true);
 			enemiesLevel2.add(ogre1);
 			entities.add(ogre1);
 		}
 		this.setEnemies(enemiesLevel2);
-		
-		//SET INTERACTIVES
-		Door door1 = new Door(1,0);
-		Key key1 = new Key(1,7,1,0);
-		interactives.add(door1);
-		interactives.add(key1);
-		entities.add(door1);
-		entities.add(key1);
-		this.setInteractives(interactives);
-		
-		Map mapLvl2 = new Map(9,9,entities);
-		this.setMap(mapLvl2);
+	}
+	
+	private void setHero(ArrayList<Entity> entities) {
+		Hero hero = new Hero(7,1,true);
+		this.setHero(hero);
+		entities.add(hero);
 	}
 	
 	/* Create a Keep from information of a matrix of chars

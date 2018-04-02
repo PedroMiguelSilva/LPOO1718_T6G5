@@ -190,34 +190,19 @@ public class Game
 	 * @param cmd
 	 * 			Command from user
 	 */
-	public void updateGameVariables(int status, Cmd cmd)
-	{
-		if(cmd == Cmd.QUIT)
-		{
+	public void updateGameVariables(int status, Cmd cmd){
+		if(cmd == Cmd.QUIT){
 			this.setQuit();
 		}
-		
-		switch(status)
-		{
-		case 1:		//lost game
-		{
-			this.setGameOVer();
-			break;
-		}
-		case 2:		//leveled up
-		{
+		switch(status){
+		case 1:		
+			this.setGameOVer();break;
+		case 2:
 			this.currentLevel += 1;
-			
-			if(currentLevel > MAX_LEVEL)
+			if(currentLevel > MAX_LEVEL) {
 				this.setWonGame();
-			
-			break;
-		}
-		default:
-		{
-			//do nothing
-		}
-		
+				currentLevel = MAX_LEVEL;
+			}
 		}
 	}
 
