@@ -17,17 +17,13 @@ public class Start
 	public static Cmd parseCharToCmd(char n) {
 		switch(n) {
 		case 'a':
-		case 'A':
-			return Cmd.LEFT;
+		case 'A': return Cmd.LEFT;
 		case 's':
-		case 'S':
-			return Cmd.DOWN;
+		case 'S': return Cmd.DOWN;
 		case 'd':
-		case 'D':
-			return Cmd.RIGHT;
+		case 'D': return Cmd.RIGHT;
 		case 'w':
-		case 'W':
-			return Cmd.UP;
+		case 'W': return Cmd.UP;
 		default:
 			return Cmd.QUIT;
 		}
@@ -49,6 +45,14 @@ public class Start
 		}
 	}
 	
+	private static char minimize(char N) {
+		if(N == 'A')return 'a';
+		if(N == 'W')return 'w';
+		if(N == 'S')return 's';
+		if(N == 'D')return 'd';
+		if(N == 'Q')return 'q';
+		return '0';
+	}
 	/*
 	 * @brief Returns one of the chars that are used for movement (WASD)
 	 *
@@ -61,16 +65,12 @@ public class Start
 		do
 		{
 			N = scan.next().charAt(0);
+			N = minimize(N);
 		} while(N != 'a' &&
-				N != 'A' &&
 				N != 's' &&
-				N != 'S' &&
 				N != 'd' &&
-				N != 'D' &&
 				N != 'w' &&
-				N != 'W' &&
-				N != 'q' &&
-				N != 'Q');
+				N != 'q');
 
 		return parseCharToCmd(N);
 	}
@@ -88,40 +88,20 @@ public class Start
 
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
-		case HERO:
-			return 'H';
-		case HERO_WITH_KEY:
-			return 'K';
-		case HERO_WITH_CLUB:
-			return 'A';
-		case GUARD:
-			return 'G';
-		case GUARD_SLEEP:
-			return 'g';
-		case WALL:
-			return 'X';
+		case HERO: return 'H';
+		case HERO_WITH_KEY:return 'K';
+		case HERO_WITH_CLUB:return 'A';
+		case GUARD:return 'G';			case GUARD_SLEEP:return 'g';
+		case WALL:return 'X';
+		case OGRE:return 'o';
+		case OGRE_ON_KEY:return '$';
+		case OGRE_WEAPON:return '*';
+		case OGRE_STUNED:return '8';
+		case CLUB_ON_KEY:return '$';
+		case LEVER:return 'k';			case KEY:return 'k';
+		case DOOR_CLOSED:return 'i'; 	case DOOR_OPEN:return 'S';
 		case CLEAR_SPACE:
-			return ' ';
-		case OGRE:
-			return 'o';
-		case OGRE_ON_KEY:
-			return '$';
-		case OGRE_WEAPON:
-			return '*';
-		case OGRE_STUNED:
-			return '8';
-		case CLUB_ON_KEY:
-			return '$';
-		case LEVER:
-			return 'k';
-		case KEY:
-			return 'k';
-		case DOOR_CLOSED:
-			return 'i';
-		case DOOR_OPEN:
-			return 'S';
-		default:
-			return ' ';
+		default:return ' ';
 		}
 	}
 
@@ -136,44 +116,19 @@ public class Start
 		}
 	}
 
-	public static void main(String[] args)
-	{
-		//initiate level with level = 1
-		int NUMBER_OF_OGRES = 2;
-		int MAX_LEVEL = 2;
-		Game game = new Game(GuardType.ROOKIE,NUMBER_OF_OGRES,MAX_LEVEL);
-
-		/*
-		 * STATUS
-		 * 0 - continue playing
-		 * 1 - hero died
-		 * 2 - level up
-		 */
-
-		Cmd cmd = Cmd.START;						//command given by user
-		Cmd quit = Cmd.QUIT;						//command quit
-		Scanner scan = new Scanner(System.in);	//initiate scanner
+	public static void main(String[] args){
+		Game game = new Game(GuardType.ROOKIE,2,2);
+		Cmd cmd = Cmd.START, quit = Cmd.QUIT;						
+		Scanner scan = new Scanner(System.in);	
 
 		printMap(game.getLevel().getMap());
-
-		//GAME CYCLE
-		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit)
-		{
-			//read user input
+		while(!(game.isGameOver() || game.getWonGame()) && cmd != quit) {
 			cmd = validChar(scan);
-
-			//update the level
 			game.moveHero(cmd);
-
-			//print the current state of the game to console
 			if(!game.getWonGame())
 				printMap(game.getLevel().getMap());
 		}
-
-		//send end-game message to user
 		sendFinalMessage(game);
-
-		//close scanner
 		scan.close();
 	}
 }
