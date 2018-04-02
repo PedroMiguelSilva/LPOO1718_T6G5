@@ -1,7 +1,6 @@
 package dkeep.cli;
 
 import dkeep.logic.Game;
-import dkeep.logic.GameState;
 import dkeep.logic.GuardType;
 import dkeep.logic.Cmd;
 import dkeep.logic.Symbol;
@@ -82,7 +81,6 @@ public class Start
 
 	public static void main(String[] args){
 		Game game = new Game(GuardType.ROOKIE,0,2);
-		GameState gameState;
 		
 		Cmd cmd = Cmd.START;						
 		Scanner scan = new Scanner(System.in);
@@ -93,9 +91,8 @@ public class Start
 				cmd = validChar(scan);
 			}
 			firstCall = false;
-			gameState = game.moveHero(cmd);
-			printMap(gameState.getMap());
-		}while(!gameState.gameEnded());
+			printMap(game.moveHero(cmd));
+		}while(!game.gameEnded());
 		
 		System.out.println(game.endingMessage());
 		scan.close();
