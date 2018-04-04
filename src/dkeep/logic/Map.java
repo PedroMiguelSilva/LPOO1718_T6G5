@@ -124,8 +124,9 @@ public class Map
 		case HERO:
 			return new Hero(coord,true);
 		case WALL:
-		default:
 			return new Wall(coord);
+		default:
+			return new Clear(coord);
 		}
 	}
 	

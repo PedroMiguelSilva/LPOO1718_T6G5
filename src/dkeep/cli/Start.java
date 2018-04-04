@@ -79,8 +79,9 @@ public class Start
 		}
 	}
 
+	
 	public static void main(String[] args){
-		Game game = new Game(GuardType.ROOKIE,0,2);
+		Game game = new Game(GuardType.SUSPICIOUS,0,2);
 		
 		Cmd cmd = Cmd.START;						
 		Scanner scan = new Scanner(System.in);
