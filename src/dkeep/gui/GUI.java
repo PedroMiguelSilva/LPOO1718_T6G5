@@ -1,31 +1,23 @@
 package dkeep.gui;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTextPane;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+
 import javax.swing.JComboBox;
-import net.miginfocom.swing.MigLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import dkeep.logic.Clear;
 import dkeep.logic.Cmd;
-import dkeep.logic.Coord;
-import dkeep.logic.Entity;
 import dkeep.logic.Game;
-import dkeep.logic.Map;
 import dkeep.logic.GuardType;
-import dkeep.logic.Symbol;
-//import dkeep.cli.Start;
+import javafx.scene.input.KeyEvent;
 
 public class GUI implements ActionListener {
 
@@ -33,6 +25,7 @@ public class GUI implements ActionListener {
 	private JTextField textField;
 	protected Game game;
 	protected int numberOfMoves=0;
+	
 
 	/**
 	 * Launch the application.
@@ -60,7 +53,7 @@ public class GUI implements ActionListener {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize()  {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(100, 100, 800, 600);
@@ -99,17 +92,16 @@ public class GUI implements ActionListener {
 		gbc_lblGuard.gridx = 0;
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
-
-		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", Font.PLAIN, 16));
-		GridBagConstraints gbc_textArea = new GridBagConstraints();
-		gbc_textArea.gridheight = 9;
-		gbc_textArea.gridwidth = 12;
-		gbc_textArea.insets = new Insets(0, 0, 5, 5);
-		gbc_textArea.fill = GridBagConstraints.BOTH;
-		gbc_textArea.gridx = 1;
-		gbc_textArea.gridy = 5;
-		frame.getContentPane().add(textArea, gbc_textArea);
+		
+		myPanel panel = new myPanel();
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 11;
+		gbc_panel.gridheight = 9;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 5;
+		frame.getContentPane().add(panel, gbc_panel);
 
 
 		JLabel lblYouCanStart = new JLabel("You can start a new game");
@@ -119,19 +111,50 @@ public class GUI implements ActionListener {
 		gbc_lblYouCanStart.gridx = 1;
 		gbc_lblYouCanStart.gridy = 14;
 		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
-
+		
+		JComboBox<Object> comboBox = new JComboBox<Object>();
+		comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Rookie", "Drunken", "Suspicious"}));
+		comboBox.setBounds(159, 61, 86, 20);
+		
+		
 
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game = new Game(GuardType.ROOKIE,2,2);
-				//Start.printMap(game.getLevel().getMap());
-				//textArea.append(game.mapString(game.getLevel().getMap()));
+				GuardType guard = GuardType.ROOKIE;
+				Integer numOgres;
+				if(textField.getText().isEmpty() || !textField.getText().matches("[0-9]+")){
+					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
+					return;
+				}
+				
+				numOgres= Integer.parseInt(textField.getText());
+				
+				if(numOgres < 1 || numOgres > 5 )
+				{
+					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
+					return;
+				}  
+				
+				//Preparing first Level
+				int chosenIndex = comboBox.getSelectedIndex();
+				switch(chosenIndex) {
+				case 0: guard = GuardType.ROOKIE; break;
+				case 1: guard = GuardType.DRUNKEN; break;
+				case 2: guard = GuardType.SUSPICIOUS; break;
+				
+				}
+			
+				
+				game = new Game(guard,numOgres,2);
+				panel.setGame(game);
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 			}
 		});
 
-		JComboBox comboBox = new JComboBox();
+	
+		
+		frame.getContentPane().add(comboBox);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -187,31 +210,43 @@ public class GUI implements ActionListener {
 		gbc_btnExit.gridx = 14;
 		gbc_btnExit.gridy = 14;
 		frame.getContentPane().add(btnExit, gbc_btnExit);
-
-
-
-
+		
 
 		//Action Listener Generalizado para todos os botões
 		ActionListener actionListener =( new ActionListener() {
 			@Override  
 			public void actionPerformed(ActionEvent e) {
 				char var=0;
+				Cmd cmd= null;
+				
 
-				if(e.getSource() == btnUp)
+				if(e.getSource() == btnUp) {
 					var = 'w';
-				if(e.getSource() == btnDown)
+					cmd = Cmd.UP;
+				}
+					
+				if(e.getSource() == btnDown) {
 					var = 's';
-				if(e.getSource() == btnLeft)
+					cmd = Cmd.DOWN;
+					}
+				if(e.getSource() == btnLeft) {
 					var = 'a';
-				if(e.getSource() == btnRight)
+					cmd = Cmd.LEFT;
+				}
+				if(e.getSource() == btnRight) {
 					var = 'd';
+					cmd = Cmd.RIGHT;
+				}
 				if(e.getSource() == btnExit) {
 					System.exit(0);
 				}
-				//int status = game.getLevel().update(Start.parseCharToCmd(var));
-				//game.updateGameVariables(status,Start.parseCharToCmd(var));
-				//textArea.setText(game.mapString(game.getLevel().getMap()));
+			//	System.out.print(cmd); está a funcionar, reconhece qual a ação que tem de fazer
+				game.moveHero(cmd);
+				panel.repaint();
+				
+				
+
+			
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
 				if(game.isGameOver() ==  true) {
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
@@ -251,21 +286,20 @@ public class GUI implements ActionListener {
 		int status = 0;
 		switch(action.getName()) {
 		case "up":
-	//		status = game.getLevel().update(Start.parseCharToCmd('w'));
+			 game.moveHero(Cmd.UP);
 			break;
 		case "down":
-		//	status = game.getLevel().update(Start.parseCharToCmd('s'));
+			game.moveHero(Cmd.DOWN);
 			break;
 		case "right":
-			//status = game.getLevel().update(Start.parseCharToCmd('d'));
+			game.moveHero(Cmd.RIGHT);
 			break;
 		case "left":
-		//	status = game.getLevel().update(Start.parseCharToCmd('a'));
+			game.moveHero(Cmd.LEFT);
 			break;
 		}
 		//game.updateGameVariables(status,Start.parseCharToCmd('p'));
 	}
-
-
 }
+
 

@@ -62,7 +62,7 @@ public class Start
 		case GUARD:return 'G';			case GUARD_SLEEP:return 'g';
 		case WALL:return 'X';			case CLUB_ON_KEY:return '$';
 		case OGRE:return 'o';			case OGRE_ON_KEY:return '$';
-		case OGRE_WEAPON:return '*';	case OGRE_STUNED:return '8';
+		case OGRE_WEAPON:return '*';		case OGRE_STUNED:return '8';
 		case LEVER:return 'k';			case KEY:return 'k';
 		case DOOR_CLOSED:return 'i'; 	case DOOR_OPEN:return 'S';
 		case CLEAR_SPACE:
@@ -91,7 +91,7 @@ public class Start
 				cmd = validChar(scan);
 			}
 			firstCall = false;
-			printMap(game.moveHero(cmd));
+			printMap(game.getSymbolMap());
 		}while(!game.gameEnded());
 		
 		System.out.println(game.endingMessage());

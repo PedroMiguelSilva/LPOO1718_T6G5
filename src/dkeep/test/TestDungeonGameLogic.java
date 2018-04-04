@@ -13,7 +13,7 @@ import dkeep.logic.Symbol;
 
 
 public class TestDungeonGameLogic {
-	
+	/*
 	@Test
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
@@ -183,5 +183,5 @@ public class TestDungeonGameLogic {
 		else
 			return false;
 	}
-	
+	*/
 }

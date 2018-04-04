@@ -11,7 +11,7 @@ import dkeep.logic.Ogre;
 import dkeep.logic.Symbol;
 
 public class TestKeepGameLogic {
-
+/*
 	char[][] map1 = {
 			{'X','X','X','X','X'},
 			{'X','H',' ','o','X'},
