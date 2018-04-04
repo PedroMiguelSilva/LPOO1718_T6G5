@@ -13,7 +13,6 @@ public class Ogre extends Enemy
 		super(pos,Symbol.OGRE);
 		if(hasClub) {
 			Coord club = new Coord(pos);
-			pos.incX();
 			Club temp = new Club(club);
 			this.weapon = temp;
 		}
@@ -24,10 +23,11 @@ public class Ogre extends Enemy
 		cantWalkInto = temp;
 	}
 	
-	
+	/*
 	public boolean getIsStun() {
 		return isStun;
 	}
+	*/
 
 	public void stun() {
 		isStun = true;
@@ -37,10 +37,10 @@ public class Ogre extends Enemy
 	
 	//Methods
 	private void updateStunStatus() {
-		if(isStun && roundsStun > 1) {
+		if(roundsStun > 1) {
 			roundsStun -=1;
 		}			
-		else if(roundsStun == 1) {
+		else{
 			roundsStun = 0;
 			isStun = false;
 		}

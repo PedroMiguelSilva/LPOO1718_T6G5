@@ -8,7 +8,6 @@ import java.util.ArrayList;
  */
 public class Hero extends Entity
 {
-	private boolean isAlive;
 	private Key key;
 	private boolean wonLevel;
 	private boolean isArmed;
@@ -24,7 +23,6 @@ public class Hero extends Entity
 	public Hero(int startX, int startY, boolean isArmed)
 	{
 		super(new Coord(startX,startY) , Symbol.HERO);
-		isAlive = true;
 		wonLevel = false;
 		Key key1 = new Key(new Coord(0,0),new Coord(100,100));
 		this.key = key1;

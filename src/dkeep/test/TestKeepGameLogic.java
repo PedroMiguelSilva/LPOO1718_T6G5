@@ -4,15 +4,12 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dkeep.cli.Start;
 import dkeep.logic.Cmd;
-import dkeep.logic.Coord;
 import dkeep.logic.Game;
-import dkeep.logic.Ogre;
 import dkeep.logic.Symbol;
 
 public class TestKeepGameLogic {
-/*
+
 	char[][] map1 = {
 			{'X','X','X','X','X'},
 			{'X','H',' ','o','X'},
@@ -24,8 +21,8 @@ public class TestKeepGameLogic {
 
 	char[][] map2 = {
 			{'X','X','X','X','X','X','X'},
-			{'X','H',' ',' ',' ',' ','X'},
-			{'i',' ',' ',' ',' ',' ','X'},
+			{'X','H','X',' ',' ',' ','X'},
+			{'i','X','X',' ',' ',' ','X'},
 			{'X','k',' ',' ',' ',' ','X'},
 			{'X',' ',' ',' ','o',' ','X'},
 			{'X',' ',' ',' ',' ',' ','X'},
@@ -88,11 +85,13 @@ public class TestKeepGameLogic {
 	@Test(timeout = 1000)
 	public void heroMovesIntoOgreAndStuns() {
 		Game game = new Game(map1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		int x = searchOgreX(map);
 		int y = searchOgreY(map);
 		assertEquals(Symbol.OGRE,map[x][y]);
-		map = game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		map = game.getSymbolMap();
 		x = searchOgreX(map);
 		y = searchOgreY(map);
 		assertEquals(Symbol.OGRE_STUNED,map[x][y]);
@@ -101,12 +100,15 @@ public class TestKeepGameLogic {
 	@Test
 	public void heroMovesIntoKeyAndChangesRepresentation() {
 		Game game = new Game(map1);
-		Symbol[][] map = game.moveHero(Cmd.START);
-		map = game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
 		int x = searchHeroX(map);
 		int y = searchHeroY(map);
 		assertEquals(Symbol.HERO_WITH_CLUB,map[x][y]);
-		map = game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
 		x = searchHeroX(map);
 		y = searchHeroY(map);
 		assertEquals(Symbol.HERO_WITH_KEY,map[x][y]);
@@ -115,11 +117,14 @@ public class TestKeepGameLogic {
 	@Test
 	public void heroMovesIntoClosedKeepDoorNoKey() {
 		Game game = new Game(map1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 
-		map = game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_CLOSED, map[2][0]);
-		map = game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_CLOSED, map[2][0]);
 	}
 
@@ -127,13 +132,15 @@ public class TestKeepGameLogic {
 	@Test
 	public void heroMovesIntoClosedDoorWithKey() {
 		Game game = new Game(map1);
-		Symbol[][] map = game.moveHero(Cmd.START);
-
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		game.moveHero(Cmd.DOWN);
 		game.moveHero(Cmd.DOWN);
-		map = game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_CLOSED, map[2][0]);
-		map = game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_OPEN, map[2][0]);
 	}
 
@@ -150,6 +157,44 @@ public class TestKeepGameLogic {
 		assertEquals(true,game.getWonGame());
 	}
 
+
+
+	@Test
+	public void testOgreMovement(){
+		Game game = new Game(map2);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
+		int x = searchOgreX(map);
+		int y = searchOgreY(map);
+		int oldx = x;
+		int oldy = y;		
+
+		boolean left = false, right = false, up = false, down = false;
+
+		while(!left || !right || !up || !down) {
+			game.moveHero(Cmd.UP);
+			map = game.getSymbolMap();
+			x = searchOgreX(map);
+			y = searchOgreY(map);
+			Cmd cmd = lastMove(x,y,oldx,oldy);
+			switch(cmd) {
+			case UP:
+				up = true;break;
+			case DOWN:
+				down = true; break;
+			case RIGHT:
+				right = true;break;
+			case LEFT:
+			default:
+				left = true;break;
+			}
+			
+			oldx = x;
+			oldy = y;
+			
+		}
+	}
+
 	public Cmd lastMove(int x, int y,int oldx ,int oldy) {
 		if(x-oldx > 0)
 			return Cmd.DOWN;
@@ -161,35 +206,4 @@ public class TestKeepGameLogic {
 			return Cmd.LEFT;
 	}
 
-	@Test(timeout = 1000)
-	public void testOgreMovement(){
-		Game game = new Game(map2);
-		Symbol[][] map = game.moveHero(Cmd.START);
-		int x = searchOgreX(map);
-		int y = searchOgreY(map);
-		int oldx = x;
-		int oldy = y;		
-
-		boolean left = false, right = false, up = false, down = false;
-
-		while(!left || !right || !up || !down) {
-			map = game.moveHero(Cmd.UP);
-			x = searchOgreX(map);
-			y = searchOgreY(map);
-			Cmd cmd = lastMove(x,y,oldx,oldy);
-			switch(cmd) {
-			case UP:
-				up = true;break;
-			case DOWN:
-				down = true; break;
-			case LEFT:
-				left = true;break;
-			case RIGHT:
-			default:
-				right = true;break;
-			}
-		}
-	}
-	
-	
 }

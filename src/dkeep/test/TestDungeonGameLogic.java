@@ -10,22 +10,26 @@ import dkeep.logic.Symbol;
 
 
 public class TestDungeonGameLogic {
-	/*
+	
 	@Test
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		assertEquals(Symbol.HERO, map[1][1]);
-		map = game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.HERO,map[1][2]);
 	}
 	
 	@Test
 	public void testMoveHeroIntoWall() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		assertEquals(Symbol.HERO, map[1][1]);
-		map = game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.HERO,map[1][1]);
 	}
 	
@@ -63,7 +67,8 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testHeroOpenLeverAndDoorsOpen() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -81,10 +86,12 @@ public class TestDungeonGameLogic {
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
-		map = game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_CLOSED, map[5][0]);
 		assertEquals(Symbol.DOOR_CLOSED, map[6][0]);
-		map = game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_OPEN, map[5][0]);
 		assertEquals(Symbol.DOOR_OPEN, map[6][0]);
 	}
@@ -126,6 +133,7 @@ public class TestDungeonGameLogic {
 		assertEquals(2,game.getCurrentLevel());
 	}
 	
+	
 	public int searchGuardX(Symbol[][] map) {
 		for(int i = 0 ; i < map.length ; i++) {
 			for(int j = 0; j < map[0].length ; j++) {
@@ -151,7 +159,8 @@ public class TestDungeonGameLogic {
 	@Test
 	public void testDrunkenGuardCreationAndMovement() {
 		Game game = new Game(GuardType.DRUNKEN,2,1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		int x = searchGuardX(map);
 		int prevX = x;
 		int y = searchGuardY(map);
@@ -161,7 +170,8 @@ public class TestDungeonGameLogic {
 		boolean hasSlept = false,hasChangedDirection = false, wokeUp = false;
 		
 		while(!hasSlept || !hasChangedDirection || !wokeUp) {
-			map = game.moveHero(Cmd.UP);
+			game.moveHero(Cmd.UP);
+			map = game.getSymbolMap();
 			x = searchGuardX(map);
 			y = searchGuardY(map);
 			
@@ -183,7 +193,8 @@ public class TestDungeonGameLogic {
 	@Test(timeout = 1000)
 	public void testSuspiciousGuardCreationAndMovement() {
 		Game game = new Game(GuardType.SUSPICIOUS,1,1);
-		Symbol[][] map = game.moveHero(Cmd.START);
+		game.moveHero(Cmd.START);
+		Symbol[][] map = game.getSymbolMap();
 		int x = searchGuardX(map);
 		int prevX = x;
 		int y = searchGuardY(map);
@@ -195,7 +206,8 @@ public class TestDungeonGameLogic {
 		
 		while(!hasChangedDirectionOnce) {
 			//update values
-			map = game.moveHero(Cmd.UP);
+			game.moveHero(Cmd.UP);
+			map = game.getSymbolMap();
 			x = searchGuardX(map);
 			y = searchGuardY(map);
 			
@@ -241,5 +253,5 @@ public class TestDungeonGameLogic {
 			return false;
 		
 	}
-	*/
+	
 }

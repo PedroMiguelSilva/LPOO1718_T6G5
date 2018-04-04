@@ -92,6 +92,7 @@ public class Start
 				cmd = validChar(scan);
 			}
 			firstCall = false;
+			game.moveHero(cmd);
 			printMap(game.getSymbolMap());
 		}while(!game.gameEnded());
 		
