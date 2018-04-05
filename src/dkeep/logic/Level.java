@@ -86,7 +86,7 @@ abstract public class Level
 	 * 			Coordinates of the doors to be created
 	 * @return Array of Doors created
 	 */
-	public ArrayList<Entity> createDoors(ArrayList<Coord> coord){
+	protected ArrayList<Entity> createDoors(ArrayList<Coord> coord){
 		ArrayList<Entity> result = new ArrayList<Entity>();
 		
 		for(Coord c : coord) {
@@ -104,7 +104,7 @@ abstract public class Level
 	 * 			Array of y values
 	 * @return Array of Coordinates created from array of x and y values
 	 */
-	public ArrayList<Coord> posToCoords(int[] posX, int[] posY){
+	protected ArrayList<Coord> posToCoords(int[] posX, int[] posY){
 		ArrayList<Coord> coords = new ArrayList<Coord>();
 		
 		for(int i = 0 ; i < posX.length ; i++) {
@@ -146,7 +146,7 @@ abstract public class Level
 	/* Search the Map for the Hero and returns it
 	 * @return Hero of the Level
 	 */
-	public Hero getHeroFromMap() {
+	protected Hero getHeroFromMap() {
 		for(int i = 0 ; i < map.getMap().length; i++) {
 			for(int j = 0; j < map.getMap()[0].length; j++) {
 				if(map.getMap()[i][j].getTop() instanceof Hero) {
@@ -160,7 +160,7 @@ abstract public class Level
 	/* Search the Map for the Enemies and returns them
 	 * @return Array of Enemies of the Level
 	 */
-	public ArrayList<Enemy> getEnemiesFromMap(){
+	protected ArrayList<Enemy> getEnemiesFromMap(){
 		ArrayList<Enemy> result = new ArrayList<Enemy>();
 		for(int i = 0 ; i < map.getMap().length; i++) {
 			for(int j = 0; j < map.getMap()[0].length; j++) {
@@ -175,7 +175,7 @@ abstract public class Level
 	/* Search the Map for the Interactive objects and returns them
 	 * @return Array of Interactive objects of the Level
 	 */
-	public ArrayList<Interactive> getInteractivesFromMap(){
+	protected ArrayList<Interactive> getInteractivesFromMap(){
 		ArrayList<Interactive> result = new ArrayList<Interactive>();
 		
 		for(int i = 0 ; i < map.getMap().length; i++) {
