@@ -51,27 +51,26 @@ public class CustomLevel {
 	}
 	
 	private boolean hasAllComponents() {
-		Symbol[] list = {
-				Symbol.DOOR_CLOSED,
-				Symbol.KEY,
-				Symbol.OGRE,
-				Symbol.HERO
-				};
-		
-		for(int i = 0; i < list.length; i++) {
-			if(!hasEntityWithSymbol(list[i]))
-				return false;
-		}
+		if(numEnt(Symbol.HERO) != 1)
+			return false;
+		if(numEnt(Symbol.DOOR_CLOSED) != 1)
+			return false;
+		if(numEnt(Symbol.KEY) != 1)
+			return false;
+		int nOgre = numEnt(Symbol.OGRE);
+		if(nOgre < 1 || nOgre > 4)
+			return false;
 		return true;
 	}
 	
-	private boolean hasEntityWithSymbol(Symbol symb) {
+	private int numEnt(Symbol symb) {
+		int count = 0;
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < width ; j++) {
 				if(map[i][j] == symb)
-					return true;
+					count++;
 			}
 		}
-		return false;
+		return count;
 	}
 }
