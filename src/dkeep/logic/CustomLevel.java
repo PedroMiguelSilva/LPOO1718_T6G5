@@ -20,10 +20,10 @@ public class CustomLevel {
 		for(int i = 0 ; i < height ; i++) {
 			for(int j = 0; j < width ; j++) {
 				if(i == 0 || j == 0 || i == (height-1) || j == (width-1)) {
-					map[i][j] = Symbol.CLEAR_SPACE;
+					map[i][j] = Symbol.WALL;
 				}
 				else {
-					map[i][j] = Symbol.WALL;
+					map[i][j] = Symbol.CLEAR_SPACE;
 				}
 			}
 		}
@@ -36,6 +36,10 @@ public class CustomLevel {
 	
 	public Symbol[][] getMap(){
 		return this.map;
+	}
+	
+	public Symbol getSymbol(int x, int y) {
+		return map[x][y];
 	}
 	
 	public boolean isValid() {

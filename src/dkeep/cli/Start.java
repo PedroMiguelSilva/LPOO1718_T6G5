@@ -6,10 +6,34 @@ import dkeep.logic.Cmd;
 import dkeep.logic.Symbol;
 
 import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Start
 {
-
+	private static Map<Symbol,Character> parseToChar;
+	static
+	{
+		parseToChar = new HashMap<Symbol,Character>();
+		parseToChar.put(Symbol.HERO, 'H');
+		parseToChar.put(Symbol.HERO_WITH_KEY, 'K');
+		parseToChar.put(Symbol.HERO_WITH_CLUB, 'A');
+		parseToChar.put(Symbol.GUARD, 'G');
+		parseToChar.put(Symbol.GUARD_SLEEP, 'g');
+		parseToChar.put(Symbol.WALL, 'X');
+		parseToChar.put(Symbol.CLUB_ON_KEY, '$');
+		parseToChar.put(Symbol.OGRE, 'o');
+		parseToChar.put(Symbol.OGRE_ON_KEY, '$');
+		parseToChar.put(Symbol.OGRE_STUNED, '8');
+		parseToChar.put(Symbol.OGRE_WEAPON, '*');
+		parseToChar.put(Symbol.LEVER, 'k');
+		parseToChar.put(Symbol.KEY, 'k');
+		parseToChar.put(Symbol.DOOR_CLOSED, 'i');
+		parseToChar.put(Symbol.DOOR_OPEN, 'S');
+		parseToChar.put(Symbol.CLEAR_SPACE, ' ');
+	}
+	
+	
 	public static Cmd parseCharToCmd(char n) {
 		switch(n) {
 		case 'a':
@@ -54,26 +78,12 @@ public class Start
 
 		return parseCharToCmd(N);
 	}
-	
-	public static char symbolToChar(Symbol s) {
-		switch(s) {
-		case HERO: return 'H';
-		case HERO_WITH_KEY:return 'K';	case HERO_WITH_CLUB:return 'A';
-		case GUARD:return 'G';			case GUARD_SLEEP:return 'g';
-		case WALL:return 'X';			case CLUB_ON_KEY:return '$';
-		case OGRE:return 'o';			case OGRE_ON_KEY:return '$';
-		case OGRE_WEAPON:return '*';		case OGRE_STUNED:return '8';
-		case LEVER:return 'k';			case KEY:return 'k';
-		case DOOR_CLOSED:return 'i'; 	case DOOR_OPEN:return 'S';
-		case CLEAR_SPACE:
-		default:return ' ';
-		}
-	}
+
 
 	public static void printMap(Symbol[][] map) {
 		for(int i = 0 ; i < map.length;i++) {
 			for(int j = 0; j < map[0].length; j++) {
-				System.out.print(symbolToChar(map[i][j]) + " ");
+				System.out.print(parseToChar.get(map[i][j]) + " ");
 			}
 			System.out.println();
 		}
@@ -81,7 +91,7 @@ public class Start
 
 	
 	public static void main(String[] args){
-		Game game = new Game(GuardType.SUSPICIOUS,0,2);
+		Game game = new Game(GuardType.ROOKIE,0,2);
 		
 		Cmd cmd = Cmd.START;						
 		Scanner scan = new Scanner(System.in);

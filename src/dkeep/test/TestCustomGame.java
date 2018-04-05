@@ -19,7 +19,9 @@ public class TestCustomGame {
 	@Test
 	public void TestCreationOfWalls() {
 		CustomLevel lvl = new CustomLevel();
-		assertEquals(Symbol.WALL,lvl.getMap()[0][0]);
+		Symbol c = lvl.getSymbol(0, 0);
+		Symbol[][] map = lvl.getMap();
+		assertEquals(Symbol.WALL,c);
 		Start.printMap(lvl.getMap());
 	}
 }
