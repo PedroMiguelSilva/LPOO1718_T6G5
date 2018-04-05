@@ -1,26 +1,14 @@
 package dkeep.gui;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import dkeep.logic.Map;
-///import dkeep.gui.Images;
+import java.util.Map;
+import java.util.HashMap;
 import dkeep.logic.Symbol;
-import javafx.scene.input.KeyEvent;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyListener;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-
 import dkeep.logic.Cmd;
-import dkeep.logic.Coord;
-
 import dkeep.logic.Game;
-import dkeep.logic.GuardType;
-import dkeep.cli.Start;
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
 
 
 public class myPanel extends JPanel implements KeyListener{
@@ -36,13 +24,13 @@ public class myPanel extends JPanel implements KeyListener{
 	public myPanel() {
 		addKeyListener(this);
 	}
-	
 
 	public void setGame(Game game) {
 		this.gamex = game;
 	}
-	
-	
+	/*
+	static Map<Symbol,BufferedImage> imagesMap = new HashMap<Symbol,BufferedImage>(); 
+	*/
 	private BufferedImage wall = images.getWall();
 	private BufferedImage hero = images.getHero();
 	private BufferedImage armedH = images.getHero(); //preciso mudar isto!!!
@@ -53,7 +41,7 @@ public class myPanel extends JPanel implements KeyListener{
 	private BufferedImage weapon = images.getWeapon();
 	private BufferedImage door = images.getDoor();
 	private BufferedImage lever = images.getLever();
-	private BufferedImage key = images.getKey();
+	private BufferedImage key = images.getKey(); 
 	
 
 	public static BufferedImage scale(BufferedImage imageToScale, int dWidth, int dHeight) {
@@ -63,8 +51,11 @@ public class myPanel extends JPanel implements KeyListener{
             Graphics2D graphics2D = scaledImage.createGraphics();
             graphics2D.drawImage(imageToScale, 0, 0, dWidth, dHeight, null);
             graphics2D.dispose();
+        		}
+        return scaledImage;
         }
-        return scaledImage;}
+
+	
 	public static char symbolToChar(Symbol s) {
 		switch(s) {
 		case HERO: return 'H';
@@ -146,6 +137,13 @@ public class myPanel extends JPanel implements KeyListener{
 	
 	}
 	
+	/*
+	public  void initializeMap() {
+		Symbol s = null;
+		imagesMap.put(s.HERO, images.getHero());
+		
+	}
+	*/
 
 //	@Override
 	public void keyPressed(java.awt.event.KeyEvent e) {

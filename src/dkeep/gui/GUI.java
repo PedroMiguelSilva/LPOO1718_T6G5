@@ -115,60 +115,6 @@ public class GUI implements ActionListener {
 		JComboBox<Object> comboBox = new JComboBox<Object>();
 		comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBox.setBounds(159, 61, 86, 20);
-		
-		
-
-		JButton btnNewButton = new JButton("New game");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GuardType guard = GuardType.ROOKIE;
-				Integer numOgres;
-				if(textField.getText().isEmpty() || !textField.getText().matches("[0-9]+")){
-					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
-					return;
-				}
-				
-				numOgres= Integer.parseInt(textField.getText());
-				
-				if(numOgres < 1 || numOgres > 5 )
-				{
-					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
-					return;
-				}  
-				
-				//Preparing first Level
-				int chosenIndex = comboBox.getSelectedIndex();
-				switch(chosenIndex) {
-				case 0: guard = GuardType.ROOKIE; break;
-				case 1: guard = GuardType.DRUNKEN; break;
-				case 2: guard = GuardType.SUSPICIOUS; break;
-				
-				}
-			
-				
-				game = new Game(guard,numOgres,2);
-				panel.setGame(game);
-				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-			}
-		});
-
-	
-		
-		frame.getContentPane().add(comboBox);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.gridwidth = 2;
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 3;
-		gbc_comboBox.gridy = 3;
-		frame.getContentPane().add(comboBox, gbc_comboBox);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 14;
-		gbc_btnNewButton.gridy = 4;
-		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
-
-
 		JButton btnUp = new JButton("Up");
 		btnUp.setName("up");
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
@@ -203,6 +149,65 @@ public class GUI implements ActionListener {
 		gbc_btnDown.gridx = 14;
 		gbc_btnDown.gridy = 10;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
+		
+		
+
+		JButton btnNewButton = new JButton("New game");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GuardType guard = GuardType.ROOKIE;
+				Integer numOgres;
+				if(textField.getText().isEmpty() || !textField.getText().matches("[0-9]+")){
+					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
+					return;
+				}
+				
+				numOgres= Integer.parseInt(textField.getText());
+				
+				if(numOgres < 1 || numOgres > 5 )
+				{
+					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
+					return;
+				}  
+				
+				//Preparing first Level
+				int chosenIndex = comboBox.getSelectedIndex();
+				switch(chosenIndex) {
+				case 0: guard = GuardType.ROOKIE; break;
+				case 1: guard = GuardType.DRUNKEN; break;
+				case 2: guard = GuardType.SUSPICIOUS; break;
+				
+				}
+			
+				
+				game = new Game(guard,numOgres,2);
+				panel.setGame(game);
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				btnUp.setEnabled(true);
+				btnDown.setEnabled(true);
+				btnLeft.setEnabled(true);
+				btnRight.setEnabled(true);
+			}
+		});
+
+	
+		
+		frame.getContentPane().add(comboBox);
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.gridwidth = 2;
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridy = 3;
+		frame.getContentPane().add(comboBox, gbc_comboBox);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 14;
+		gbc_btnNewButton.gridy = 4;
+		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
+
+
+	
 
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
