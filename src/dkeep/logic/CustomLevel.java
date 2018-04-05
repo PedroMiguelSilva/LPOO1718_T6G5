@@ -31,30 +31,44 @@ public class CustomLevel {
 	
 	
 	public void editMap(Symbol symb, int x, int y) {
+		if(!validPosition(symb,x,y))
+			return;
+		
 		map[x][y] = symb;
+	}
+	
+	private boolean validPosition(Symbol symb, int x, int y) {
+		if(symb != Symbol.DOOR_CLOSED)
+			return !outOfBounds(x,y);
+		
+		if(outOfBounds(x,y) && !isACorner(x,y)) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	private boolean isACorner(int x, int y) {
+		if(x == 0 && y == 0)
+			return true;
+		else if(x == 0 && y == width-1)
+			return true;
+		else if(x == height-1 && y == width-1)
+			return true;
+		else if(x == height-1 && y == 0)
+			return true;
+		else return false;
+	}
+	
+	private boolean outOfBounds(int x,int y) {
+		return x == 0 || y == 0 || y == (width -1) || x == (height-1);
 	}
 	
 	public Symbol[][] getMap(){
 		return this.map;
 	}
 	
-	public Symbol getSymbol(int x, int y) {
-		return map[x][y];
-	}
-	
 	public boolean isValid() {
-		if(!hasAllComponents() || !isPossible())
-			return false;
-		else
-			return true;
-	}
-	
-	private boolean isPossible() {
-		//ALGORITMO DE CALL PARA LABIRINTO ??
-		return true;
-	}
-	
-	private boolean hasAllComponents() {
 		if(numEnt(Symbol.HERO) != 1)
 			return false;
 		if(numEnt(Symbol.DOOR_CLOSED) != 1)
@@ -62,7 +76,9 @@ public class CustomLevel {
 		if(numEnt(Symbol.KEY) != 1)
 			return false;
 		int nOgre = numEnt(Symbol.OGRE);
-		if(nOgre < 1 || nOgre > 4)
+		if(nOgre < 1 )
+			return false;
+		if(nOgre > 4)
 			return false;
 		return true;
 	}

@@ -184,7 +184,14 @@ public class TestKeepGameLogic {
 		assertEquals(true,game.getWonGame());
 	}
 
-
+	@Test
+	public void TestPlayerQuitGame() {
+		Game game = new Game(map1);
+		game.moveHero(Cmd.QUIT);
+		assertTrue(game.getQuit());
+		assertTrue(game.gameEnded());
+		assertEquals("Quit Game",game.endingMessage());
+	}
 
 	@Test
 	public void testOgreMovement(){
@@ -222,7 +229,7 @@ public class TestKeepGameLogic {
 		}
 	}
 	
-	@Test(timeout = 10000)
+	@Test(timeout = 1000)
 	public void TestRandomnessClubSwing() {
 		Game game = new Game(GuardType.ROOKIE,1,2);
 		finishFirstLevel(game);

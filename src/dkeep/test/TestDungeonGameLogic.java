@@ -46,6 +46,8 @@ public class TestDungeonGameLogic {
 		assertFalse(game.isGameOver());
 		game.moveHero(Cmd.RIGHT);
 		assertTrue(game.isGameOver());
+		assertTrue(game.gameEnded());
+		assertEquals("Game Over",game.endingMessage());
 	}
 
 	@Test
@@ -98,7 +100,7 @@ public class TestDungeonGameLogic {
 
 	@Test
 	public void testHeroOpenLeverAndWinLevel() {
-		Game game = new Game(GuardType.ROOKIE,2,2);
+		Game game = new Game(GuardType.ROOKIE,2,1);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.DOWN);
@@ -128,9 +130,11 @@ public class TestDungeonGameLogic {
 		game.moveHero(Cmd.LEFT);
 		game.moveHero(Cmd.LEFT);
 		game.moveHero(Cmd.LEFT);
-		assertEquals(1,game.getCurrentLevel());
+		assertFalse(game.gameEnded());
 		game.moveHero(Cmd.LEFT);
-		assertEquals(2,game.getCurrentLevel());
+		assertTrue(game.gameEnded());
+		assertTrue(game.getWonGame());
+		assertEquals("Congratulations",game.endingMessage());
 	}
 
 
@@ -226,6 +230,38 @@ public class TestDungeonGameLogic {
 
 			game.moveHero(Cmd.UP);			
 		}
+	}
+	
+	@Test
+	public void TestToggleDoor() {
+		Game game = new Game(GuardType.ROOKIE,2,1);
+		Symbol[][] map = game.getSymbolMap();
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.LEFT);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.DOOR_OPEN, map[5][0]);
+		assertEquals(Symbol.DOOR_OPEN, map[6][0]);
+		game.moveHero(Cmd.LEFT);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.DOOR_CLOSED, map[5][0]);
+		assertEquals(Symbol.DOOR_CLOSED, map[6][0]);
 	}
 }
 
