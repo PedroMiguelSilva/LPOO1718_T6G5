@@ -57,7 +57,7 @@ public class Key extends Interactive
 		hero.setKey(this);
 		hero.setSymb(Symbol.HERO_WITH_KEY);
 		map.move(hero, this.getCoord());
-		hero.getCoord().setCoord(this.getCoord());
+		//hero.getCoord().setCoord(this.getCoord());
 		map.setBotEnt(hero.getCoord(), temp);
 	}	
 

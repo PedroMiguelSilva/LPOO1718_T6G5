@@ -33,11 +33,6 @@ public class Drunken extends Enemy{
 		reverse = false;
 	}
 
-	/* @return Returns if the Drunken guard is sleeping or not
-	 */
-	public boolean isSleeping() {
-		return this.sleeping;
-	}
 	
 	/* Wake up the Drunken guard
 	 */

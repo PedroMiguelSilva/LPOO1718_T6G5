@@ -142,6 +142,23 @@ public class TestKeepGameLogic {
 	}
 
 	@Test
+	public void TestHeroPicksKey() {
+		Game game = new Game(map1);
+		Symbol[][] map = game.getSymbolMap();
+		game.moveHero(Cmd.START);
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.KEY,map[3][1]);
+		game.moveHero(Cmd.DOWN);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.HERO_WITH_KEY,map[3][1]);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.RIGHT);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.CLEAR_SPACE,map[3][1]);
+	}
+	
+	@Test
 	public void heroMovesIntoClosedKeepDoorNoKey() {
 		Game game = new Game(map1);
 		game.moveHero(Cmd.START);
@@ -229,7 +246,7 @@ public class TestKeepGameLogic {
 		}
 	}
 	
-	@Test(timeout = 1000)
+	@Test(timeout = 2000)
 	public void TestRandomnessClubSwing() {
 		Game game = new Game(GuardType.ROOKIE,1,2);
 		finishFirstLevel(game);
