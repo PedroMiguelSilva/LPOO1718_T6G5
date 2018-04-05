@@ -118,7 +118,8 @@ public class Map
 		case DOOR_CLOSED:
 			return new Door(coord);
 		case KEY:
-			return new Key(coord);
+			Coord master = new Coord(100,100);
+			return new Key(coord,master);
 		case OGRE:
 			return new Ogre(coord,false);
 		case HERO:

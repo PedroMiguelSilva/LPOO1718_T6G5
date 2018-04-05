@@ -16,6 +16,32 @@ public class CustomLevel {
 		initMap();
 	}
 	
+	public void editMap(Symbol symb, int x, int y) {
+		if(!validPosition(symb,x,y))
+			return;
+		
+		map[x][y] = symb;
+	}
+	
+	public Symbol[][] getMap(){
+		return this.map;
+	}
+	
+	public boolean isValid() {
+		if(numEnt(Symbol.HERO) != 1)
+			return false;
+		if(numEnt(Symbol.DOOR_CLOSED) != 1)
+			return false;
+		if(numEnt(Symbol.KEY) != 1)
+			return false;
+		int nOgre = numEnt(Symbol.OGRE);
+		if(nOgre < 1 )
+			return false;
+		if(nOgre > 4)
+			return false;
+		return true;
+	}
+	
 	private void initMap() {
 		for(int i = 0 ; i < height ; i++) {
 			for(int j = 0; j < width ; j++) {
@@ -29,13 +55,6 @@ public class CustomLevel {
 		}
 	}
 	
-	
-	public void editMap(Symbol symb, int x, int y) {
-		if(!validPosition(symb,x,y))
-			return;
-		
-		map[x][y] = symb;
-	}
 	
 	private boolean validPosition(Symbol symb, int x, int y) {
 		if(symb != Symbol.DOOR_CLOSED)
@@ -62,25 +81,6 @@ public class CustomLevel {
 	
 	private boolean outOfBounds(int x,int y) {
 		return x == 0 || y == 0 || y == (width -1) || x == (height-1);
-	}
-	
-	public Symbol[][] getMap(){
-		return this.map;
-	}
-	
-	public boolean isValid() {
-		if(numEnt(Symbol.HERO) != 1)
-			return false;
-		if(numEnt(Symbol.DOOR_CLOSED) != 1)
-			return false;
-		if(numEnt(Symbol.KEY) != 1)
-			return false;
-		int nOgre = numEnt(Symbol.OGRE);
-		if(nOgre < 1 )
-			return false;
-		if(nOgre > 4)
-			return false;
-		return true;
 	}
 	
 	private int numEnt(Symbol symb) {

@@ -47,36 +47,37 @@ public class Coord {
 
 	/* Increments the x value of Coord
 	 */
-	public void incX() {
+	private void incX() {
 		this.x +=1;
 	}
 
 	/* Increments the y value of Coord
 	 */
-	public void incY() {
+	private void incY() {
 		this.y += 1;
 	}
 
 	/* Decrements the x value of Coord
 	 */
-	public void decX() {
+	private void decX() {
 		this.x -= 1;
 	}
 
 	/* Decrements the y value of Coord
 	 */
-	public void decY() {
+	private void decY() {
 		this.y -= 1;
 	}
 
 	/* Sets values of Coord with those given in coord
 	 * @param coord
 	 * 			Coordinates with values of x and y to be copied
-	 */
+	 
 	public void setCoord(Coord coord) {
 		this.x = coord.getX();
 		this.y = coord.getY();
 	}
+	*/
 
 	/* Return a random Coord Adjacent to this Coord
 	 * @return Random adjacent coordinate
@@ -129,10 +130,12 @@ public class Coord {
 		if(obj == null)
 			return false;
 
-		if(getX() == 0 && getY() == 0)
+		if(getX() == 100 && getY() == 100)
 			return true;
+		
 		Coord coord = (Coord) obj;
-		if(coord.getX() == 0 && coord.getY() == 0)
+		
+		if(coord.getX() == 100 && coord.getY() == 100)
 			return true;
 
 		if(this.getX() == coord.getX() && this.getY() == coord.getY())

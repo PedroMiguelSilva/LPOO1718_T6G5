@@ -24,7 +24,7 @@ public class Hero extends Entity
 	{
 		super(new Coord(startX,startY) , Symbol.HERO);
 		wonLevel = false;
-		Key key1 = new Key(new Coord(0,0),new Coord(100,100));
+		Key key1 = new Key(new Coord(0,0),new Coord(0,0));
 		this.key = key1;
 		this.isArmed = isArmed;
 
