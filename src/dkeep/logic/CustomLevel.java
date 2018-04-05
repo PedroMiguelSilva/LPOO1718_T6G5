@@ -6,7 +6,7 @@ public class CustomLevel {
 	private int height;
 	
 	public CustomLevel() {
-		this(6,6);
+		this(7,7);
 	}
 	
 	public CustomLevel(int w, int h) {
