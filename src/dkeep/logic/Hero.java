@@ -164,24 +164,15 @@ public class Hero extends Entity
 		Coord border = new Coord(map.getHeight(),map.getWidth());
 		for(Enemy e : enemies)	{
 			if(isDangerous(map, e.getSymb(),border)){
-				isAlive = false;
 				return true;
 			}
 		}
 		if(isDangerous(map, Symbol.OGRE_WEAPON,border)){
-			isAlive = false;
 			return true;
 		}
 		return false;
 	}
 
-	
-	/* Set Hero as dead
-	 */
-	public void setDead()
-	{
-		isAlive = false;
-	}
 	
 	/* Set Key to Hero
 	 * @param newKey

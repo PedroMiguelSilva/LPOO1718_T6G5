@@ -23,7 +23,6 @@ abstract public class Level
 	 */
 	public boolean heroDied() {
 		if(this.getHero().isDead(this.getMap(), this.getEnemies())) {
-			this.getHero().setDead();
 			return true;
 		}
 		return false;
