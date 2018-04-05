@@ -66,8 +66,6 @@ public class Game
 		int status = 0;
 		status = this.getLevel().update(cmd);
 		this.updateGameVariables(status, cmd);
-		
-		
 	}
 	
 	/* @return Current Level index

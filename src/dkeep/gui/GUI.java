@@ -13,19 +13,19 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
-import javafx.scene.input.KeyEvent;
 
-public class GUI implements ActionListener {
+public class GUI implements ActionListener, KeyListener {
 
 	private JFrame frame;
 	private JTextField textField;
 	protected Game game;
 	protected int numberOfMoves=0;
-	
+
 
 	/**
 	 * Launch the application.
@@ -49,7 +49,7 @@ public class GUI implements ActionListener {
 	public GUI() {
 		initialize();
 	}
-	
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -60,9 +60,9 @@ public class GUI implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{73, 115, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{26, 27, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{26, 27, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 
 		JLabel lblNewLabenterNumber = new JLabel("Number of Ogres");
@@ -92,15 +92,28 @@ public class GUI implements ActionListener {
 		gbc_lblGuard.gridx = 0;
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
-		
-		myPanel panel = new myPanel();
+
+		JButton btnCustomGame = new JButton("CustomGame");
+		btnCustomGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame customFrame = new MyFrame();
+				customFrame.setVisible(true);
+			}
+		});
+		GridBagConstraints gbc_btnCustomGame = new GridBagConstraints();
+		gbc_btnCustomGame.insets = new Insets(0, 0, 5, 5);
+		gbc_btnCustomGame.gridx = 14;
+		gbc_btnCustomGame.gridy = 5;
+		frame.getContentPane().add(btnCustomGame, gbc_btnCustomGame);
+
+		MyPanel panel = new MyPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.gridwidth = 11;
 		gbc_panel.gridheight = 9;
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 1;
-		gbc_panel.gridy = 5;
+		gbc_panel.gridy = 6;
 		frame.getContentPane().add(panel, gbc_panel);
 
 
@@ -109,9 +122,9 @@ public class GUI implements ActionListener {
 		gbc_lblYouCanStart.gridwidth = 4;
 		gbc_lblYouCanStart.insets = new Insets(0, 0, 5, 5);
 		gbc_lblYouCanStart.gridx = 1;
-		gbc_lblYouCanStart.gridy = 14;
+		gbc_lblYouCanStart.gridy = 15;
 		frame.getContentPane().add(lblYouCanStart, gbc_lblYouCanStart);
-		
+
 		JComboBox<Object> comboBox = new JComboBox<Object>();
 		comboBox.setModel(new DefaultComboBoxModel<Object>(new String[] {"Rookie", "Drunken", "Suspicious"}));
 		comboBox.setBounds(159, 61, 86, 20);
@@ -120,7 +133,7 @@ public class GUI implements ActionListener {
 		GridBagConstraints gbc_btnUp = new GridBagConstraints();
 		gbc_btnUp.insets = new Insets(0, 0, 5, 5);
 		gbc_btnUp.gridx = 14;
-		gbc_btnUp.gridy = 8;
+		gbc_btnUp.gridy = 9;
 		frame.getContentPane().add(btnUp, gbc_btnUp);
 
 
@@ -129,7 +142,7 @@ public class GUI implements ActionListener {
 		GridBagConstraints gbc_btnLeft = new GridBagConstraints();
 		gbc_btnLeft.insets = new Insets(0, 0, 5, 5);
 		gbc_btnLeft.gridx = 13;
-		gbc_btnLeft.gridy = 9;
+		gbc_btnLeft.gridy = 10;
 		frame.getContentPane().add(btnLeft, gbc_btnLeft);
 
 
@@ -138,7 +151,7 @@ public class GUI implements ActionListener {
 		GridBagConstraints gbc_btnRight = new GridBagConstraints();
 		gbc_btnRight.insets = new Insets(0, 0, 5, 0);
 		gbc_btnRight.gridx = 15;
-		gbc_btnRight.gridy = 9;
+		gbc_btnRight.gridy = 10;
 		frame.getContentPane().add(btnRight, gbc_btnRight);
 
 
@@ -147,10 +160,10 @@ public class GUI implements ActionListener {
 		GridBagConstraints gbc_btnDown = new GridBagConstraints();
 		gbc_btnDown.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDown.gridx = 14;
-		gbc_btnDown.gridy = 10;
+		gbc_btnDown.gridy = 11;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
-		
-		
+
+
 
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -161,25 +174,25 @@ public class GUI implements ActionListener {
 					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
 					return;
 				}
-				
+
 				numOgres= Integer.parseInt(textField.getText());
-				
+
 				if(numOgres < 1 || numOgres > 5 )
 				{
 					lblYouCanStart.setText("Number of Ogres: 1 to 5...");
 					return;
 				}  
-				
+
 				//Preparing first Level
 				int chosenIndex = comboBox.getSelectedIndex();
 				switch(chosenIndex) {
 				case 0: guard = GuardType.ROOKIE; break;
 				case 1: guard = GuardType.DRUNKEN; break;
 				case 2: guard = GuardType.SUSPICIOUS; break;
-				
+
 				}
-			
-				
+
+
 				game = new Game(guard,numOgres,2);
 				panel.setGame(game);
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
@@ -187,11 +200,12 @@ public class GUI implements ActionListener {
 				btnDown.setEnabled(true);
 				btnLeft.setEnabled(true);
 				btnRight.setEnabled(true);
+				panel.requestFocusInWindow();
 			}
 		});
 
-	
-		
+
+
 		frame.getContentPane().add(comboBox);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.gridwidth = 2;
@@ -207,53 +221,75 @@ public class GUI implements ActionListener {
 		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
 
 
-	
-
 		JButton btnExit = new JButton("Exit");
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.insets = new Insets(0, 0, 5, 5);
 		gbc_btnExit.gridx = 14;
-		gbc_btnExit.gridy = 14;
+		gbc_btnExit.gridy = 15;
 		frame.getContentPane().add(btnExit, gbc_btnExit);
-		
+
+
+
 
 		//Action Listener Generalizado para todos os botões
 		ActionListener actionListener =( new ActionListener() {
 			@Override  
 			public void actionPerformed(ActionEvent e) {
-				char var=0;
 				Cmd cmd= null;
-				
 
-				if(e.getSource() == btnUp) {
-					var = 'w';
+
+				if(e.getSource() == btnUp) 
 					cmd = Cmd.UP;
-				}
-					
-				if(e.getSource() == btnDown) {
-					var = 's';
+
+				if(e.getSource() == btnDown) 
 					cmd = Cmd.DOWN;
-					}
-				if(e.getSource() == btnLeft) {
-					var = 'a';
+
+				if(e.getSource() == btnLeft) 
 					cmd = Cmd.LEFT;
-				}
-				if(e.getSource() == btnRight) {
-					var = 'd';
+
+				if(e.getSource() == btnRight) 	
 					cmd = Cmd.RIGHT;
-				}
-				if(e.getSource() == btnExit) {
+
+				if(e.getSource() == btnExit) 
 					System.exit(0);
-				}
-			//	System.out.print(cmd); está a funcionar, reconhece qual a ação que tem de fazer
+
+/*
+			
+				frame.addKeyListener(new KeyListener() {
+
+					@Override
+					public void keyPressed(java.awt.event.KeyEvent arg0) {
+						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_LEFT)
+							game.moveHero(Cmd.LEFT);
+						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_RIGHT)
+							game.moveHero(Cmd.RIGHT);
+						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_UP)
+							game.moveHero(Cmd.UP);
+						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_DOWN)
+							game.moveHero(Cmd.DOWN);
+					}
+
+					@Override
+					public void keyReleased(java.awt.event.KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void keyTyped(java.awt.event.KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				});
+*/
 				game.moveHero(cmd);
 				panel.repaint();
 				
-				
 
-			
+
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
-				if(game.isGameOver() ==  true) {
+				if(game.isGameOver()) {
 					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
 					btnDown.setEnabled(false);
 					btnUp.setEnabled(false);
@@ -269,7 +305,12 @@ public class GUI implements ActionListener {
 					btnRight.setEnabled(false);
 				}
 			}
+
 		});
+		
+	
+
+
 
 		//chamada dos Action Listeners pelos botões
 		btnUp.addActionListener(actionListener);
@@ -281,17 +322,17 @@ public class GUI implements ActionListener {
 		btnDown.addActionListener(actionListener);
 
 		btnExit.addActionListener(actionListener);
+		
+	
 	}
-
 
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		JButton action = (JButton) ae.getSource();
-		int status = 0;
 		switch(action.getName()) {
 		case "up":
-			 game.moveHero(Cmd.UP);
+			game.moveHero(Cmd.UP);
 			break;
 		case "down":
 			game.moveHero(Cmd.DOWN);
@@ -303,8 +344,28 @@ public class GUI implements ActionListener {
 			game.moveHero(Cmd.LEFT);
 			break;
 		}
-		//game.updateGameVariables(status,Start.parseCharToCmd('p'));
 	}
+
+	@Override
+	public void keyPressed(java.awt.event.KeyEvent arg0) {
+				
+	}
+
+	@Override
+	public void keyReleased(java.awt.event.KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(java.awt.event.KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
+
 
 
