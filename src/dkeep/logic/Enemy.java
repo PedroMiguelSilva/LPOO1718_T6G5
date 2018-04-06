@@ -1,6 +1,5 @@
 package dkeep.logic;
 
-import java.util.ArrayList;
 
 /** Nominates an Enemy
  * @version 1.0
