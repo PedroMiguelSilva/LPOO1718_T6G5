@@ -28,6 +28,7 @@ public class GUI implements ActionListener, KeyListener {
 	protected Game game;
 	protected int numberOfMoves=0;
 	protected MyFrame customFrame;
+	protected MyPanel panel;
 	
 	
 
@@ -58,6 +59,23 @@ public class GUI implements ActionListener, KeyListener {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+	
+	private void getkey(KeyEvent e) {
+		int keyCode = e.getKeyCode();
+		
+		switch(keyCode) {
+		case java.awt.event.KeyEvent.VK_LEFT: game.moveHero(Cmd.LEFT); panel.repaint(); break;
+		
+		case java.awt.event.KeyEvent.VK_RIGHT: game.moveHero(Cmd.RIGHT); panel.repaint(); break;
+		
+		case java.awt.event.KeyEvent.VK_UP: game.moveHero(Cmd.UP);       panel.repaint(); break;
+		
+		case java.awt.event.KeyEvent.VK_DOWN: game.moveHero(Cmd.DOWN);   panel.repaint(); break;
+	}
+		}
+		
+	
 	private void initialize()  {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -98,10 +116,13 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_lblGuard.gridy = 3;
 		frame.getContentPane().add(lblGuard, gbc_lblGuard);
 
-		JButton btnCustomGame = new JButton("CustomGame");
+		JButton btnCustomGame = new JButton("Custom Game");
 		btnCustomGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 customFrame = new MyFrame();
+				 customFrame.sendGame(game);
+				 panel.setGame(game);
+				 
 			}
 		});
 		GridBagConstraints gbc_btnCustomGame = new GridBagConstraints();
@@ -109,6 +130,8 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_btnCustomGame.gridx = 14;
 		gbc_btnCustomGame.gridy = 5;
 		frame.getContentPane().add(btnCustomGame, gbc_btnCustomGame);
+		
+	
 
 	
 		//panel.setOpaque(false);
@@ -161,25 +184,14 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_btnDown.gridy = 11;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
 
-		MyPanel panel = new MyPanel();
+		panel = new MyPanel();
 		panel.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				int keyCode = e.getKeyCode();
-				
 				if(game.gameEnded())
 					return;
-				
-				
-				switch(keyCode) {
-				case java.awt.event.KeyEvent.VK_LEFT: game.moveHero(Cmd.LEFT); panel.repaint(); break;
-				
-				case java.awt.event.KeyEvent.VK_RIGHT: game.moveHero(Cmd.RIGHT); panel.repaint(); break;
-				
-				case java.awt.event.KeyEvent.VK_UP: game.moveHero(Cmd.UP);       panel.repaint(); break;
-				
-				case java.awt.event.KeyEvent.VK_DOWN: game.moveHero(Cmd.DOWN);   panel.repaint(); break;
-				}
+				getkey(e);
+			
 				panel.requestFocusInWindow();
 				
 				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
@@ -210,6 +222,7 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_panel.gridy = 6;
 		frame.getContentPane().add(panel, gbc_panel);
 
+		
 
 		JButton btnNewButton = new JButton("New game");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -249,6 +262,25 @@ public class GUI implements ActionListener, KeyListener {
 				panel.requestFocusInWindow();
 			}
 		});
+		JButton btnPlayCustomGame = new JButton("Play Custom Game");
+		btnPlayCustomGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				game = MyFrame.h;
+				panel.setGame(game);
+				lblYouCanStart.setText("You are playing your custom level");
+				btnUp.setEnabled(true);
+				btnDown.setEnabled(true);
+				btnLeft.setEnabled(true);
+				btnRight.setEnabled(true);
+				panel.requestFocusInWindow();
+				
+			}
+		});
+		GridBagConstraints gbc_btnPlayCustomGame = new GridBagConstraints();
+		gbc_btnPlayCustomGame.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPlayCustomGame.gridx = 14;
+		gbc_btnPlayCustomGame.gridy = 6;
+		frame.getContentPane().add(btnPlayCustomGame, gbc_btnPlayCustomGame);
 
 
 
@@ -344,6 +376,9 @@ public class GUI implements ActionListener, KeyListener {
 		btnExit.addActionListener(actionListener);
 		
 	
+	}
+	public void getkey() {
+		
 	}
 
 

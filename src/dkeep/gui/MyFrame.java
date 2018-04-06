@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 
 import dkeep.logic.CustomLevel;
+import dkeep.logic.Game;
 import dkeep.logic.Symbol;
 
 import java.awt.GridBagConstraints;
@@ -24,11 +25,11 @@ import javax.swing.JPanel;
 public class MyFrame extends JFrame { 
 	private JTextField textField;
 	private JTextField textField_1;
-	private ImageIcon HeroIcon;
 	private MyCustomPanel customPanel;
+	private Game gamex;
+	static Game h = null; 
+	
 	public MyFrame() {
-		HeroIcon = new ImageIcon("Images/hero.png");
-
 		getContentPane().setBackground(Color.LIGHT_GRAY);
 		getContentPane().setLayout(null);
 
@@ -137,15 +138,31 @@ public class MyFrame extends JFrame {
 					return;
 					}
 				else {
-					
-					
+					gamex = new Game(customPanel.getMap().getMap());
+					 h = gamex;
+					 dispose();
+					 
 				}
 				
 			}
 		});
 		btnSavelevel.setBounds(568, 468, 117, 29);
 		getContentPane().add(btnSavelevel);
+	/*	
+		JButton btnPlayGame = new JButton("PLAY GAME");
+		btnPlayGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gamex= h;
+			
+			}
+		});
+		btnPlayGame.setBounds(568, 522, 117, 29);
+		getContentPane().add(btnPlayGame);
+*/
 
-
+	}
+	
+	public void sendGame(Game game) {
+		this.gamex = game;
 	}
 }
