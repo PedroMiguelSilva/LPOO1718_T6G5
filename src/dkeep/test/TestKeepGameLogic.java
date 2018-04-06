@@ -287,7 +287,7 @@ public class TestKeepGameLogic {
 		boolean left = false, right = false, up = false, down = false;
 				
 		while(!left || !right || !up || !down) {
-			game.moveHero(Cmd.UP);
+			game.moveHero(Cmd.DOWN);
 			map = game.getSymbolMap();
 			xOgre = searchOgreX(map);
 			yOgre = searchOgreY(map);

@@ -180,11 +180,34 @@ public class Map
 		else
 			return getTopEnt(coord);
 	}
-
-	public boolean outOfBounds(Coord coord, Coord outOfBounds) {
-		if(coord.getX() < 0 || coord.getX() > outOfBounds.getX())
+	
+	//check if there is any symb near by coord
+	public boolean isNearBy(Coord coord, Symbol symb) {
+		Coord c1 = new Coord(coord.getX()+1,coord.getY());
+		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
+		Coord c3 = new Coord(coord.getX()-1,coord.getY());
+		Coord c4 = new Coord(coord.getX(),coord.getY()-1);
+		//need out of bounds coords
+		
+		if(!outOfBounds(c1) && getEnt(c1).getSymb() == symb)
 			return true;
-		if(coord.getY() < 0 || coord.getY() > outOfBounds.getY())
+
+		if(!outOfBounds(c2) && getEnt(c2).getSymb() == symb)
+			return true;
+
+		if(!outOfBounds(c3) && getEnt(c3).getSymb() == symb)
+			return true;
+
+		if(!outOfBounds(c4) && getEnt(c4).getSymb() == symb)
+			return true;
+
+		return false;
+	}
+
+	private boolean outOfBounds(Coord coord) {
+		if(coord.getX() < 0 || coord.getX() > this.height)
+			return true;
+		if(coord.getY() < 0 || coord.getY() > this.width)
 			return true;
 
 		return false;
@@ -213,13 +236,6 @@ public class Map
 		return this.map;
 	}
 
-	public int getHeight() {
-		return this.height;
-	}
-
-	public int getWidth() {
-		return this.width;
-	}
 	
 	public boolean isSymbolInCoord(Coord coord, Symbol[] symbArray) {
 		Symbol temp = getEnt(coord).getSymb();

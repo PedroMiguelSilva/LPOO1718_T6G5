@@ -6,7 +6,6 @@ public class Ogre extends Enemy
 	private boolean isStun;
 	private int roundsStun;
 	private Club weapon;
-	private Symbol[] cantWalkInto;
 	
 	//Constructor
 	public Ogre(Coord pos,boolean hasClub){
@@ -66,13 +65,9 @@ public class Ogre extends Enemy
 			this.setSymb(Symbol.OGRE_ON_KEY);
 		}		
 		
-		Symbol curr = this.getSymb();
 		updateStunStatus();
-		//curr = this.getSymb();
 		moveOgre(map,newCoord);
-		//curr = this.getSymb();
 		if(hasClub)
 			weapon.swing(map,this);
-		//curr = this.getSymb();
 	}
 }

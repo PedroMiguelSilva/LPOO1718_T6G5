@@ -4,9 +4,8 @@ package dkeep.logic;
  * @version 1.0
  * @since 1.0 
  */
-public class Club extends Entity{
+public class Club extends Movable{
 
-	Symbol[] symbolClubDoesntSwingTo;
 	
 	/* Creates a Club with specified x and y position
 	 * @param startX
@@ -26,7 +25,7 @@ public class Club extends Entity{
 				Symbol.HERO
 				};
 		
-		symbolClubDoesntSwingTo = temp;
+		cantWalkInto = temp;
 	}
 
 	
@@ -42,7 +41,7 @@ public class Club extends Entity{
 		do
 		{
 			newCoord = ent.getCoord().getRandomAdjacentCoord();
-		}while(map.isSymbolInCoord(newCoord,symbolClubDoesntSwingTo));
+		}while(map.isSymbolInCoord(newCoord,cantWalkInto));
 		
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.CLUB_ON_KEY);

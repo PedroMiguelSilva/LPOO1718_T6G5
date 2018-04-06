@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 1.0
  */
-abstract public class Enemy extends Entity implements Move
+abstract public class Enemy extends Movable implements Move
 {
 	/* Create an Enemy Entity with specified starting position and symbol
 	 * @param startX
