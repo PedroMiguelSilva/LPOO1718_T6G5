@@ -1,6 +1,8 @@
 package dkeep.logic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Represents the game
  * @version 1.0
@@ -15,6 +17,27 @@ public class Game
 	private boolean gameOver;
 	private boolean wonGame;
 	private boolean quit;
+	private static Map<Symbol,Character> parseToChar;
+	static
+	{
+		parseToChar = new HashMap<Symbol,Character>();
+		parseToChar.put(Symbol.HERO, 'H');
+		parseToChar.put(Symbol.HERO_WITH_KEY, 'K');
+		parseToChar.put(Symbol.HERO_WITH_CLUB, 'A');
+		parseToChar.put(Symbol.GUARD, 'G');
+		parseToChar.put(Symbol.GUARD_SLEEP, 'g');
+		parseToChar.put(Symbol.WALL, 'X');
+		parseToChar.put(Symbol.CLUB_ON_KEY, '$');
+		parseToChar.put(Symbol.OGRE, 'o');
+		parseToChar.put(Symbol.OGRE_ON_KEY, '$');
+		parseToChar.put(Symbol.OGRE_STUNED, '8');
+		parseToChar.put(Symbol.OGRE_WEAPON, '*');
+		parseToChar.put(Symbol.LEVER, 'k');
+		parseToChar.put(Symbol.KEY, 'k');
+		parseToChar.put(Symbol.DOOR_CLOSED, 'i');
+		parseToChar.put(Symbol.DOOR_OPEN, 'S');
+		parseToChar.put(Symbol.CLEAR_SPACE, ' ');
+	}
 	
 	
 	/** Create a Game with default maps but with specified variables
@@ -58,6 +81,15 @@ public class Game
 		this.setLevels(temp);
 	}
 	
+	/**
+	 * Create a Game with a customisable Keep
+	 * @param map
+	 * 			Symbol matrix that sets initial game information
+	 */
+	public Game(Symbol[][] map) {
+		this(symbMapToCharMap(map));
+	}
+
 	/** Move Hero of the Game
 	 * @param cmd
 	 * 			Command of the user
@@ -172,6 +204,17 @@ public class Game
 				currentLevel = MAX_LEVEL;
 			}
 		}
+	}
+	
+	private static char[][] symbMapToCharMap(Symbol[][] map) {
+		int h = map.length, w = map[0].length; 
+		char[][] result = new char[h][w];
+		for(int x = 0; x < h; x++) {
+			for(int y = 0 ; y < w ; y++) {
+				result[x][y] = parseToChar.get(map[x][y]);
+			}
+		}
+		return result;
 	}
 		
 }
