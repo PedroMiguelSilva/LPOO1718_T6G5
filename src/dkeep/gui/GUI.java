@@ -17,6 +17,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
+import dkeep.logic.Guard;
 import dkeep.logic.GuardType;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -72,6 +73,15 @@ public class GUI implements ActionListener, KeyListener {
 		case java.awt.event.KeyEvent.VK_UP: game.moveHero(Cmd.UP);       panel.repaint(); break;
 		
 		case java.awt.event.KeyEvent.VK_DOWN: game.moveHero(Cmd.DOWN);   panel.repaint(); break;
+	}
+		}
+	
+	private void getGuard(JComboBox comboBox, GuardType guard) {
+		int chosenIndex = comboBox.getSelectedIndex();
+		switch(chosenIndex) {
+		case 0: guard = GuardType.ROOKIE; break;
+		case 1: guard = GuardType.DRUNKEN; break;
+		case 2: guard = GuardType.SUSPICIOUS; break;
 	}
 		}
 		
@@ -243,13 +253,9 @@ public class GUI implements ActionListener, KeyListener {
 				}  
 
 				//Preparing first Level
-				int chosenIndex = comboBox.getSelectedIndex();
-				switch(chosenIndex) {
-				case 0: guard = GuardType.ROOKIE; break;
-				case 1: guard = GuardType.DRUNKEN; break;
-				case 2: guard = GuardType.SUSPICIOUS; break;
+				
 
-				}
+				getGuard(comboBox,guard);
 
 
 				game = new Game(guard,numOgres,2);
