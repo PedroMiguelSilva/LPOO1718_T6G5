@@ -25,8 +25,8 @@ public class CustomLevel {
 		this.width = w;
 		this.height = h;
 		this.map = new Symbol[h][w];
-		initMap();
-	}
+		initMap(); 
+	} 
 	
 	/* Add element to the map
 	 * @param symb

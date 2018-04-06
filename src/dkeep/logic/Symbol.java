@@ -19,6 +19,7 @@ package dkeep.logic;
  * <li>{@link #DOOR_OPEN}</li>
  */
 public enum Symbol {
+<<<<<<< Updated upstream
 	/*
 	 * Hero
 	 */
@@ -84,3 +85,22 @@ public enum Symbol {
 	 */
 	DOOR_OPEN;			
 }
+=======
+	HERO,				//h
+	HERO_WITH_KEY,		//K
+	HERO_WITH_CLUB,		//A 
+	GUARD,				//G
+	GUARD_SLEEP,		//g
+	WALL,				//x
+	CLEAR_SPACE,		//
+	OGRE,				//o
+	OGRE_ON_KEY,		//$
+	OGRE_WEAPON,		//*
+	OGRE_STUNED,		//8
+	CLUB_ON_KEY,		//$
+	LEVER,				//k
+	KEY,				//k
+	DOOR_CLOSED,		//i
+	DOOR_OPEN;			//S
+}
+>>>>>>> Stashed changes
