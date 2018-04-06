@@ -48,6 +48,7 @@ public class Ogre extends Enemy
 	private void moveOgre(Map map,Coord newCoord) {
 		if(!isStun) {
 			map.move(this, newCoord);
+			return;
 		}
 		if(map.getBotEnt(newCoord).getSymb() != Symbol.KEY)
 			this.setSymb(Symbol.OGRE);
