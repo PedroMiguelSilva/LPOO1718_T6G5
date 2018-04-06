@@ -1,16 +1,16 @@
 package dkeep.test;
-
+/*
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
+*/
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
 import dkeep.logic.Symbol;
 
 public class TestKeepGameLogic {
-
+/*
 	
 
 	public int searchOgreX(Symbol[][] map) {
@@ -459,6 +459,6 @@ public class TestKeepGameLogic {
 		else
 			return Cmd.LEFT;
 	}
-	
+	*/
 
 }
