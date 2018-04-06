@@ -22,7 +22,8 @@ public class Club extends Movable{
 				Symbol.DOOR_CLOSED,
 				Symbol.DOOR_OPEN,
 				Symbol.OGRE_WEAPON,
-				Symbol.HERO
+				Symbol.HERO_WITH_CLUB,
+				Symbol.HERO_WITH_KEY
 				};
 		
 		cantWalkInto = temp;
