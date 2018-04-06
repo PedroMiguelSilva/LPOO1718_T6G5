@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/* Represents a Cell
+/** Represents a Cell
  * @version 1.0
  * @since 1.0
  */
@@ -9,7 +9,7 @@ public class Cell {
 	private Entity top;
 	private Entity bot;	
 	
-	/* Creates a Cell with specified bottom and top Entity
+	/** Creates a Cell with specified bottom and top Entity
 	 * @param top
 	 * 			The Cell's top Entity
 	 * @param bot
@@ -20,21 +20,21 @@ public class Cell {
 		this.bot = bot;
 	}
 	
-	/* Gets the Cell's top Entity
+	/** Gets the Cell's top Entity
 	 * @return A Entity representing the Cell's top Entity 
 	 */
 	public Entity getTop() {
 		return top;
 	}
 	
-	/* Gets the Cell's bottom Entity
+	/** Gets the Cell's bottom Entity
 	 * @return A Entity representing the Cell's bottom Entity 
 	 */
 	public Entity getBot() {
 		return bot;
 	}
 	
-	/* Sets the Cell's bottom Entity
+	/** Sets the Cell's bottom Entity
 	 * @param bot
 	 * 			Cell's bottom Entity
 	 */
@@ -42,7 +42,7 @@ public class Cell {
 		this.bot = bot;
 	}
 	
-	/* Sets the Cell's top Entity
+	/** Sets the Cell's top Entity
 	 * @param top
 	 * 			Cell's top Entity
 	 */
@@ -50,6 +50,10 @@ public class Cell {
 		this.top = top;
 	}
 	
+	/**
+	 * Visible Entity in this Cell
+	 * @return Visible Entity
+	 */
 	public Entity getEnt() {
 		if(top.getSymb() == Symbol.CLEAR_SPACE)
 			return bot;
