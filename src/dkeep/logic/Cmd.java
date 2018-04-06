@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/** Commands that can be used by the user
+/** Type of commands that can be used by the user
  */
 public enum Cmd {
 	/**
