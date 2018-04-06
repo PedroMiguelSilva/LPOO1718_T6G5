@@ -18,6 +18,8 @@ import java.awt.event.ActionEvent;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUI implements ActionListener, KeyListener {
 
@@ -25,6 +27,9 @@ public class GUI implements ActionListener, KeyListener {
 	private JTextField textField;
 	protected Game game;
 	protected int numberOfMoves=0;
+	protected MyFrame customFrame;
+	
+	
 
 
 	/**
@@ -96,8 +101,7 @@ public class GUI implements ActionListener, KeyListener {
 		JButton btnCustomGame = new JButton("CustomGame");
 		btnCustomGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame customFrame = new MyFrame();
-				customFrame.setVisible(true);
+				 customFrame = new MyFrame();
 			}
 		});
 		GridBagConstraints gbc_btnCustomGame = new GridBagConstraints();
@@ -106,15 +110,9 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_btnCustomGame.gridy = 5;
 		frame.getContentPane().add(btnCustomGame, gbc_btnCustomGame);
 
-		MyPanel panel = new MyPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.gridwidth = 11;
-		gbc_panel.gridheight = 9;
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 1;
-		gbc_panel.gridy = 6;
-		frame.getContentPane().add(panel, gbc_panel);
+	
+		//panel.setOpaque(false);
+		
 
 
 		JLabel lblYouCanStart = new JLabel("You can start a new game");
@@ -163,6 +161,54 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_btnDown.gridy = 11;
 		frame.getContentPane().add(btnDown, gbc_btnDown);
 
+		MyPanel panel = new MyPanel();
+		panel.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				int keyCode = e.getKeyCode();
+				
+				if(game.gameEnded())
+					return;
+				
+				
+				switch(keyCode) {
+				case java.awt.event.KeyEvent.VK_LEFT: game.moveHero(Cmd.LEFT); panel.repaint(); break;
+				
+				case java.awt.event.KeyEvent.VK_RIGHT: game.moveHero(Cmd.RIGHT); panel.repaint(); break;
+				
+				case java.awt.event.KeyEvent.VK_UP: game.moveHero(Cmd.UP);       panel.repaint(); break;
+				
+				case java.awt.event.KeyEvent.VK_DOWN: game.moveHero(Cmd.DOWN);   panel.repaint(); break;
+				}
+				panel.requestFocusInWindow();
+				
+				lblYouCanStart.setText("Keep going! You are playing level " + game.getCurrentLevel());
+				if(game.isGameOver()) {
+					
+					lblYouCanStart.setText("Too bad, you lost! The Hero has died");
+					btnDown.setEnabled(false);
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+
+				}
+				if(game.getWonGame() == true) {
+					lblYouCanStart.setText("You Won!! The Hero has escaped");
+					btnDown.setEnabled(false); 
+					btnUp.setEnabled(false);
+					btnLeft.setEnabled(false);
+					btnRight.setEnabled(false);
+				}	
+			}
+		});
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 11;
+		gbc_panel.gridheight = 9;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 6;
+		frame.getContentPane().add(panel, gbc_panel);
 
 
 		JButton btnNewButton = new JButton("New game");
@@ -227,6 +273,8 @@ public class GUI implements ActionListener, KeyListener {
 		gbc_btnExit.gridx = 14;
 		gbc_btnExit.gridy = 15;
 		frame.getContentPane().add(btnExit, gbc_btnExit);
+		
+
 
 
 
@@ -253,38 +301,10 @@ public class GUI implements ActionListener, KeyListener {
 				if(e.getSource() == btnExit) 
 					System.exit(0);
 
-/*
-			
-				frame.addKeyListener(new KeyListener() {
 
-					@Override
-					public void keyPressed(java.awt.event.KeyEvent arg0) {
-						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_LEFT)
-							game.moveHero(Cmd.LEFT);
-						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_RIGHT)
-							game.moveHero(Cmd.RIGHT);
-						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_UP)
-							game.moveHero(Cmd.UP);
-						if(arg0.getKeyChar() == java.awt.event.KeyEvent.VK_DOWN)
-							game.moveHero(Cmd.DOWN);
-					}
-
-					@Override
-					public void keyReleased(java.awt.event.KeyEvent arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-
-					@Override
-					public void keyTyped(java.awt.event.KeyEvent arg0) {
-						// TODO Auto-generated method stub
-						
-					}
-					
-				});
-*/
 				game.moveHero(cmd);
 				panel.repaint();
+				panel.requestFocusInWindow();
 				
 
 
