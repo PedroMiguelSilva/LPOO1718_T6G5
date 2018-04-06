@@ -58,14 +58,4 @@ public class Club extends Movable{
 		map.move(this, newCoord);
 	}
 	
-	public Coord getValidCoord(Map map,Coord coord) {
-		
-		Coord newCoord;
-		do
-		{
-			newCoord = coord.getRandomAdjacentCoord();
-		}while(map.isSymbolInCoord(newCoord,cantWalkInto));
-		return newCoord;
-	}
-	
 }

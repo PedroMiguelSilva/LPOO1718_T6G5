@@ -2,6 +2,10 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
+/* Create a Rookie guard
+ * @version 1.0
+ * @since 1.0
+ */
 public class Rookie extends Enemy{
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	int guardIndex;

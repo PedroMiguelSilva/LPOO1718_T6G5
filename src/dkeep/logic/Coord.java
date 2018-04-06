@@ -69,16 +69,6 @@ public class Coord {
 		this.y -= 1;
 	}
 
-	/* Sets values of Coord with those given in coord
-	 * @param coord
-	 * 			Coordinates with values of x and y to be copied
-	 
-	public void setCoord(Coord coord) {
-		this.x = coord.getX();
-		this.y = coord.getY();
-	}
-	*/
-
 	/* Return a random Coord Adjacent to this Coord
 	 * @return Random adjacent coordinate
 	 */

@@ -26,21 +26,6 @@ public class Key extends Interactive
 		super(pos,Symbol.KEY);
 		this.doorC = doorC;
 	}
-
-	/* Creates an universal Key with specified position
-	 * @param startX
-	 * 			The Key's x position
-	 * @param startY
-	 * 			The Key's y position 
-	 */
-	public Key(int startX, int startY){
-		super(new Coord(startX,startY),Symbol.KEY);
-		doorC = new Coord(0,0);
-	}
-	
-	public Key(Coord coord) {
-		this(coord.getX(),coord.getY());
-	}
 	
 	/* Hero walks into the key and picks it up
 	 * @param hero

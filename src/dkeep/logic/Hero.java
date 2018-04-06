@@ -35,11 +35,16 @@ public class Hero extends Movable
 		cantWalkInto = temp;
 	}
 
+	/* Creates an Hero with specified coordinates and weapon
+	 * @param coord
+	 * 			Starting coordinate of Hero
+	 * @param isArmed
+	 * 			Either the Hero has a weapon or not
+	 */
 	public Hero(Coord coord, boolean isArmed) {
 		this(coord.getX(),coord.getY(),isArmed);
 	}
 	
-	//NOTE: CAN BE CHANGED TO CHECK ELEMENTS AROUND HERO AND STUN THEM
 	/* Stun ogres around Hero if Hero is Armed
 	 * @param enemies
 	 * 			Array of enemies to be stunned

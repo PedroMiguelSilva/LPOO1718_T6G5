@@ -30,7 +30,7 @@ abstract public class Enemy extends Movable implements Move
 	 * 			Direction of the guard in patrol route
 	 * @return Index of next index on the patrol route
 	 */
-	public int getNextIndex(int index, int size, boolean reverse) {
+	private int getNextIndex(int index, int size, boolean reverse) {
 		if(reverse)
 			index -= 1;
 		else

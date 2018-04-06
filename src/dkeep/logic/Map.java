@@ -2,12 +2,190 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-public class Map
-{
-	//Attributes
+/* Represents a Map
+ * @version 1.0
+ * @since 1.0
+ */
+public class Map{
 	private int width, height;
 	private Cell[][] map;
 
+	/* @return Map of Symbols
+	 */
+	public Symbol[][] getSymbolMap(){
+		Symbol[][] result = new Symbol[height][width];
+		
+		for(int i = 0 ; i < height ; i++) {
+			for(int j = 0 ; j < width ; j++) {
+				result[i][j] = map[i][j].getEnt().getSymb();
+			}
+		}
+		return result;
+	}
+	
+	/* Creates a Map with specified size and specified elements
+	 * @param w
+	 * 			Width of the map
+	 * @param h
+	 * 			Height of the map
+	 * @param entities
+	 * 			Array of Entities that the map should have
+	 */
+	public Map(int w, int h, ArrayList<Entity> entities)
+	{
+		this.width = w;
+		this.height = h;
+
+		map = getClearMap(w,h);
+		setWalls();
+		addEntitiesToMap(entities);
+	}
+
+	/* Creates a Map from a Matrix of Symbols
+	 * @param bluePrint
+	 * 			Matrix of Symbol
+	 */
+	public Map(Symbol[][] bluePrint) {
+		this.width = bluePrint.length;
+		this.height = bluePrint[0].length;
+		
+		Cell[][] result = getClearMap(width,height);
+
+		for(int x = 0; x < height; x++) {
+			for(int y = 0; y < width ;y++) {
+				addElementToMap(result,bluePrint,new Coord(x,y));
+			}
+		}
+		this.map = result;
+	}
+
+	/* Creates a Map from a matrix of Char
+	 * @param charMap
+	 * 			Matrix of chars
+	 */
+	public Map(char[][] charMap) {
+		this(charMapToSymbolMap(charMap));
+	}
+	
+	/* Set Bot Entity
+	 * @param coord
+	 * 			Coordinate to put the Entity
+	 * @param bot
+	 * 			Entity to be added
+	 */
+	public void setBotEnt(Coord coord, Entity bot)
+	{
+		map[coord.getX()][coord.getY()].setBot(bot);
+	}
+
+	/* Set Top Entity
+	 * @param coord
+	 * 			Coordinate to put the Entity
+	 * @param bot
+	 * 			Entity to be added
+	 */
+	public void setTopEnt(Coord coord, Entity top) {
+		map[coord.getX()][coord.getY()].setTop(top);
+	}
+
+	/* Get Top Entity
+	 * @param coord
+	 * 			Coordinate to get the Entity from
+	 * @return Top Entity
+	 */
+	public Entity getTopEnt(Coord coord){
+		return map[coord.getX()][coord.getY()].getTop();
+	}
+
+	/* Get Bot Entity
+	 * @param coord
+	 * 			Coordinate to get the Entity from
+	 * @return Bot Entity
+	 */
+	public Entity getBotEnt(Coord coord){
+		return map[coord.getX()][coord.getY()].getBot();
+	}
+
+	/* Gets the Entity that is seen
+	 * @param coord
+	 * 			Coordinate to check
+	 * @return the entity on top, entity on bot if top is null
+	 */
+	public Entity getEnt(Coord coord) {
+		if(getTopEnt(coord).getSymb() == Symbol.CLEAR_SPACE)
+			return getBotEnt(coord);
+		else
+			return getTopEnt(coord);
+	}
+	
+	/* Check if the is a Symbol near a Coord
+	 * @param coord
+	 * 			Coordinate in the middle
+	 * @param symb
+	 * 			Symbol to be checked
+	 */
+	public boolean isNearBy(Coord coord, Symbol symb) {
+		Coord c1 = new Coord(coord.getX()+1,coord.getY());
+		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
+		Coord c3 = new Coord(coord.getX()-1,coord.getY());
+		Coord c4 = new Coord(coord.getX(),coord.getY()-1);
+		//need out of bounds coords
+		
+		if(!outOfBounds(c1) && getEnt(c1).getSymb() == symb)
+			return true;
+
+		if(!outOfBounds(c2) && getEnt(c2).getSymb() == symb)
+			return true;
+
+		if(!outOfBounds(c3) && getEnt(c3).getSymb() == symb)
+			return true;
+
+		if(!outOfBounds(c4) && getEnt(c4).getSymb() == symb)
+			return true;
+
+		return false;
+	}
+
+	
+	/*	Move entity to coord
+	 * @param ent
+	 * 			Entity to be moved
+	 * @param coord
+	 * 			Coordinate to move the Entity to
+	 */
+	public void move(Entity ent, Coord coord) {
+		if(getEnt(coord).getSymb() == Symbol.WALL)
+			return;
+
+		if(this.getTopEnt(ent.getCoord()).getSymb() == ent.getSymb()) {
+			Clear temp = new Clear(ent.getCoord());
+			this.setTopEnt(ent.getCoord(), temp);
+		}
+
+		this.setTopEnt(coord, ent);
+
+		ent.setCoord(coord);
+	}
+
+	/* @return Matrix of Cells
+	 */
+	public Cell[][] getMap(){
+		return this.map;
+	}
+
+	/* Check if at least one of the Symbol given is in a certain coord
+	 * @param coord
+	 * 			
+	 */
+	public boolean isSymbolInCoord(Coord coord, Symbol[] symbArray) {
+		Symbol temp = getEnt(coord).getSymb();
+		for(int i = 0; i < symbArray.length;i++) {
+			if(temp == symbArray[i])
+				return true;
+		}
+		return false;
+	}
+	
 	private Cell[][] getClearMap(int w, int h) {
 		Cell[][] temp = new Cell[w][h];
 
@@ -73,46 +251,6 @@ public class Map
 		}
 	}
 	
-	public Symbol[][] getSymbolMap(){
-		Symbol[][] result = new Symbol[height][width];
-		
-		for(int i = 0 ; i < height ; i++) {
-			for(int j = 0 ; j < width ; j++) {
-				result[i][j] = map[i][j].getEnt().getSymb();
-			}
-		}
-		return result;
-	}
-	
-	public Map(int w, int h, ArrayList<Entity> entities)
-	{
-		this.width = w;
-		this.height = h;
-
-		map = getClearMap(w,h);
-		setWalls();
-		addEntitiesToMap(entities);
-	}
-
-	//conseguir um construtor atraves de um array de simbolos
-	public Map(Symbol[][] bluePrint) {
-		this.width = bluePrint.length;
-		this.height = bluePrint[0].length;
-		
-		Cell[][] result = getClearMap(width,height);
-
-		for(int x = 0; x < height; x++) {
-			for(int y = 0; y < width ;y++) {
-				addElementToMap(result,bluePrint,new Coord(x,y));
-			}
-		}
-		this.map = result;
-	}
-
-	public Map(char[][] charMap) {
-		this(charMapToSymbolMap(charMap));
-	}
-	
 	private Entity entityToBeAdded(Symbol symb,Coord coord) {
 		switch(symb) {
 		case DOOR_CLOSED:
@@ -139,110 +277,14 @@ public class Map
 		else
 			tempMap[coord.getX()][coord.getY()].setBot(element);
 	}
-
-	/*
-	 * @brief checks if ent c 	an move or if the projected movement is against a wall
-	 * @param direction - direction in which the entity is moving
-	 * @param ent		- entity which movement is being tested
-	 * @return false if walking into wall, true otherwise
-	 */
-	public boolean canMove(Coord coord)
-	{
-		if(getBotEnt(coord).getSymb() == Symbol.WALL)
-			return false;
-		else
-			return true;
-	}
-
-	public void setBotEnt(Coord coord, Entity bot)
-	{
-		map[coord.getX()][coord.getY()].setBot(bot);
-	}
-
-	public void setTopEnt(Coord coord, Entity top) {
-		map[coord.getX()][coord.getY()].setTop(top);
-	}
-
-	public Entity getTopEnt(Coord coord){
-		return map[coord.getX()][coord.getY()].getTop();
-	}
-
-	public Entity getBotEnt(Coord coord){
-		return map[coord.getX()][coord.getY()].getBot();
-	}
-
-	/*
-	 * @brief returns the entity on top, returns entity on bot if top is null
-	 */
-	public Entity getEnt(Coord coord) {
-		if(getTopEnt(coord).getSymb() == Symbol.CLEAR_SPACE)
-			return getBotEnt(coord);
-		else
-			return getTopEnt(coord);
-	}
 	
-	//check if there is any symb near by coord
-	public boolean isNearBy(Coord coord, Symbol symb) {
-		Coord c1 = new Coord(coord.getX()+1,coord.getY());
-		Coord c2 = new Coord(coord.getX(),coord.getY()+1);
-		Coord c3 = new Coord(coord.getX()-1,coord.getY());
-		Coord c4 = new Coord(coord.getX(),coord.getY()-1);
-		//need out of bounds coords
-		
-		if(!outOfBounds(c1) && getEnt(c1).getSymb() == symb)
-			return true;
-
-		if(!outOfBounds(c2) && getEnt(c2).getSymb() == symb)
-			return true;
-
-		if(!outOfBounds(c3) && getEnt(c3).getSymb() == symb)
-			return true;
-
-		if(!outOfBounds(c4) && getEnt(c4).getSymb() == symb)
-			return true;
-
-		return false;
-	}
-
-	boolean outOfBounds(Coord coord) {
+	
+	private boolean outOfBounds(Coord coord) {
 		if(coord.getX() < 0 || coord.getX() > this.height)
 			return true;
 		if(coord.getY() < 0 || coord.getY() > this.width)
 			return true;
 
-		return false;
-	}
-
-	public void move(Entity ent, Coord coord) {
-		//verifica se ha uma parede no nivel de baixo
-		if(getEnt(coord).getSymb() == Symbol.WALL)
-			return;
-
-		//passar o local anterior dele para limpo caso o objeto que estiver lá for ele
-		if(this.getTopEnt(ent.getCoord()).getSymb() == ent.getSymb()) {
-			Clear temp = new Clear(ent.getCoord());
-			this.setTopEnt(ent.getCoord(), temp);
-		}
-
-		//coloca lo no sitio para onde ele quer ir
-		this.setTopEnt(coord, ent);
-
-		//atualizar o valor das suas coordenadas novas
-		ent.setCoord(coord);
-
-	}
-
-	public Cell[][] getMap(){
-		return this.map;
-	}
-
-	
-	public boolean isSymbolInCoord(Coord coord, Symbol[] symbArray) {
-		Symbol temp = getEnt(coord).getSymb();
-		for(int i = 0; i < symbArray.length;i++) {
-			if(temp == symbArray[i])
-				return true;
-		}
 		return false;
 	}
 }

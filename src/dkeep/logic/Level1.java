@@ -8,6 +8,38 @@ import java.util.ArrayList;
  */
 public class Level1 extends Level
 {
+	/* Create a Dungeon with a specified guard
+	 * @param type
+	 * 			Type of the Guard of the Dungeon
+	 */
+	public Level1(GuardType type)
+	{
+		ArrayList<Entity> entities = new ArrayList<Entity>();
+		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
+		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
+
+		setWalls(entities);
+		setHero(entities);
+		setGuard(type,enemiesLevel1,entities);
+		setDoors(entities,interactives);
+		setLever(entities,interactives);
+
+		this.setInteractives(interactives);
+		Map mapLvl1 = new Map(10,10,entities);
+		this.setMap(mapLvl1);
+	}
+
+	/* Checks if the specific level winning condition has been reached
+	 * @return Winning condition was met or not
+	 */
+	public boolean hasWonLevel() {
+		Coord curr = this.getHero().getCoord();
+		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)
+			return true;
+		else
+			return false;
+	}
+
 	/* Create Hero for Level1
 	 */
 	private void setHero(ArrayList<Entity> entities) {
@@ -37,7 +69,7 @@ public class Level1 extends Level
 			return new Rookie(pos,coords);
 		}
 	}
-	
+
 	/* Create Enemy for Level1
 	 */
 	private void setGuard(GuardType type,ArrayList<Enemy> enemies,ArrayList<Entity> entities) {
@@ -46,7 +78,7 @@ public class Level1 extends Level
 		int yPos[] = {8,7,7,7,7,7,6,5,4,3,2,1,1,2,3,4,5,6,7,8,8,8,8,8};
 
 		Enemy ent = createGuard(type,posToCoords(xPos,yPos));
-		
+
 		enemies.add(ent);
 		entities.add(ent);
 		this.setEnemies(enemies);
@@ -66,7 +98,7 @@ public class Level1 extends Level
 		entities.add(door2);
 		entities.addAll(doors);
 	}
-	
+
 	/* Create Lever for Level1
 	 */
 	private void setLever(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
@@ -77,38 +109,6 @@ public class Level1 extends Level
 
 		interactives.add(lever1);
 		entities.add(lever1);
-	}
-	
-	/* Create a Dungeon with a specified guard
-	 * @param type
-	 * 			Type of the Guard of the Dungeon
-	 */
-	public Level1(GuardType type)
-	{
-		ArrayList<Entity> entities = new ArrayList<Entity>();
-		ArrayList<Enemy> enemiesLevel1 = new ArrayList<Enemy>();
-		ArrayList<Interactive> interactives = new ArrayList<Interactive>();
-
-		setWalls(entities);
-		setHero(entities);
-		setGuard(type,enemiesLevel1,entities);
-		setDoors(entities,interactives);
-		setLever(entities,interactives);
-		
-		this.setInteractives(interactives);
-		Map mapLvl1 = new Map(10,10,entities);
-		this.setMap(mapLvl1);
-	}
-
-	/* Checks if the specific level winning condition has been reached
-	 * @return Winning condition was met or not
-	 */
-	public boolean hasWonLevel() {
-		Coord curr = this.getHero().getCoord();
-		if(this.getMap().getBotEnt(curr).getSymb() == Symbol.DOOR_OPEN)
-			return true;
-		else
-			return false;
 	}
 
 }

@@ -4,11 +4,17 @@ import java.util.ArrayList;
 
 public class Lever extends Interactive
 {
-	//Attributes
 	private boolean isActive;
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	
-	//Constructor
+	/* Creates a Lever with specified starting position and consequences
+	 * @param startX
+	 * 				Starting x value
+	 * @param startY
+	 * 				Starting y value
+	 * @param coords
+	 * 				Array with coordinates of elements the Lever activates
+	 */
 	public Lever(int startX, int startY,ArrayList<Coord> coords)
 	{
 		super(new Coord(startX,startY),Symbol.LEVER);
@@ -16,11 +22,13 @@ public class Lever extends Interactive
 		this.coords = coords;
 	}
 	
-	//Methods
+	/* Trigger the elements associated with the Key
+	 * @param hero
+	 * 			The hero that might trigguer an interactive
+	 */
 	public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map)
 	{
 		map.move(hero, getCoord());
-		//para cada coordenada que a alavanca "funciona"
 		for(int i = 0; i < coords.size();i++)
 		{
 			for(Interactive current : interactives) {
@@ -30,8 +38,6 @@ public class Lever extends Interactive
 				}
 			}
 		}
-		
-		//toggle the lever
 		isActive = !isActive;
 	}
 }

@@ -108,6 +108,12 @@ public class Game
 			return "Quit Game";
 	}
 	
+	/* @return Matrix of Symbols of current Map
+	 */
+	public Symbol[][] getSymbolMap(){
+		return getLevel().getMap().getSymbolMap();
+	}
+	
 	
 	/* @return the current level
 	 */
@@ -166,12 +172,6 @@ public class Game
 				currentLevel = MAX_LEVEL;
 			}
 		}
-	}
-
-	/* @return Matrix of Symbols of current Map
-	 */
-	public Symbol[][] getSymbolMap(){
-		return getLevel().getMap().getSymbolMap();
 	}
 		
 }

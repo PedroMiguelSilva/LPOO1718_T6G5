@@ -27,35 +27,6 @@ public class Level2 extends Level
 		this.setMap(mapLvl2);
 	}
 	
-	private void setKey(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
-		Coord pos = new Coord(1,7), door = new Coord(1,0);
-		Key key1 = new Key(pos,door);
-		interactives.add(key1);
-		entities.add(key1);
-	}
-	
-	private void setDoors(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
-		Door door1 = new Door(1,0);
-		interactives.add(door1);
-		entities.add(door1);
-	}
-	
-	private void setOgres(ArrayList<Entity> entities,ArrayList<Enemy> enemiesLevel2,int nOgre) {
-		for(int i = 0; i < nOgre ; i++) {
-			Coord pos = new Coord(1,4);
-			Ogre ogre1 = new Ogre(pos,true);
-			enemiesLevel2.add(ogre1);
-			entities.add(ogre1);
-		}
-		this.setEnemies(enemiesLevel2);
-	}
-	
-	private void setHero(ArrayList<Entity> entities) {
-		Hero hero = new Hero(7,1,true);
-		this.setHero(hero);
-		entities.add(hero);
-	}
-	
 	/* Create a Keep from information of a matrix of chars
 	 * @param map
 	 * 			Matrix of chars with information for	 the Level
@@ -84,5 +55,33 @@ public class Level2 extends Level
 		else
 			return false;
 	}
-
+	
+	private void setKey(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
+		Coord pos = new Coord(1,7), door = new Coord(1,0);
+		Key key1 = new Key(pos,door);
+		interactives.add(key1);
+		entities.add(key1);
+	}
+	
+	private void setDoors(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
+		Door door1 = new Door(1,0);
+		interactives.add(door1);
+		entities.add(door1);
+	}
+	
+	private void setOgres(ArrayList<Entity> entities,ArrayList<Enemy> enemiesLevel2,int nOgre) {
+		for(int i = 0; i < nOgre ; i++) {
+			Coord pos = new Coord(1,4);
+			Ogre ogre1 = new Ogre(pos,true);
+			enemiesLevel2.add(ogre1);
+			entities.add(ogre1);
+		}
+		this.setEnemies(enemiesLevel2);
+	}
+	
+	private void setHero(ArrayList<Entity> entities) {
+		Hero hero = new Hero(7,1,true);
+		this.setHero(hero);
+		entities.add(hero);
+	}
 }

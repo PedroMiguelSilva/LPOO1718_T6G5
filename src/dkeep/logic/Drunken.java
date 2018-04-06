@@ -32,6 +32,19 @@ public class Drunken extends Enemy{
 		roundsSleeping = 0;
 		reverse = false;
 	}
+	
+	/* Move Drunken guard along his patrol route
+	 * @param map
+	 * 			Map in which the changes should be made
+	 */
+	@Override
+	public void move(Map map) {
+		updateSleepStatus();
+		
+		if(!sleeping) {
+			guardIndex = move_aux(guardIndex,coords,reverse,map);
+		}
+	}
 
 	
 	/* Wake up the Drunken guard
@@ -61,19 +74,6 @@ public class Drunken extends Enemy{
 			 sleeping = true;
 			 roundsSleeping = 3;
 			 this.setSymb(Symbol.GUARD_SLEEP);
-		}
-	}
-	
-	/* Move Drunken guard along his patrol route
-	 * @param map
-	 * 			Map in which the changes should be made
-	 */
-	@Override
-	public void move(Map map) {
-		updateSleepStatus();
-		
-		if(!sleeping) {
-			guardIndex = move_aux(guardIndex,coords,reverse,map);
 		}
 	}
 

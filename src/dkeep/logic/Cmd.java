@@ -1,7 +1,6 @@
 package dkeep.logic;
 
-/*
- * Commands that can be used by the user
+/* Commands that can be used by the user
  * <li>{@link #START}</li>
  * <li>{@link #UP}</li>
  * <li>{@link #DOWN}</li>
