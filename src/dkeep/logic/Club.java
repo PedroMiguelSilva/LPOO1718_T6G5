@@ -26,6 +26,10 @@ public class Club extends Movable{
 				Symbol.HERO_WITH_KEY
 				};
 		
+		Symbol[] temp2 = {
+				Symbol.CLEAR_SPACE
+				};
+		canWalkInto = temp2;
 		cantWalkInto = temp;
 	}
 
@@ -39,9 +43,10 @@ public class Club extends Movable{
 	public void swing(Map map, Entity ent) {
 		Coord newCoord;
 
+		if(noPossibleMove(map,ent.getCoord()))
+			return;
+		
 		newCoord = getValidCoord(map,ent.getCoord());
-		
-		
 		
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.CLUB_ON_KEY);
@@ -54,6 +59,7 @@ public class Club extends Movable{
 	}
 	
 	public Coord getValidCoord(Map map,Coord coord) {
+		
 		Coord newCoord;
 		do
 		{
@@ -61,4 +67,5 @@ public class Club extends Movable{
 		}while(map.isSymbolInCoord(newCoord,cantWalkInto));
 		return newCoord;
 	}
+	
 }

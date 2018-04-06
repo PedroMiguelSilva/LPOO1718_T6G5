@@ -258,6 +258,7 @@ public class TestDungeonGameLogic {
 		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_OPEN, map[5][0]);
 		assertEquals(Symbol.DOOR_OPEN, map[6][0]);
+		game.moveHero(Cmd.RIGHT);
 		game.moveHero(Cmd.LEFT);
 		map = game.getSymbolMap();
 		assertEquals(Symbol.DOOR_CLOSED, map[5][0]);

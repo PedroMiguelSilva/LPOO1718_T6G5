@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import dkeep.cli.Start;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
@@ -40,6 +39,36 @@ public class TestKeepGameLogic {
 			{'X',' ',' ','k','o','k','X'},
 			{'X',' ',' ',' ','k',' ','X'},
 			{'X','X','X','X','X','X','X'}
+
+	};
+	
+	char[][] map4 = {
+			{'X','X','X','X','X','X','X'},
+			{'X','H','X',' ',' ',' ','X'},
+			{'i','X','X',' ',' ',' ','X'},
+			{'X','k',' ',' ',' ',' ','X'},
+			{'X',' ',' ',' ',' ','X','X'},
+			{'X',' ',' ',' ','X','o','X'},
+			{'X','X','X','X','X','X','X'}
+
+	};
+	char[][] map5 = {
+			{'X','X','X','X','X','X','X'},
+			{'X','H','X',' ',' ',' ','X'},
+			{'i','X','X',' ',' ',' ','X'},
+			{'X','k',' ',' ',' ','X','X'},
+			{'X',' ',' ',' ','X',' ','X'},
+			{'X',' ',' ',' ','X','o','X'},
+			{'X','X','X','X','X','X','X'}
+
+	};
+	
+	char[][] map6 = {
+			{'X','X','X','X','X'},
+			{'X','H','X','o','X'},
+			{'i',' ','X',' ','X'},
+			{'X','k','X',' ','X'},
+			{'X','X','X','X','X'}
 
 	};
 
@@ -138,7 +167,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroMovesIntoKeyAndChangesRepresentation() {
-		Game game = new Game(map1);
+		Game game = new Game(map6);
 		game.moveHero(Cmd.START);
 		Symbol[][] map = game.getSymbolMap();
 		game.moveHero(Cmd.DOWN);
@@ -155,7 +184,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void TestHeroPicksKey() {
-		Game game = new Game(map1);
+		Game game = new Game(map6);
 		Symbol[][] map = game.getSymbolMap();
 		game.moveHero(Cmd.START);
 		game.moveHero(Cmd.DOWN);
@@ -172,7 +201,7 @@ public class TestKeepGameLogic {
 	
 	@Test
 	public void heroMovesIntoClosedKeepDoorNoKey() {
-		Game game = new Game(map1);
+		Game game = new Game(map6);
 		game.moveHero(Cmd.START);
 		Symbol[][] map = game.getSymbolMap();
 
@@ -187,7 +216,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroMovesIntoClosedDoorWithKey() {
-		Game game = new Game(map1);
+		Game game = new Game(map6);
 		game.moveHero(Cmd.START);
 		Symbol[][] map = game.getSymbolMap();
 		game.moveHero(Cmd.DOWN);
@@ -202,7 +231,7 @@ public class TestKeepGameLogic {
 
 	@Test
 	public void heroMoveIntoOpenDoorAndWins() {
-		Game game = new Game(map1);
+		Game game = new Game(map6);
 
 		game.moveHero(Cmd.DOWN);
 		game.moveHero(Cmd.DOWN);
@@ -262,16 +291,45 @@ public class TestKeepGameLogic {
 	public void TestOgreOverKey() {
 		Game game = new Game(map3);
 		Symbol[][] map = game.getSymbolMap();
-		Start.printMap(map);
 		game.moveHero(Cmd.UP);
 		map = game.getSymbolMap();
-		Start.printMap(map);
 		int x = this.searchOgreX(map);
 		int y = this.searchOgreY(map);
-		System.out.println(map[x][y]);
-		System.out.println(x + " " + y);
-		
+		assertEquals(Symbol.OGRE_ON_KEY,map[x][y]);
 	}
+	
+	@Test(timeout = 1000)
+	public void TestOgreBlocked() {
+		Game game = new Game(map4);
+		Symbol[][] map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		assertEquals(Symbol.OGRE,map[5][5]);
+		game.moveHero(Cmd.UP);
+		assertEquals(Symbol.OGRE,map[5][5]);
+	}
+	
+	@Test(timeout = 1000)
+	public void TestOgreAndClubBlocked() {
+		Game game = new Game(map5);
+		Symbol[][] map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		int x = this.searchOgreX(map);
+		int y = this.searchOgreY(map);
+		assertEquals(Symbol.OGRE,map[x][y]);
+	}
+	
 	
 	@Test(timeout = 2000)
 	public void TestRandomnessClubSwing() {

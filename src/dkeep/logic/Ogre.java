@@ -19,6 +19,15 @@ public class Ogre extends Enemy
 		roundsStun = 0;
 		this.hasClub = hasClub;
 		Symbol[] temp = {Symbol.WALL,Symbol.DOOR_CLOSED,Symbol.DOOR_OPEN};
+		Symbol[] canMove = {
+				Symbol.CLEAR_SPACE,
+				Symbol.OGRE,
+				Symbol.OGRE_ON_KEY,
+				Symbol.KEY,
+				Symbol.OGRE_WEAPON,
+				Symbol.OGRE_STUNED
+				};
+		canWalkInto = canMove;
 		cantWalkInto = temp;
 	}
 	
@@ -57,6 +66,8 @@ public class Ogre extends Enemy
 	public void move(Map map)
 	{
 		Coord newCoord;
+		if(noPossibleMove(map,this.getCoord()))
+			return;
 		
 		newCoord = getValidCoord(map,this.getCoord());
 
@@ -70,7 +81,8 @@ public class Ogre extends Enemy
 			weapon.swing(map,this);
 	}
 	
-	public Coord getValidCoord(Map map, Coord coord) {
+	private Coord getValidCoord(Map map, Coord coord) {
+		
 		Coord newCoord;
 		do
 		{
@@ -78,4 +90,5 @@ public class Ogre extends Enemy
 		}while(map.isSymbolInCoord(newCoord, cantWalkInto));
 		return newCoord;
 	}
+	
 }

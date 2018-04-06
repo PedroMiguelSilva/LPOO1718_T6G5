@@ -136,6 +136,7 @@ public class Hero extends Movable
 		if(map.isNearBy(this.getCoord(),Symbol.OGRE_WEAPON)){
 			return true;
 		}
+		
 		return false;
 	}
 

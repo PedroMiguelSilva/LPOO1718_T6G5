@@ -121,7 +121,7 @@ public class Map
 			Coord master = new Coord(100,100);
 			return new Key(coord,master);
 		case OGRE:
-			return new Ogre(coord,false);
+			return new Ogre(coord,true);
 		case HERO:
 			return new Hero(coord,true);
 		case WALL:
@@ -204,7 +204,7 @@ public class Map
 		return false;
 	}
 
-	private boolean outOfBounds(Coord coord) {
+	boolean outOfBounds(Coord coord) {
 		if(coord.getX() < 0 || coord.getX() > this.height)
 			return true;
 		if(coord.getY() < 0 || coord.getY() > this.width)
