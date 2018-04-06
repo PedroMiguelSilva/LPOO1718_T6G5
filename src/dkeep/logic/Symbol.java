@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/** Types of Symbols Entities can have
+/** Type of Symbols Entities can have
  */
 public enum Symbol {
 	/**

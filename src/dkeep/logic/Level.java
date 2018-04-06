@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/** Nomiantes a Level
+/** Nominates a Level
  * @version 1.0
  * @since 1.0
  */

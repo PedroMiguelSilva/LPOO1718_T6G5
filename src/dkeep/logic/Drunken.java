@@ -7,10 +7,8 @@ import java.util.Random;
  * @version 1.0
  * @since 1.0
  */
-public class Drunken extends Enemy{
+public class Drunken extends Guard{
 
-	private ArrayList<Coord> coords = new ArrayList<Coord>();
-	private int guardIndex;
 	private double oddSleep;
 	private boolean sleeping;
 	private int roundsSleeping;
@@ -24,7 +22,7 @@ public class Drunken extends Enemy{
 	 * 			Array with coordinates of the patrol route of the guard
 	 */
 	public Drunken(Coord pos, ArrayList<Coord> coords) {
-		super(pos, Symbol.GUARD);
+		super(pos, coords);
 		this.coords = coords;
 		guardIndex = 0;
 		oddSleep = 0.2;

@@ -3,7 +3,6 @@ package dkeep.logic;
 import java.util.ArrayList;
 
 /** Represents a Key
- * A Key with doorC coordinates of x = 0 and y = 0 is universal and will open any door
  * @version 1.0
  * @since 1.0
  */
@@ -12,6 +11,7 @@ public class Key extends Interactive
 	Coord doorC;
 
 	/** Creates a key with specified start position and coordinates of the door it opens
+	 * A Key with doorC 100 100 is a master Key and will open any door
 	 * @param pos
 	 * 			Position of Key
 	 * @param doorC
