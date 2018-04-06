@@ -382,7 +382,36 @@ public class TestKeepGameLogic {
 	@Test(timeout = 2000)
 	public void TestRandomnessClubSwing() {
 		Game game = new Game(GuardType.ROOKIE,1,2);
-		finishFirstLevel(game);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.DOWN);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.RIGHT);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.UP);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
+		game.moveHero(Cmd.LEFT);
 		Symbol[][] map = game.getSymbolMap();
 
 		//variables
@@ -416,38 +445,6 @@ public class TestKeepGameLogic {
 
 	}
 
-	private void finishFirstLevel(Game game) {
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.UP);
-		game.moveHero(Cmd.UP);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.DOWN);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.RIGHT);
-		game.moveHero(Cmd.UP);
-		game.moveHero(Cmd.UP);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-		game.moveHero(Cmd.LEFT);
-	}
 
 	private Cmd lastMove(int x, int y,int oldx ,int oldy) {
 		if(x-oldx > 0)
