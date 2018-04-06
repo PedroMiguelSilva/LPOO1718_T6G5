@@ -30,6 +30,9 @@ public class Hero extends Movable
 
 		if(isArmed)
 			this.setSymb(Symbol.HERO_WITH_CLUB);
+		
+		Symbol[] temp = {Symbol.WALL};
+		cantWalkInto = temp;
 	}
 
 	public Hero(Coord coord, boolean isArmed) {
@@ -98,7 +101,7 @@ public class Hero extends Movable
 		Coord newCoord = new Coord(this.getCoord());
 		newCoord = this.getCoord().getAdjacentCoord(cmd);
 
-		if(!map.canMove(newCoord))
+		if(map.isSymbolInCoord(newCoord, cantWalkInto))
 			return;
 		
 		triggerInteractives(map,newCoord,interactives);
@@ -112,46 +115,6 @@ public class Hero extends Movable
 		return wonLevel;
 	}
 
-	//NOTE: xMax and yMax can be deleted since that information can be retrieved from map class
-	
-	/* Check if there is Danger near Hero with symbol of symb
-	 * @param map
-	 * 			Map in which changes should be made
-	 * @param symb
-	 * 			Symbol to be careful with
-	 * @param xMax
-	 * 			Maximum value that x can have
-	 * @param yMax
-	 * 			Maximum value that y can have
-	 * @return Hero died from an Enemy of symbol symb
-	 
-	public boolean isNearBy(Map map, Symbol symb, Coord coord)
-	{
-		if(symb == Symbol.GUARD_SLEEP || symb == Symbol.OGRE_STUNED)
-			return false;
-
-		Coord temp = new Coord(this.getCoord());
-
-		Coord c1 = new Coord(temp.getX(),temp.getY());
-		Coord c2 = new Coord(temp.getX(),temp.getY()+1);
-		Coord c3 = new Coord(temp.getX()-1,temp.getY());
-		Coord c4 = new Coord(temp.getX(),temp.getY()-1);
-
-		if(!map.outOfBounds(c1,coord) && map.getEnt(c1).getSymb() == symb)
-			return true;
-
-		if(!map.outOfBounds(c2,coord) && map.getEnt(c2).getSymb() == symb)
-			return true;
-
-		if(!map.outOfBounds(c3,coord) && map.getEnt(c3).getSymb() == symb)
-			return true;
-
-		if(!map.outOfBounds(c4,coord) && map.getEnt(c4).getSymb() == symb)
-			return true;
-
-		return false;
-	}
-*/
 	
 	/* Check if Hero dies in the current Map situation
 	 * @param map
