@@ -98,10 +98,13 @@ public class MyPanel extends JPanel implements KeyListener{
 		img.put(Symbol.CLEAR_SPACE, Ground);
 		
 		BufferedImage HeroHasKey = scale(images.getHeroHasKey(), elementWidth, elementHeight);
-		img.put(Symbol.HERO_WITH_KEY, Ground);
+		img.put(Symbol.HERO_WITH_KEY, HeroHasKey);
 		
 		BufferedImage OgreKey = scale(images.getOgreKey(), elementWidth, elementHeight);
-		img.put(Symbol.OGRE_ON_KEY, Ground);
+		img.put(Symbol.OGRE_ON_KEY, OgreKey);
+		
+		BufferedImage WeaponKey = scale(images.getWeaponKey(), elementWidth, elementHeight);
+		img.put(Symbol.OGRE_ON_KEY, WeaponKey);
 		
 		
 		drawGame(g,gamex.getSymbolMap(),img,elementWidth, elementHeight);

@@ -25,10 +25,11 @@ public class Images extends JFrame{
 	private BufferedImage stunnedOgre;
 	private BufferedImage guardAsleep;
 	private BufferedImage heroHasKey;
-	private BufferedImage guardKey;
-    	int height, width;
+	private BufferedImage ogreKey;
+	int height, width;
     	JFrame frame;
-		private BufferedImage ogreKey;
+		private BufferedImage weaponKey;
+		
 	
  
     public Images() {
@@ -50,8 +51,10 @@ public class Images extends JFrame{
           this.key = ImageIO.read(new File("Images/key.png"));
           this.door = ImageIO.read(new File("Images/door.png"));
           this.guardAsleep = ImageIO.read(new File("Images/guardAsleep.png"));
-          this.heroHasKey = ImageIO.read(new File("Images/heroHasKey.png"));
+          this.heroHasKey = ImageIO.read(new File("Images/heoHasKey.png"));
           this.ogreKey = ImageIO.read(new File("Images/ogreKey.png"));
+          this.weaponKey = ImageIO.read(new File("Images/weaponKey.png"));
+
        } catch (IOException ex) {
             System.out.println("Inexisting file");
        }
@@ -130,6 +133,9 @@ public class Images extends JFrame{
 	}
 	public BufferedImage getOgreKey() {
 		return ogreKey;
+	}
+	public BufferedImage getWeaponKey() {
+		return weaponKey;
 	}
 
 }
