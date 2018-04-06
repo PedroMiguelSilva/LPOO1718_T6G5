@@ -1,14 +1,14 @@
 package dkeep.test;
-/*
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import dkeep.logic.CustomLevel;
 import dkeep.logic.Symbol;
-*/
+
 public class TestCustomGame {
-/*
+
 	@Test
 	public void TestSizeOfDefaultConstructor() {
 		CustomLevel lvl = new CustomLevel();
@@ -114,5 +114,5 @@ public class TestCustomGame {
 		lvl.editMap(Symbol.OGRE, 4, 2);
 		assertTrue(lvl.isValid());
 	}
-*/
+
 }

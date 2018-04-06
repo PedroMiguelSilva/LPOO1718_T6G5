@@ -1,5 +1,5 @@
 package dkeep.test;
-/*
+
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -8,9 +8,9 @@ import dkeep.logic.Game;
 import dkeep.logic.GuardType;
 import dkeep.logic.Symbol;
 
-*/
+
 public class TestDungeonGameLogic {
-/*
+
 	@Test
 	public void testMoveHeroIntoFreeCell() {
 		Game game = new Game(GuardType.ROOKIE,2,1);
@@ -264,6 +264,6 @@ public class TestDungeonGameLogic {
 		assertEquals(Symbol.DOOR_CLOSED, map[5][0]);
 		assertEquals(Symbol.DOOR_CLOSED, map[6][0]);
 	}
-	*/
+	
 }
 
