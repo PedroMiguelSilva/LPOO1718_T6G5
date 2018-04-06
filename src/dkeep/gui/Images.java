@@ -5,15 +5,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 
 
 public class Images extends JFrame{
 
-    protected BufferedImage wall;
+	private static final long serialVersionUID = 1L;
+	protected BufferedImage wall;
     private BufferedImage wall2;
     private BufferedImage ground;
     private BufferedImage guard;

@@ -12,9 +12,9 @@ import javax.swing.JPanel;
 
 import dkeep.logic.CustomLevel;
 import dkeep.logic.Symbol;
-import dkeep.gui.*;
 
 public class MyCustomPanel extends JPanel implements MouseListener {
+	private static final long serialVersionUID = 1L;
 	Images images = new Images();
 	Symbol s;
 
