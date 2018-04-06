@@ -19,6 +19,7 @@ public class Lever extends Interactive
 	//Methods
 	public void trigger(Hero hero, ArrayList<Interactive> interactives,Map map)
 	{
+		map.move(hero, getCoord());
 		//para cada coordenada que a alavanca "funciona"
 		for(int i = 0; i < coords.size();i++)
 		{
