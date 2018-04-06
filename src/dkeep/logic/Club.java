@@ -38,10 +38,9 @@ public class Club extends Movable{
 	public void swing(Map map, Entity ent) {
 		Coord newCoord;
 
-		do
-		{
-			newCoord = ent.getCoord().getRandomAdjacentCoord();
-		}while(map.isSymbolInCoord(newCoord,cantWalkInto));
+		newCoord = getValidCoord(map,ent.getCoord());
+		
+		
 		
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.CLUB_ON_KEY);
@@ -51,5 +50,14 @@ public class Club extends Movable{
 		}
 		
 		map.move(this, newCoord);
+	}
+	
+	public Coord getValidCoord(Map map,Coord coord) {
+		Coord newCoord;
+		do
+		{
+			newCoord = coord.getRandomAdjacentCoord();
+		}while(map.isSymbolInCoord(newCoord,cantWalkInto));
+		return newCoord;
 	}
 }
