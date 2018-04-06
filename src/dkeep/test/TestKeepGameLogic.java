@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import dkeep.cli.Start;
 import dkeep.logic.Cmd;
 import dkeep.logic.Game;
 import dkeep.logic.GuardType;
@@ -27,6 +28,17 @@ public class TestKeepGameLogic {
 			{'X','k',' ',' ',' ',' ','X'},
 			{'X',' ',' ',' ','o',' ','X'},
 			{'X',' ',' ',' ',' ',' ','X'},
+			{'X','X','X','X','X','X','X'}
+
+	};
+	
+	char[][] map3 = {
+			{'X','X','X','X','X','X','X'},
+			{'X','H','X',' ',' ',' ','X'},
+			{'i','X','X',' ',' ',' ','X'},
+			{'X','k',' ',' ','k',' ','X'},
+			{'X',' ',' ','k','o','k','X'},
+			{'X',' ',' ',' ','k',' ','X'},
 			{'X','X','X','X','X','X','X'}
 
 	};
@@ -244,6 +256,21 @@ public class TestKeepGameLogic {
 			oldy = y;
 			
 		}
+	}
+	
+	@Test
+	public void TestOgreOverKey() {
+		Game game = new Game(map3);
+		Symbol[][] map = game.getSymbolMap();
+		Start.printMap(map);
+		game.moveHero(Cmd.UP);
+		map = game.getSymbolMap();
+		Start.printMap(map);
+		int x = this.searchOgreX(map);
+		int y = this.searchOgreY(map);
+		System.out.println(map[x][y]);
+		System.out.println(x + " " + y);
+		
 	}
 	
 	@Test(timeout = 2000)

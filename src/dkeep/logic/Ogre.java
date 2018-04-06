@@ -49,8 +49,9 @@ public class Ogre extends Enemy
 	private void moveOgre(Map map,Coord newCoord) {
 		if(!isStun) {
 			map.move(this, newCoord);
-			this.setSymb(Symbol.OGRE);
 		}
+		if(map.getBotEnt(newCoord).getSymb() != Symbol.KEY)
+			this.setSymb(Symbol.OGRE);
 	}
 	
 	public void move(Map map)
@@ -64,9 +65,14 @@ public class Ogre extends Enemy
 		if(map.getBotEnt(newCoord).getSymb() == Symbol.KEY) {
 			this.setSymb(Symbol.OGRE_ON_KEY);
 		}		
+		
+		Symbol curr = this.getSymb();
 		updateStunStatus();
+		//curr = this.getSymb();
 		moveOgre(map,newCoord);
+		//curr = this.getSymb();
 		if(hasClub)
 			weapon.swing(map,this);
+		//curr = this.getSymb();
 	}
 }
