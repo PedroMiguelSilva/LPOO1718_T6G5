@@ -1,28 +1,22 @@
 package dkeep.gui;
 
 import java.awt.Color;
-import java.awt.Frame;
 
 import javax.swing.JFrame;
-import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 
-import dkeep.logic.CustomLevel;
 import dkeep.logic.Game;
 import dkeep.logic.Symbol;
 
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JLabel; 
 import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 
 
 public class MyFrame extends JFrame { 
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private MyCustomPanel customPanel;
@@ -41,7 +35,7 @@ public class MyFrame extends JFrame {
 		textField.setBounds(745, 30, 23, 26);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		String x =textField.getText();
+		//String x =textField.getText();
 
 		JLabel lblY = new JLabel("Y");
 		lblY.setBounds(722, 64, 33, 21);
@@ -52,7 +46,7 @@ public class MyFrame extends JFrame {
 		getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		textField_1.setColumns(10);
-		String y =textField_1.getText();
+		//String y =textField_1.getText();
 
 		customPanel = new MyCustomPanel();		
 		customPanel.setBounds(31, 62, 474, 399);
