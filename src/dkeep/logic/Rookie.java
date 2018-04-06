@@ -6,10 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 1.0
  */
-public class Rookie extends Enemy{
-	private ArrayList<Coord> coords = new ArrayList<Coord>();
-	int guardIndex;
-	
+public class Rookie extends Guard{
 	/** Creates a Rookie guard with specified starting coordinate and patrol route
 	 * @param pos
 	 * 			Starting coordinate
@@ -17,7 +14,7 @@ public class Rookie extends Enemy{
 	 * 			Array with coordinates of the patrol route of the guard
 	 */
 	public Rookie(Coord pos, ArrayList<Coord> coords){
-		super(pos,Symbol.GUARD);
+		super(pos,coords);
 		this.coords = coords;
 		
 		guardIndex = 0;

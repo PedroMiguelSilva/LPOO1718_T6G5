@@ -7,10 +7,7 @@ import java.util.Random;
  * @version 1.0
  * @since 1.0
  */
-public class Suspicious extends Enemy{
-
-	private ArrayList<Coord> coords = new ArrayList<Coord>();
-	private int guardIndex;
+public class Suspicious extends Guard{
 	private boolean reverse;
 	
 	/** Creates a Suspicious guard with specified starting coordinate and patrol route
@@ -20,7 +17,7 @@ public class Suspicious extends Enemy{
 	 * 			Array with coordinates of the patrol route of the guard
 	 */
 	public Suspicious(Coord pos, ArrayList<Coord> coords) {
-		super(pos, Symbol.GUARD);
+		super(pos,coords);
 		this.coords = coords;
 		guardIndex = 0;
 	}
