@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.Random;
 
-/* Represents a Coordinate
+/** Represents a Coordinate
  * @version 1.0
  * @since 1.0
  */
@@ -11,7 +11,7 @@ public class Coord {
 	private int x;
 	private int y;
 
-	/* Creates a Coord with specified x and y position
+	/** Creates a Coord with specified x and y position
 	 * @param x
 	 *			The Coord's x value
 	 * @param y
@@ -22,7 +22,7 @@ public class Coord {
 		this.y = y;
 	}
 
-	/* Creates a Coord with the values of another Coord
+	/** Creates a Coord with the values of another Coord
 	 * @param coord
 	 * 			The Coord of which values should be copied to create a new Coord
 	 */
@@ -31,45 +31,45 @@ public class Coord {
 		this.y = coord.getY();
 	}
 
-	/* Gets the Coord's x value
+	/** Gets the Coord's x value
 	 * @return x value of Coord
 	 */
 	public int getX() {
 		return this.x;
 	}
 
-	/* Gets the Coord's y value
+	/** Gets the Coord's y value
 	 * @return y value of Coord
 	 */
 	public int getY() {
 		return this.y;
 	}
 
-	/* Increments the x value of Coord
+	/** Increments the x value of Coord
 	 */
 	private void incX() {
 		this.x +=1;
 	}
 
-	/* Increments the y value of Coord
+	/** Increments the y value of Coord
 	 */
 	private void incY() {
 		this.y += 1;
 	}
 
-	/* Decrements the x value of Coord
+	/** Decrements the x value of Coord
 	 */
 	private void decX() {
 		this.x -= 1;
 	}
 
-	/* Decrements the y value of Coord
+	/** Decrements the y value of Coord
 	 */
 	private void decY() {
 		this.y -= 1;
 	}
 
-	/* Return a random Coord Adjacent to this Coord
+	/** Return a random Coord Adjacent to this Coord
 	 * @return Random adjacent coordinate
 	 */
 	public Coord getRandomAdjacentCoord() {
@@ -89,7 +89,7 @@ public class Coord {
 		return newCoord;
 	}
 
-	/* Return a Coord Adjacent to this Coord according to the command given
+	/** Return a Coord Adjacent to this Coord according to the command given
 	 * @param cmd
 	 * 			Command given by user
 	 * @return Adjacent coordinate
@@ -111,9 +111,9 @@ public class Coord {
 		return newCoord;
 	}
 
-	/* Returns if two Coord objects are equal based on its x and y values
-	 * @Note: if the values of x and y are both 0 then its considered true
-	 * @return if Coords are equal or not
+	/** Returns if two Coord objects are equal based on its x and y values
+	 * If the values of x and y are both 0 then its considered true
+	 * @return If Coords are equal or not
 	 */
 	@Override
 	public boolean equals(Object obj) {

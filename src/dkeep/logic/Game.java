@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents the game
+/** Represents the game
  * @version 1.0
  * @since 1.0
  * 
@@ -17,7 +17,7 @@ public class Game
 	private boolean quit;
 	
 	
-	/* Create a Game with default maps but with specified variables
+	/** Create a Game with default maps but with specified variables
 	 * @param type
 	 * 			Type of guard found in Dungeon (level 1)
 	 * @param nOgre
@@ -41,7 +41,7 @@ public class Game
 		this.setLevels(temp);
 	}
 	
-	/* Create a Game with a customisable Keep
+	/** Create a Game with a customisable Keep
 	 * @param map
 	 * 			Char map that sets initial game information
 	 */
@@ -58,7 +58,7 @@ public class Game
 		this.setLevels(temp);
 	}
 	
-	/* Move Hero of the Game
+	/** Move Hero of the Game
 	 * @param cmd
 	 * 			Command of the user
 	 */
@@ -68,27 +68,27 @@ public class Game
 		this.updateGameVariables(status, cmd);
 	}
 	
-	/* @return Current Level index
+	/** @return Current Level index
 	 */
 	public int getCurrentLevel() {
 		return currentLevel;
 	}
 		
-	/* @return Game is over
+	/** @return Game is over
 	 */
 	public boolean isGameOver()
 	{
 		return this.gameOver;
 	}
 	
-	/* @return Game was won
+	/** @return Game was won
 	 */
 	public boolean getWonGame()
 	{
 		return this.wonGame;
 	}
 	
-	/* @return Quit from Game
+	/** @return Quit from Game
 	 */
 	public boolean getQuit()
 	{
@@ -108,21 +108,21 @@ public class Game
 			return "Quit Game";
 	}
 	
-	/* @return Matrix of Symbols of current Map
+	/** @return Matrix of Symbols of current Map
 	 */
 	public Symbol[][] getSymbolMap(){
 		return getLevel().getMap().getSymbolMap();
 	}
 	
 	
-	/* @return the current level
+	/** @return the current level
 	 */
 	private Level getLevel()
 	{
 		return levels.get(currentLevel-1);
 	}
 	
-	/* Set array of levels to the game
+	/** Set array of levels to the game
 	 * @param lvl
 	 * 			Array of levels to be set
 	 */
@@ -131,28 +131,28 @@ public class Game
 		this.levels = lvl;
 	}
 
-	/* Set Game over
+	/** Set Game over
 	 */
 	private void setGameOVer()
 	{
 		this.gameOver = true;
 	}
 	
-	/* Set Game won
+	/** Set Game won
 	 */
 	private void setWonGame()
 	{
 		this.wonGame = true;
 	}
 
-	/* Set Quit from Game
+	/** Set Quit from Game
 	 */
 	private void setQuit()
 	{
 		this.quit = true;
 	}
 	
-	/* Update values of Game according to game logic and user command
+	/** Update values of Game according to game logic and user command
 	 * @param status
 	 * 			Status returned from game logic
 	 * @param cmd

@@ -2,18 +2,16 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Nominates an Interactive Entity
+/** Nominates an Interactive Entity
  * @version 1.0
  * @since 1.0
  */
 abstract public class Interactive extends Entity
 {
-	/* Create an Interactive object with specified position and symbol
-	 * @param startX
-	 * 			The Interactive's x position
-	 * @param startY
-	 * 			The Interactive's y position
-	 * @param startSymbol
+	/** Create an Interactive object with specified position and symbol
+	 * @param pos
+	 * 			Position of Interactive
+	 * @param startSymb
 	 * 			The Interactive's start symbol
 	 */
 	public Interactive(Coord pos, Symbol startSymb)
@@ -21,7 +19,7 @@ abstract public class Interactive extends Entity
 		super(pos,startSymb);
 	}
 	
-	/* Hero moves towards the Door
+	/** Hero moves towards the Door
 	 * Hero opens the Door with Key if it's closed, moves Hero on top of Door if it's open
 	 * @param hero
 	 * 			Hero that is moving against the Door

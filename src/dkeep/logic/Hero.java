@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents an Hero
+/** Represents an Hero
  * @version 1.0
  * @since 1.0
  */
@@ -12,7 +12,7 @@ public class Hero extends Movable
 	private boolean wonLevel;
 	private boolean isArmed;
 
-	/* Create an Hero with specified starting position and weapon
+	/** Create an Hero with specified starting position and weapon
 	 * @param startX
 	 * 			The Hero's start x position
 	 * @param startY
@@ -35,7 +35,7 @@ public class Hero extends Movable
 		cantWalkInto = temp;
 	}
 
-	/* Creates an Hero with specified coordinates and weapon
+	/** Creates an Hero with specified coordinates and weapon
 	 * @param coord
 	 * 			Starting coordinate of Hero
 	 * @param isArmed
@@ -45,7 +45,7 @@ public class Hero extends Movable
 		this(coord.getX(),coord.getY(),isArmed);
 	}
 	
-	/* Stun ogres around Hero if Hero is Armed
+	/** Stun ogres around Hero if Hero is Armed
 	 * @param enemies
 	 * 			Array of enemies to be stunned
 	 */
@@ -70,7 +70,7 @@ public class Hero extends Movable
 		}
 	}	
 	
-	/* Trigguer the Entity the Hero is moving towards
+	/** Trigguer the Entity the Hero is moving towards
 	 * @param map
 	 * 			Map in which the changes should be saved
 	 * @param newCoord
@@ -93,9 +93,11 @@ public class Hero extends Movable
 		}
 	}
 
-	/* Move Hero
+	/** Move Hero
 	 * @param map
 	 * 			Map in which the changes should be made
+	 * @param cmd
+	 * 			Command given by user
 	 * @param interactives
 	 * 			Array of objects that might be interacted with by Hero's movement
 	 * @param enemies
@@ -113,7 +115,7 @@ public class Hero extends Movable
 		stunNearBy(enemies);
 	}
 
-	/* @return Hero has won level
+	/** @return Hero has won level
 	 */
 	public boolean hasWon()
 	{
@@ -121,7 +123,7 @@ public class Hero extends Movable
 	}
 
 	
-	/* Check if Hero dies in the current Map situation
+	/** Check if Hero dies in the current Map situation
 	 * @param map
 	 * 			Map in which changes should be made
 	 * @param enemies
@@ -146,7 +148,7 @@ public class Hero extends Movable
 	}
 
 	
-	/* Set Key to Hero
+	/** Set Key to Hero
 	 * @param newKey
 	 * 			Key to be given to Hero
 	 */
@@ -157,7 +159,7 @@ public class Hero extends Movable
 	}
 
 	
-	/* @return Hero's Key
+	/** @return Hero's Key
 	 */
 	public Key getKey()
 	{

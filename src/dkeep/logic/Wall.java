@@ -1,12 +1,12 @@
 package dkeep.logic;
 
-/* Represents a Wall
+/** Represents a Wall
  * @version 1.0
  * @since 1.0
  */
 public class Wall extends Neutral{
 	
-	/* Creates a Wall Entity with specified x and y position
+	/** Creates a Wall Entity with specified x and y position
 	 * @param startX
 	 * 			The Wall x position
 	 * @param startY
@@ -16,7 +16,7 @@ public class Wall extends Neutral{
 		super(new Coord(startX,startY),Symbol.WALL);
 	}
 	
-	/* Creates a Wall with specified coordinates
+	/** Creates a Wall with specified coordinates
 	 * @param coord
 	 * 			The coordinate of the Wall
 	 */

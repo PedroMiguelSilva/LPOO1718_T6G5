@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Nomiantes a Level
+/** Nomiantes a Level
  * @version 1.0
  * @since 1.0
  */
@@ -13,12 +13,12 @@ abstract public class Level
 	private ArrayList<Interactive> interactives;
 	private Map map;
 	
-	/* Checks if the specific level winning condition has been reached
+	/** Checks if the specific level winning condition has been reached
 	 * @return Winning condition was met or not
 	 */
 	abstract public boolean hasWonLevel();
 	
-	/* Check if the hero dies from current Map
+	/** Check if the hero dies from current Map
 	 * @return Hero is dead
 	 */
 	public boolean heroDied() {
@@ -28,7 +28,7 @@ abstract public class Level
 		return false;
 	}
 
-	/* Move Enemies of the level
+	/** Move Enemies of the level
 	 * @param enemies
 	 * 			Enemies of the level
 	 */
@@ -39,7 +39,7 @@ abstract public class Level
 		}
 	}
 	
-	/* Update the logic of the game according to command from User
+	/** Update the logic of the game according to command from User
 	 * @param 	cmd
 	 * 				Direction in which the user wants to move
 	 * @return	0
@@ -65,7 +65,7 @@ abstract public class Level
 		return 0;
 	}
 
-	/* Create Walls for a Map
+	/** Create Walls for a Map
 	 * @param coord
 	 * 			Coordinates of the walls to be created
 	 * @return Array of the walls created
@@ -81,7 +81,7 @@ abstract public class Level
 		return result;
 	}
 	
-	/* Create Doors for a Map
+	/** Create Doors for a Map
 	 * @param coord
 	 * 			Coordinates of the doors to be created
 	 * @return Array of Doors created
@@ -96,7 +96,7 @@ abstract public class Level
 		return result;
 	}
 	
-	/* Transform two arrays of x and y positions and converts into an array of coordinates
+	/** Transform two arrays of x and y positions and converts into an array of coordinates
 	 * @Note : A coordinate is created from values of xPos and yPos of same index
 	 * @param posX
 	 * 			Array of x values
@@ -115,35 +115,35 @@ abstract public class Level
 		return coords;
 	}
 	
-	/* @return Map of the Level
+	/** @return Map of the Level
 	 */
 	public Map getMap()
 	{
 		return this.map;
 	}
 
-	/* @return Hero of the Level
+	/** @return Hero of the Level
 	 */
 	public Hero getHero()
 	{
 		return this.hero;
 	}
 
-	/* @return Enemies of the Level
+	/** @return Enemies of the Level
 	 */
 	public ArrayList<Enemy> getEnemies()
 	{
 		return this.enemies;
 	}
 
-	/* @return Interactive objects of the Level
+	/** @return Interactive objects of the Level
 	 */
 	public ArrayList<Interactive> getInteractives()
 	{
 		return this.interactives;
 	}
 
-	/* Search the Map for the Hero and returns it
+	/** Search the Map for the Hero and returns it
 	 * @return Hero of the Level
 	 */
 	protected Hero getHeroFromMap() {
@@ -157,7 +157,7 @@ abstract public class Level
 		return null;
 	}
 	
-	/* Search the Map for the Enemies and returns them
+	/** Search the Map for the Enemies and returns them
 	 * @return Array of Enemies of the Level
 	 */
 	protected ArrayList<Enemy> getEnemiesFromMap(){
@@ -172,7 +172,7 @@ abstract public class Level
 		return result;
 	}
 	
-	/* Search the Map for the Interactive objects and returns them
+	/** Search the Map for the Interactive objects and returns them
 	 * @return Array of Interactive objects of the Level
 	 */
 	protected ArrayList<Interactive> getInteractivesFromMap(){
@@ -191,7 +191,7 @@ abstract public class Level
 		return result;
 	}
 	
-	/* Set new Map to the Level
+	/** Set new Map to the Level
 	 * @param newMap
 	 * 			New Map
 	 */
@@ -200,7 +200,7 @@ abstract public class Level
 		this.map = newMap;
 	}
 	
-	/* Set new Enemies to the Level
+	/** Set new Enemies to the Level
 	 * @param newEnemies
 	 * 			New Enemies
 	 */
@@ -209,7 +209,7 @@ abstract public class Level
 		this.enemies = newEnemies;
 	}
 
-	/* Set new Interactive objects to the Level
+	/** Set new Interactive objects to the Level
 	 * @param newInteractives
 	 * 			New Interactive objects
 	 */
@@ -218,7 +218,7 @@ abstract public class Level
 		this.interactives = newInteractives;
 	}
 
-	/* Set new Hero to the Level
+	/** Set new Hero to the Level
 	 * @param newHero
 	 * 			New Hero
 	 */

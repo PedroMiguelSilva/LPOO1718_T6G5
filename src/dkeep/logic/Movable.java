@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/* Nominates a Movable Entity
+/** Nominates a Movable Entity
  * @version 1.0
  * @since 1.0
  */
@@ -9,7 +9,7 @@ public abstract class Movable extends Entity{
 	protected Symbol[] cantWalkInto;
 	protected Symbol[] canWalkInto;
 
-	/* Create a movable object with specified coordinates and symbol
+	/** Create a movable object with specified coordinates and symbol
 	 * @param pos 
 	 * 			Coordinate of Movable Entity
 	 * @param symb

@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/* Represents the Custom Level
+/** Represents the Custom Level
  * @version 1.0
  * @since 1.0
  */
@@ -9,13 +9,13 @@ public class CustomLevel {
 	private int width;
 	private int height;
 	
-	/* Create Default Level 7 by 7
+	/** Create Default Level 7 by 7
 	 */
 	public CustomLevel() {
 		this(7,7);
 	}
 	
-	/* Create a Custom Level with specified width and height
+	/** Create a Custom Level with specified width and height
 	 * @param w
 	 * 			width of the map
 	 * @param h
@@ -28,7 +28,7 @@ public class CustomLevel {
 		initMap(); 
 	} 
 	
-	/* Add element to the map
+	/** Add element to the map
 	 * @param symb
 	 * 			Symbol of the element to be added
 	 * @param x
@@ -43,13 +43,13 @@ public class CustomLevel {
 		map[x][y] = symb;
 	}
 	
-	/* @return Map of CostumeLevel
+	/** @return Map of CostumeLevel
 	 */
 	public Symbol[][] getMap(){
 		return this.map;
 	}
 	
-	/* @return if the current map is a valid one
+	/** @return if the current map is a valid one
 	 */
 	public boolean isValid() {
 		if(numEnt(Symbol.HERO) != 1)

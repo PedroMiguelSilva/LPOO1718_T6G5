@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Create a Rookie guard
+/** Create a Rookie guard
  * @version 1.0
  * @since 1.0
  */
@@ -10,7 +10,7 @@ public class Rookie extends Enemy{
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	int guardIndex;
 	
-	/* Creates a Rookie guard with specified starting coordinate and patrol route
+	/** Creates a Rookie guard with specified starting coordinate and patrol route
 	 * @param pos
 	 * 			Starting coordinate
 	 * @param coords
@@ -23,7 +23,7 @@ public class Rookie extends Enemy{
 		guardIndex = 0;
 	}
 
-	/* Move rookie guard along his patrol route
+	/** Move rookie guard along his patrol route
 	 * @param map
 	 * 			Map in which the changes should be made
 	 */

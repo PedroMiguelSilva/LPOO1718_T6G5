@@ -2,13 +2,13 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents the second level known as Keep
+/** Represents the second level known as Keep
  * @version 1.0
  * @since 1.0
  */
 public class Level2 extends Level
 {
-	/* Create a Keep with a specified number of Ogres
+	/** Create a Keep with a specified number of Ogres
 	 * @param nOgre
 	 * 			Number of Ogres in the Keep
 	 */
@@ -27,7 +27,7 @@ public class Level2 extends Level
 		this.setMap(mapLvl2);
 	}
 	
-	/* Create a Keep from information of a matrix of chars
+	/** Create a Keep from information of a matrix of chars
 	 * @param map
 	 * 			Matrix of chars with information for	 the Level
 	 */
@@ -45,7 +45,7 @@ public class Level2 extends Level
 		this.setInteractives(getInteractivesFromMap());
 	}
 	
-	/* Checks if the specific level winning condition has been reached
+	/** Checks if the specific level winning condition has been reached
 	 * @return Winning condition was met or not
 	 */
 	public boolean hasWonLevel() {

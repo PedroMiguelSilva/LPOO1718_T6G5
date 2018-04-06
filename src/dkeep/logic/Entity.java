@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/* Nominates an Entity
+/** Nominates an Entity
  * @version 1.0
  * @since 1.0
  */
@@ -9,11 +9,9 @@ abstract public class Entity
 	private Coord coord;
 	private Symbol symb;
 		
-	/* Create an Entity with specified starting position and symbol
-	 * @param startX
-	 * 			The Entity's x position
-	 * @param startY
-	 * 			The Entity's y position
+	/** Create an Entity with specified starting position and symbol
+	 * @param pos
+	 * 			Position of Entity
 	 * @param startSymb
 	 * 			The Entity's start symbol
 	 */
@@ -23,28 +21,28 @@ abstract public class Entity
 	}
 	
 	
-	/* @return X coordinate of Entity
+	/** @return X coordinate of Entity
 	 */
 	public int getX()
 	{
 		return coord.getX();
 	}
 	
-	/* @return Y coordinate of Entity
+	/** @return Y coordinate of Entity
 	 */
 	public int getY()
 	{
 		return coord.getY();
 	}
 	
-	/* @return Symbol of Entity
+	/** @return Symbol of Entity
 	 */
 	public Symbol getSymb()
 	{
 		return this.symb;
 	}
 	
-	/* Set new Symbol to Entity
+	/** Set new Symbol to Entity
 	 * @param symb
 	 * 			New symbol to be attributed to Entity
 	 */
@@ -53,13 +51,13 @@ abstract public class Entity
 		this.symb = symb;
 	}
 	
-	/* @return Coordinate of Entity
+	/** @return Coordinate of Entity
 	 */
 	public Coord getCoord() {
 		return coord;
 	}
 	
-	/* Set Coordinate to Entity
+	/** Set Coordinate to Entity
 	 * @param newCoord
 	 * 			Coordinate to be attributed to Entity
 	 */

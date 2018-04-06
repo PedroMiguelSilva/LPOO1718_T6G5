@@ -2,17 +2,15 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Nominates an Enemy
+/** Nominates an Enemy
  * @version 1.0
  * @since 1.0
  */
 abstract public class Enemy extends Movable implements Move
 {
-	/* Create an Enemy Entity with specified starting position and symbol
-	 * @param startX
-	 * 			The Entity's x position
-	 * @param startY
-	 * 			The Entity's y position
+	/** Create an Enemy Entity with specified starting position and symbol
+	 * @param pos
+	 * 			Position of Enemy
 	 * @param startSymb
 	 * 			The Entity's start symbol
 	 */
@@ -21,7 +19,7 @@ abstract public class Enemy extends Movable implements Move
 		super(pos,startSymb);
 	}
 	
-	/* Calculate the next index in the patrol route according
+	/** Calculate the next index in the patrol route according
 	 * @param index
 	 * 			Current index on the patrol route
 	 * @param size
@@ -44,7 +42,7 @@ abstract public class Enemy extends Movable implements Move
 			return index;
 	}
 	
-	/* Move enemy on the map
+	/** Move enemy on the map
 	 * @param index
 	 * 			Current index on the patrol route
 	 * @param coords

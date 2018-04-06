@@ -2,13 +2,13 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents the first Level known as Dungeon
+/** Represents the first Level known as Dungeon
  * @version 1.0
  * @since 1.0
  */
 public class Level1 extends Level
 {
-	/* Create a Dungeon with a specified guard
+	/** Create a Dungeon with a specified guard
 	 * @param type
 	 * 			Type of the Guard of the Dungeon
 	 */
@@ -29,7 +29,7 @@ public class Level1 extends Level
 		this.setMap(mapLvl1);
 	}
 
-	/* Checks if the specific level winning condition has been reached
+	/** Checks if the specific level winning condition has been reached
 	 * @return Winning condition was met or not
 	 */
 	public boolean hasWonLevel() {
@@ -40,7 +40,7 @@ public class Level1 extends Level
 			return false;
 	}
 
-	/* Create Hero for Level1
+	/** Create Hero for Level1
 	 */
 	private void setHero(ArrayList<Entity> entities) {
 		Hero hero = new Hero(1,1,false);
@@ -48,7 +48,7 @@ public class Level1 extends Level
 		entities.add(hero);
 	}
 
-	/* Create Walls for Level1
+	/** Create Walls for Level1
 	 */
 	private void setWalls(ArrayList<Entity> entities){
 		int wallX[] = {1,2,2,2,2,2,3,4,4,4,4,4,7,7,7,7,7,7,8};
@@ -70,7 +70,7 @@ public class Level1 extends Level
 		}
 	}
 
-	/* Create Enemy for Level1
+	/** Create Enemy for Level1
 	 */
 	private void setGuard(GuardType type,ArrayList<Enemy> enemies,ArrayList<Entity> entities) {
 		//SET ENEMIES
@@ -84,7 +84,7 @@ public class Level1 extends Level
 		this.setEnemies(enemies);
 	}
 
-	/* Create Doors for Level1
+	/** Create Doors for Level1
 	 */
 	private void setDoors(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
 		int doorX[] = {1,3,3,8,8};
@@ -99,7 +99,7 @@ public class Level1 extends Level
 		entities.addAll(doors);
 	}
 
-	/* Create Lever for Level1
+	/** Create Lever for Level1
 	 */
 	private void setLever(ArrayList<Entity> entities, ArrayList<Interactive> interactives) {
 		//SET INTERACTIVES

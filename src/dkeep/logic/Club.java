@@ -1,17 +1,15 @@
 package dkeep.logic;
 
-/* Represents the Club of the an Ogre
+/** Represents the Club of the an Ogre
  * @version 1.0
  * @since 1.0 
  */
 public class Club extends Movable{
 
 	
-	/* Creates a Club with specified x and y position
-	 * @param startX
-	 * 			The Club's x position
-	 * @param startY
-	 * 			The Club's y position
+	/** Creates a Club with specified x and y position
+	 * @param pos
+	 * 			Position of Ogre
 	 */
 	public Club(Coord pos) {
 		super(pos, Symbol.OGRE_WEAPON);
@@ -34,7 +32,7 @@ public class Club extends Movable{
 	}
 
 	
-	/* Swings the Club
+	/** Swings the Club
 	 * @param map
 	 * 			The map in which the Club is updated in
 	 * @param ent

@@ -1,12 +1,12 @@
 package dkeep.logic;
 
-/* Represents an Empty Entity. Used to fill and help manage the Map
+/** Represents an Empty Entity. Used to fill and help manage the Map
  * @version 1.0
  * @since 1.0  
  */
 public class Clear extends Neutral{
 
-	/* Creates a Clear Entity with specified x and y position
+	/** Creates a Clear Entity with specified x and y position
 	 * @param startX
 	 * 			The Clear Entity x position
 	 * @param startY
@@ -16,7 +16,7 @@ public class Clear extends Neutral{
 		super(new Coord(startX,startY), Symbol.CLEAR_SPACE);
 	}
 	
-	/* Creates a Clear Entity with specified coordinates
+	/** Creates a Clear Entity with specified coordinates
 	 * @param coord
 	 * 			The coordinate of the Clear Entity
 	 */

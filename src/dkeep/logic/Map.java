@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents a Map
+/** Represents a Map
  * @version 1.0
  * @since 1.0
  */
@@ -10,7 +10,7 @@ public class Map{
 	private int width, height;
 	private Cell[][] map;
 
-	/* @return Map of Symbols
+	/** @return Map of Symbols
 	 */
 	public Symbol[][] getSymbolMap(){
 		Symbol[][] result = new Symbol[height][width];
@@ -23,7 +23,7 @@ public class Map{
 		return result;
 	}
 	
-	/* Creates a Map with specified size and specified elements
+	/** Creates a Map with specified size and specified elements
 	 * @param w
 	 * 			Width of the map
 	 * @param h
@@ -41,7 +41,7 @@ public class Map{
 		addEntitiesToMap(entities);
 	}
 
-	/* Creates a Map from a Matrix of Symbols
+	/** Creates a Map from a Matrix of Symbols
 	 * @param bluePrint
 	 * 			Matrix of Symbol
 	 */
@@ -59,7 +59,7 @@ public class Map{
 		this.map = result;
 	}
 
-	/* Creates a Map from a matrix of Char
+	/** Creates a Map from a matrix of Char
 	 * @param charMap
 	 * 			Matrix of chars
 	 */
@@ -67,7 +67,7 @@ public class Map{
 		this(charMapToSymbolMap(charMap));
 	}
 	
-	/* Set Bot Entity
+	/** Set Bot Entity
 	 * @param coord
 	 * 			Coordinate to put the Entity
 	 * @param bot
@@ -78,17 +78,17 @@ public class Map{
 		map[coord.getX()][coord.getY()].setBot(bot);
 	}
 
-	/* Set Top Entity
+	/** Set Top Entity
 	 * @param coord
 	 * 			Coordinate to put the Entity
-	 * @param bot
+	 * @param top
 	 * 			Entity to be added
 	 */
 	public void setTopEnt(Coord coord, Entity top) {
 		map[coord.getX()][coord.getY()].setTop(top);
 	}
 
-	/* Get Top Entity
+	/** Get Top Entity
 	 * @param coord
 	 * 			Coordinate to get the Entity from
 	 * @return Top Entity
@@ -97,7 +97,7 @@ public class Map{
 		return map[coord.getX()][coord.getY()].getTop();
 	}
 
-	/* Get Bot Entity
+	/** Get Bot Entity
 	 * @param coord
 	 * 			Coordinate to get the Entity from
 	 * @return Bot Entity
@@ -106,7 +106,7 @@ public class Map{
 		return map[coord.getX()][coord.getY()].getBot();
 	}
 
-	/* Gets the Entity that is seen
+	/** Gets the Entity that is seen
 	 * @param coord
 	 * 			Coordinate to check
 	 * @return the entity on top, entity on bot if top is null
@@ -118,11 +118,12 @@ public class Map{
 			return getTopEnt(coord);
 	}
 	
-	/* Check if the is a Symbol near a Coord
+	/** Check if the is a Symbol near a Coord
 	 * @param coord
 	 * 			Coordinate in the middle
 	 * @param symb
 	 * 			Symbol to be checked
+	 * @return If there is an Entity with symb near coord
 	 */
 	public boolean isNearBy(Coord coord, Symbol symb) {
 		Coord c1 = new Coord(coord.getX()+1,coord.getY());
@@ -147,7 +148,7 @@ public class Map{
 	}
 
 	
-	/*	Move entity to coord
+	/**	Move entity to coord
 	 * @param ent
 	 * 			Entity to be moved
 	 * @param coord
@@ -167,15 +168,18 @@ public class Map{
 		ent.setCoord(coord);
 	}
 
-	/* @return Matrix of Cells
+	/** @return Matrix of Cells
 	 */
 	public Cell[][] getMap(){
 		return this.map;
 	}
 
-	/* Check if at least one of the Symbol given is in a certain coord
+	/** Check if at least one of the Symbol given is in a certain coord
 	 * @param coord
-	 * 			
+	 * 			Coordinate to check
+	 * @param symbArray
+	 * 			Array of symbols to be checked
+	 * @return There is at least one of symbArray in coord
 	 */
 	public boolean isSymbolInCoord(Coord coord, Symbol[] symbArray) {
 		Symbol temp = getEnt(coord).getSymb();

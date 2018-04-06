@@ -1,13 +1,17 @@
 package dkeep.logic;
 
 import java.util.ArrayList;
-
+/**
+ * Represents a Lever
+ * @version 1.0
+ * @since 1.0
+ */
 public class Lever extends Interactive
 {
 	private boolean isActive;
 	private ArrayList<Coord> coords = new ArrayList<Coord>();
 	
-	/* Creates a Lever with specified starting position and consequences
+	/** Creates a Lever with specified starting position and consequences
 	 * @param startX
 	 * 				Starting x value
 	 * @param startY
@@ -22,7 +26,7 @@ public class Lever extends Interactive
 		this.coords = coords;
 	}
 	
-	/* Trigger the elements associated with the Key
+	/** Trigger the elements associated with the Key
 	 * @param hero
 	 * 			The hero that might trigguer an interactive
 	 */

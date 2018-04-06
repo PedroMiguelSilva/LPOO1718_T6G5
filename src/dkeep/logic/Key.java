@@ -2,8 +2,8 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents a Key
- * @Note : A Key with doorC coordinates of x = 0 and y = 0 is universal and will open any door
+/** Represents a Key
+ * A Key with doorC coordinates of x = 0 and y = 0 is universal and will open any door
  * @version 1.0
  * @since 1.0
  */
@@ -11,15 +11,11 @@ public class Key extends Interactive
 {
 	Coord doorC;
 
-	/* Creates a key with specified start position and coordinates of the door it opens
-	 * @param startX
-	 * 			The Key's x positon
-	 * @param startY
-	 * 			The Key's y position
-	 * @param doorX
-	 * 			The x coordinate of the door opened by this Key
-	 * @param doorY
-	 * 			The y coordinate of the door opened by this Key
+	/** Creates a key with specified start position and coordinates of the door it opens
+	 * @param pos
+	 * 			Position of Key
+	 * @param doorC
+	 * 			Position of Door that Key opens
 	 */
 	public Key(Coord pos, Coord doorC)
 	{
@@ -27,7 +23,7 @@ public class Key extends Interactive
 		this.doorC = doorC;
 	}
 	
-	/* Hero walks into the key and picks it up
+	/** Hero walks into the key and picks it up
 	 * @param hero
 	 * 			Hero that picks the Key
 	 * @param interactives
@@ -46,7 +42,7 @@ public class Key extends Interactive
 		map.setBotEnt(hero.getCoord(), temp);
 	}	
 
-	/* @return Coordinates of the door opened by this Key
+	/** @return Coordinates of the door opened by this Key
 	 */
 	public Coord getDoorCoord() {
 		return this.doorC;

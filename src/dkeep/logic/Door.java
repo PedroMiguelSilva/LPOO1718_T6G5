@@ -2,7 +2,7 @@ package dkeep.logic;
 
 import java.util.ArrayList;
 
-/* Represents a Door
+/** Represents a Door
  * @version 1.0
  * @since 1.0
  */
@@ -10,7 +10,7 @@ public class Door extends Interactive
 {
 	private boolean open;
 	
-	/* Creates a Door with specified x and y position
+	/** Creates a Door with specified x and y position
 	 * @param startX
 	 * 			The Door's x position
 	 * @param startY
@@ -21,7 +21,7 @@ public class Door extends Interactive
 		this.open = false;
 	}
 	
-	/* Creates a Door with specified coordinates
+	/** Creates a Door with specified coordinates
 	 * @param coord
 	 * 			Object with values of x and y
 	 */
@@ -29,7 +29,7 @@ public class Door extends Interactive
 		this(coord.getX(), coord.getY());
 	}
 
-	/* Hero moves towards the Door
+	/** Hero moves towards the Door
 	 * Hero opens the Door with Key if it's closed, moves Hero on top of Door if it's open
 	 * @param hero
 	 * 			Hero that is moving against the Door
@@ -52,7 +52,7 @@ public class Door extends Interactive
 		}
 	}
 	
-	/* Open or close door
+	/** Open or close door
 	 */
 	public void toggleDoor(){
 		if(open)						    //close door

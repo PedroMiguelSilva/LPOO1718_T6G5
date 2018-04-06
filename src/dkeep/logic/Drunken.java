@@ -3,7 +3,7 @@ package dkeep.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-/* Represents a Drunken guard
+/** Represents a Drunken guard
  * @version 1.0
  * @since 1.0
  */
@@ -17,7 +17,7 @@ public class Drunken extends Enemy{
 	private boolean reverse;
 	
 	
-	/* Creates a Drunken guard with specified starting coordinate and patrol route
+	/** Creates a Drunken guard with specified starting coordinate and patrol route
 	 * @param pos
 	 * 			Starting coordinate
 	 * @param coords
@@ -33,7 +33,7 @@ public class Drunken extends Enemy{
 		reverse = false;
 	}
 	
-	/* Move Drunken guard along his patrol route
+	/** Move Drunken guard along his patrol route
 	 * @param map
 	 * 			Map in which the changes should be made
 	 */
@@ -47,7 +47,7 @@ public class Drunken extends Enemy{
 	}
 
 	
-	/* Wake up the Drunken guard
+	/** Wake up the Drunken guard
 	 */
 	private void wakeUp() {
 		Random rand = new Random();
@@ -59,7 +59,7 @@ public class Drunken extends Enemy{
 		}
 	}
 	
-	/* Update the sleeping status of Drunken guard
+	/** Update the sleeping status of Drunken guard
 	 */
 	private void updateSleepStatus() {
 		Random rand = new Random();

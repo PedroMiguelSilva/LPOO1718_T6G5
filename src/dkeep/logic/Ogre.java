@@ -1,6 +1,6 @@
 package dkeep.logic;
 
-/* Represents an Ogre
+/** Represents an Ogre
  * @version 1.0
  * @since 1.0
  */
@@ -11,7 +11,7 @@ public class Ogre extends Enemy
 	private int roundsStun;
 	private Club weapon;
 	
-	/* Creates an Ogre with specified coordinates and weapon
+	/** Creates an Ogre with specified coordinates and weapon
 	 * @param pos
 	 * 			Coordinate of the Ogre
 	 * @param hasClub	
@@ -40,7 +40,7 @@ public class Ogre extends Enemy
 		cantWalkInto = temp;
 	}
 	
-	/* Stun the Ogre
+	/** Stun the Ogre
 	 */
 	public void stun() {
 		isStun = true;
@@ -48,7 +48,7 @@ public class Ogre extends Enemy
 		this.setSymb(Symbol.OGRE_STUNED);
 	}
 	
-	/* Move the Ogre in the map
+	/** Move the Ogre in the map
 	 * @param map
 	 * 			Map in which the changes should be made
 	 */
